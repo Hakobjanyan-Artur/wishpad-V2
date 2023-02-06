@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-const changes = (Component) => {
+const widthTeme = (Component) => {
     return (props) => {
         const [theme, setTheme] = useState('dark')
 
@@ -15,4 +15,4 @@ const changes = (Component) => {
     }
 }
 
-export default changes
+export default widthTeme

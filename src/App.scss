@@ -3,6 +3,7 @@
 @import './components/main/main';
 @import './components/signin/signIn';
 @import './components/signup/signUp';
+@import './components/navbar/navbar';
 
 * {
     margin: 0;
@@ -21,4 +22,8 @@ ul {
 
 img {
     max-width: 100%;
+}
+
+.App {
+    display: flex;
 }

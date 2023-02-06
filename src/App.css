@@ -11,6 +11,7 @@
   src: url("./fonts/Elsie-Regular.ttf");
 }
 .sign-in {
+  width: 100%;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -137,6 +138,7 @@
   src: url("./fonts/Elsie-Regular.ttf");
 }
 .sign-up {
+  width: 100%;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -263,6 +265,115 @@
   cursor: pointer;
 }
 
+.navbar {
+  width: 17%;
+  height: 100vh;
+  background-color: rgb(33, 92, 243);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+@media (max-width: 950px) {
+  .navbar {
+    width: 12%;
+  }
+}
+.navbar .logo {
+  width: 80%;
+  height: 170px;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  overflow: hidden;
+}
+@media (max-width: 950px) {
+  .navbar .logo {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media (max-height: 768px) {
+  .navbar .logo {
+    height: 120px;
+  }
+}
+@media (max-height: 600px) {
+  .navbar .logo {
+    display: none;
+  }
+}
+@media (max-width: 950px) {
+  .navbar .logo img {
+    display: none;
+  }
+}
+.navbar .logo .siwish {
+  display: none;
+}
+@media (max-width: 950px) {
+  .navbar .logo .siwish {
+    font-size: 40px;
+    display: block;
+    color: #fff;
+  }
+}
+.navbar nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.navbar nav .standart {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  color: #fff;
+  font-family: "roboto";
+  transition: 0.3s;
+}
+.navbar nav .standart:hover {
+  transform: scale(110%);
+}
+.navbar nav .active {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  color: #fff;
+  font-family: "roboto";
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 10px;
+  padding: 5px;
+  transform: scale(110%);
+}
+.navbar nav .switch,
+.navbar nav .logout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  color: #fff;
+  font-family: "roboto";
+  cursor: pointer;
+  transition: 0.4s;
+  padding: 3px;
+  border-radius: 10px;
+}
+.navbar nav .switch:hover,
+.navbar nav .logout:hover {
+  background: #fff;
+  color: rgb(33, 92, 243);
+  border-radius: 10px;
+}
+@media (max-width: 950px) {
+  .navbar nav .nav-txt {
+    display: none;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -280,4 +391,8 @@ ul {
 
 img {
   max-width: 100%;
+}
+
+.App {
+  display: flex;
 }/*# sourceMappingURL=App.css.map */

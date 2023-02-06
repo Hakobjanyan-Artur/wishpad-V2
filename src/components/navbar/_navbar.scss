@@ -1,0 +1,117 @@
+.navbar {
+    width: 17%;
+    height: 100vh;
+    background-color: $wish-blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    @media(max-width: 950px) {
+        width: 12%;
+    }
+
+    .logo {
+        width: 80%;
+        height: 170px;
+        border-bottom-left-radius: 50%;
+        border-bottom-right-radius: 50%;
+        overflow: hidden;
+
+        @media(max-width: 950px) {
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media(max-height:768px) {
+            height: 120px;
+        }
+
+        @media(max-height:600px) {
+            display: none;
+        }
+
+        img {
+            @media(max-width: 950px) {
+                display: none;
+            }
+        }
+
+        .siwish {
+
+            display: none;
+
+            @media(max-width: 950px) {
+                font-size: 40px;
+                display: block;
+                color: #fff;
+            }
+        }
+    }
+
+    nav {
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .standart {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            color: #fff;
+            font-family: 'roboto';
+            transition: .3s;
+        }
+
+        .standart:hover {
+            transform: scale(110%);
+        }
+
+        .active {
+            width: 80%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            color: #fff;
+            font-family: 'roboto';
+            border: 1px solid $wish-dark-grey;
+            border-radius: 10px;
+            padding: 5px;
+            transform: scale(110%);
+        }
+
+        .switch,
+        .logout {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            color: #fff;
+            font-family: 'roboto';
+            cursor: pointer;
+            transition: .4s;
+            padding: 3px;
+            border-radius: 10px;
+        }
+
+        .switch:hover,
+        .logout:hover {
+            background: #fff;
+            color: $wish-blue;
+            border-radius: 10px;
+        }
+
+        .nav-txt {
+            @media(max-width: 950px) {
+                display: none;
+            }
+        }
+    }
+}
