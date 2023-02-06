@@ -38,10 +38,16 @@
                 font-family: 'elsie';
             }
 
+            .reg-title {
+                text-align: center;
+                font-family: 'roboto';
+            }
+
             form {
+                margin-top: 20px;
                 display: flex;
                 flex-direction: column;
-                gap: 30px;
+                gap: 20px;
                 align-items: center;
 
                 .check {
@@ -71,11 +77,14 @@
                         top: 50%;
                         right: -110%;
                     }
+                }
 
-                    .checkbox {
-                        align-items: flex-start;
-                        width: 20px;
-                    }
+                h5 {
+                    text-align: center;
+                    color: $wish-blue;
+                    font-family: 'roboto';
+                    cursor: pointer;
+                    transform: translateY(-20px);
                 }
 
                 input {
@@ -89,6 +98,18 @@
                     padding-left: 15px;
                 }
 
+                .show-password {
+                    width: 80%;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    font-family: 'roboto';
+
+                    .checkbox {
+                        width: 15px;
+                    }
+                }
+
                 button {
                     @include button(60%, 30px)
                 }
@@ -97,21 +118,15 @@
                     background: #fff;
                     color: $wish-blue;
                 }
-
-                h5 {
-                    font-family: 'roboto';
-                    cursor: pointer;
-                    color: $wish-blue;
-                }
             }
 
             .sign-up-div {
                 border-top: 1px solid $wish-dark-grey;
-                margin-top: 10px;
+                margin-top: 20px;
                 padding-top: 10px;
                 display: flex;
                 justify-content: center;
-                gap: 10px;
+                gap: 20px;
 
                 .sign-up-btn {
                     color: $wish-blue;

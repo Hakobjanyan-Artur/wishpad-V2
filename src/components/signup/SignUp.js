@@ -14,19 +14,34 @@ export default function SignUp() {
                 </div>
                 <div className="section">
                     <h1>WISH-PAD</h1>
+                    <h3 className='reg-title'>Register to chat with friends</h3>
                     <form>
                         <input
                             placeholder='Enter your email'
                             type="email" />
                         <input
-                            placeholder='Enter your password'
+                            placeholder='Real name'
+                            type="text" />
+                        <input
+                            placeholder='User name'
+                            type="text" />
+                        <input
+                            placeholder='Create a password'
                             type="password" />
-                        <div className='check'>
-                            <h4>Remember Me</h4>
-                            <input className='checkbox' type="checkbox" />
+                        <input
+                            placeholder='Confirm password'
+                            type="password" />
+                        <div className='show-password'>
+                            <input
+                                className='checkbox'
+                                type="checkbox" />
+                            <h4>Show password</h4>
                         </div>
-                        <button>Sign-in</button>
-                        <h5>Forgot password ?</h5>
+                        <div className='check'>
+                            <h4>Do you agree with us ?</h4>
+                        </div>
+                        <h5>Terms</h5>
+                        <button>Sign-up</button>
                     </form>
                     <div className='sign-up-div'>
                         <h4>Don't have an account?</h4>

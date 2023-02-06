@@ -77,7 +77,7 @@
 }
 .sign-in .sign-in-content .section form .check .checkbox {
   align-items: flex-start;
-  width: 20px;
+  width: 15px;
 }
 .sign-in .sign-in-content .section form input {
   width: 80%;
@@ -169,10 +169,15 @@
   text-align: center;
   font-family: "elsie";
 }
+.sign-up .sign-up-content .section .reg-title {
+  text-align: center;
+  font-family: "roboto";
+}
 .sign-up .sign-up-content .section form {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
   align-items: center;
 }
 .sign-up .sign-up-content .section form .check {
@@ -201,9 +206,12 @@
   top: 50%;
   right: -110%;
 }
-.sign-up .sign-up-content .section form .check .checkbox {
-  align-items: flex-start;
-  width: 20px;
+.sign-up .sign-up-content .section form h5 {
+  text-align: center;
+  color: rgb(33, 92, 243);
+  font-family: "roboto";
+  cursor: pointer;
+  transform: translateY(-20px);
 }
 .sign-up .sign-up-content .section form input {
   width: 80%;
@@ -214,6 +222,16 @@
   font-size: 18px;
   font-family: "roboto";
   padding-left: 15px;
+}
+.sign-up .sign-up-content .section form .show-password {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: "roboto";
+}
+.sign-up .sign-up-content .section form .show-password .checkbox {
+  width: 15px;
 }
 .sign-up .sign-up-content .section form button {
   width: 60%;
@@ -232,18 +250,13 @@
   background: #fff;
   color: rgb(33, 92, 243);
 }
-.sign-up .sign-up-content .section form h5 {
-  font-family: "roboto";
-  cursor: pointer;
-  color: rgb(33, 92, 243);
-}
 .sign-up .sign-up-content .section .sign-up-div {
   border-top: 1px solid rgb(201, 201, 201);
-  margin-top: 10px;
+  margin-top: 20px;
   padding-top: 10px;
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
 }
 .sign-up .sign-up-content .section .sign-up-div .sign-up-btn {
   color: rgb(33, 92, 243);
