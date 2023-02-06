@@ -1,0 +1,24 @@
+@import './scss/mixin';
+@import './scss/variables';
+@import './components/main/main';
+@import './components/signin/signIn';
+@import './components/signup/signUp';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+}

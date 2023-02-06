@@ -1,0 +1,20 @@
+@mixin font($fontName, $fontUrl) {
+    @font-face {
+        font-family: $fontName;
+        src: url($fontUrl);
+    }
+}
+
+@mixin button ($width, $height, $color: $wish-blue) {
+    width: $width;
+    height: $height;
+    border: none;
+    background: $color;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'roboto';
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 15px $color;
+    transition: .5s;
+}
