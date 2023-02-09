@@ -766,6 +766,288 @@
   gap: 20px;
 }
 
+@font-face {
+  font-family: "roboto";
+  src: url("./fonts/Roboto-Thin.ttf");
+}
+@font-face {
+  font-family: "clash";
+  src: url("./fonts/ClashDisplay-Medium.ttf");
+}
+@font-face {
+  font-family: "elsie";
+  src: url("./fonts/Elsie-Regular.ttf");
+}
+.user-by-click {
+  width: 100%;
+}
+.user-by-click header {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(33, 92, 243);
+}
+@media (max-width: 550px) {
+  .user-by-click header {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+}
+.user-by-click header .left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.user-by-click header .left .user-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-by-click header .left .user-image img {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+}
+.user-by-click header .left button {
+  width: 130px;
+  height: 25px;
+  border: none;
+  background: #fff;
+  border-radius: 10px;
+  font-size: 20px;
+  font-family: "roboto";
+  color: #000;
+  cursor: pointer;
+  box-shadow: 0 0 15px #fff;
+  transition: 0.5s;
+  box-shadow: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.user-by-click header .right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #fff;
+}
+.user-by-click header .right .top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "elsie";
+}
+.user-by-click header .right .top button {
+  width: 100px;
+  height: 20px;
+  border: none;
+  background: #fff;
+  border-radius: 10px;
+  font-size: 20px;
+  font-family: "roboto";
+  color: rgb(33, 92, 243);
+  cursor: pointer;
+  box-shadow: 0 0 15px #fff;
+  transition: 0.5s;
+  font-size: 16px;
+  box-shadow: none;
+}
+.user-by-click header .right .section {
+  display: flex;
+  gap: 10px;
+  font-family: "roboto";
+}
+@media (max-width: 550px) {
+  .user-by-click header .right .section {
+    display: none;
+  }
+}
+.user-by-click header .right .user-info {
+  font-family: "roboto";
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+@media (max-width: 550px) {
+  .user-by-click header .right .user-info {
+    display: none;
+  }
+}
+.user-by-click section {
+  padding: 30px 10% 0;
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("./fonts/Roboto-Thin.ttf");
+}
+@font-face {
+  font-family: "clash";
+  src: url("./fonts/ClashDisplay-Medium.ttf");
+}
+@font-face {
+  font-family: "elsie";
+  src: url("./fonts/Elsie-Regular.ttf");
+}
+.user-navbar {
+  border-top: 1px solid rgb(201, 201, 201);
+  padding-top: 10px;
+}
+.user-navbar ul {
+  display: flex;
+  justify-content: space-around;
+}
+.user-navbar ul .standart {
+  display: flex;
+  align-items: center;
+  width: 150px;
+  height: 30px;
+  justify-content: center;
+  gap: 10px;
+  font-size: 18px;
+  font-family: "elsie";
+  color: rgb(201, 201, 201);
+}
+.user-navbar ul .active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 30px;
+  gap: 10px;
+  font-size: 18px;
+  font-family: "elsie";
+  border-bottom: 1px solid #000;
+  color: #000;
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("./fonts/Roboto-Thin.ttf");
+}
+@font-face {
+  font-family: "clash";
+  src: url("./fonts/ClashDisplay-Medium.ttf");
+}
+@font-face {
+  font-family: "elsie";
+  src: url("./fonts/Elsie-Regular.ttf");
+}
+.messenger {
+  width: 90%;
+  display: flex;
+}
+.messenger .left {
+  width: 70%;
+}
+@media (max-width: 750px) {
+  .messenger .left {
+    width: 100%;
+  }
+}
+.messenger .left header {
+  height: 20%;
+  background-color: rgb(33, 92, 243);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.messenger .left header .user-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.messenger .left header .user-image img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+.messenger .left header .user-info {
+  color: #fff;
+  font-family: "elsie";
+}
+.messenger .left section {
+  height: 70%;
+}
+.messenger .left footer {
+  height: 10%;
+  padding-bottom: 20px;
+  border-top: 1px solid rgb(201, 201, 201);
+}
+.messenger .left footer form {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.messenger .left footer form input {
+  width: 70%;
+  height: 70%;
+  border-radius: 20px;
+  outline: none;
+  border: 1px solid rgb(201, 201, 201);
+  padding-left: 20px;
+  font-size: 18px;
+  font-family: "roboto";
+}
+.messenger .left footer form button {
+  border: none;
+  background: none;
+  font-size: 25px;
+  transform: translateX(-40px);
+  cursor: pointer;
+}
+.messenger .right {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-top: 20px;
+  border-left: 1px solid rgb(201, 201, 201);
+}
+@media (max-width: 750px) {
+  .messenger .right {
+    display: none;
+  }
+}
+.messenger .right .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  font-family: "elsie";
+  border-bottom: 1px solid rgb(201, 201, 201);
+  width: 100%;
+}
+.messenger .right .header .user-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: rgb(33, 92, 243);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.messenger .right .header .user-image img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+}
+
 * {
   margin: 0;
   padding: 0;

@@ -3,9 +3,11 @@ import { ThemeContext } from "../../App"
 import { collection, onSnapshot } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig"
 import userImage from '../../images/user.png'
+import { useNavigate } from "react-router-dom"
 
 export default function Search() {
     const { theme } = useContext(ThemeContext)
+    const navigate = useNavigate()
     const [inputTxt, setInputTxt] = useState('')
     const [users, setUsers] = useState(null)
     let searchUser
@@ -49,7 +51,7 @@ export default function Search() {
             </div>
             <div className="search-display">
                 {searchUser?.map((user) => (
-                    <div onClick={() => console.log(user.user_id)} key={user?.id} className="user-content">
+                    <div onClick={() => navigate(`/userByClick/${user.user_id}`)} key={user?.id} className="user-content">
                         <div className="left">
                             <div className="user-image">
                                 <img src={user?.avatar ? user?.avatar : userImage} alt="" />

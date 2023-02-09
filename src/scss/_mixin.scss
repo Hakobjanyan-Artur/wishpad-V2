@@ -5,16 +5,32 @@
     }
 }
 
-@mixin button ($width, $height, $color: $wish-blue) {
+@mixin button ($width, $height, $bgcolor: $wish-blue, $color: #fff) {
     width: $width;
     height: $height;
     border: none;
-    background: $color;
+    background: $bgcolor;
     border-radius: 10px;
     font-size: 20px;
     font-family: 'roboto';
-    color: #fff;
+    color: $color;
     cursor: pointer;
-    box-shadow: 0 0 15px $color;
+    box-shadow: 0 0 15px $bgcolor;
     transition: .5s;
+}
+
+@mixin image ($width, $height, $bgColor) {
+    width: $width;
+    height: $height;
+    border-radius: 50%;
+    background-color: $bgColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: $width - 10px;
+        height: $height - 10px;
+        border-radius: 50%;
+    }
 }

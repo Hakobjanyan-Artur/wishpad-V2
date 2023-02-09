@@ -1,0 +1,99 @@
+@include font('roboto', './fonts/Roboto-Thin.ttf');
+@include font('clash', './fonts/ClashDisplay-Medium.ttf');
+@include font('elsie', './fonts/Elsie-Regular.ttf');
+
+.messenger {
+    width: 90%;
+    display: flex;
+
+    .left {
+        width: 70%;
+
+        @media(max-width: 750px) {
+            width: 100%;
+        }
+
+        header {
+            height: 20%;
+            background-color: $wish-blue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+
+            .user-image {
+                @include image(100px, 100px, #fff)
+            }
+
+            .user-info {
+                color: #fff;
+                font-family: 'elsie';
+            }
+        }
+
+        section {
+            height: 70%;
+        }
+
+        footer {
+            height: 10%;
+            padding-bottom: 20px;
+            border-top: 1px solid $wish-dark-grey;
+
+            form {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                input {
+                    width: 70%;
+                    height: 70%;
+                    border-radius: 20px;
+                    outline: none;
+                    border: 1px solid $wish-dark-grey;
+                    padding-left: 20px;
+                    font-size: 18px;
+                    font-family: 'roboto';
+                }
+
+                button {
+                    border: none;
+                    background: none;
+                    font-size: 25px;
+                    transform: translateX(-40px);
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .right {
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding-top: 20px;
+        border-left: 1px solid $wish-dark-grey;
+
+        @media(max-width: 750px) {
+            display: none;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            font-family: 'elsie';
+            border-bottom: 1px solid $wish-dark-grey;
+            width: 100%;
+
+            .user-image {
+                @include image(150px, 150px, $wish-blue)
+            }
+        }
+
+    }
+}

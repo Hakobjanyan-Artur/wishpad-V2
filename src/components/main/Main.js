@@ -51,11 +51,11 @@ export default function Main() {
                 <div className="user">
                     <div
                         className="user-image">
-                        <img src={currentUser.avatar ? currentUser.avatar : userImage} alt="" />
+                        <img src={currentUser?.avatar ? currentUser?.avatar : userImage} alt="" />
                     </div>
                     <div className="user-name">
-                        <h3>{currentUser.name}</h3>
-                        <h4>{currentUser.userName}</h4>
+                        <h3>{currentUser?.name}</h3>
+                        <h4>{currentUser?.userName}</h4>
                     </div>
                 </div>
                 <div className="notification">

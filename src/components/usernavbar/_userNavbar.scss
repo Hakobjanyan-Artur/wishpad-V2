@@ -1,0 +1,38 @@
+@include font('roboto', './fonts/Roboto-Thin.ttf');
+@include font('clash', './fonts/ClashDisplay-Medium.ttf');
+@include font('elsie', './fonts/Elsie-Regular.ttf');
+
+.user-navbar {
+    border-top: 1px solid $wish-dark-grey;
+    padding-top: 10px;
+
+    ul {
+        display: flex;
+        justify-content: space-around;
+
+        .standart {
+            display: flex;
+            align-items: center;
+            width: 150px;
+            height: 30px;
+            justify-content: center;
+            gap: 10px;
+            font-size: 18px;
+            font-family: 'elsie';
+            color: $wish-dark-grey;
+        }
+
+        .active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+            height: 30px;
+            gap: 10px;
+            font-size: 18px;
+            font-family: 'elsie';
+            border-bottom: 1px solid #000;
+            color: #000;
+        }
+    }
+}

@@ -1,0 +1,86 @@
+@include font('roboto', './fonts/Roboto-Thin.ttf');
+@include font('clash', './fonts/ClashDisplay-Medium.ttf');
+@include font('elsie', './fonts/Elsie-Regular.ttf');
+
+.user-by-click {
+    width: 100%;
+
+    header {
+        padding: 20px 0;
+        display: flex;
+        justify-content: space-around;
+        background-color: $wish-blue;
+
+        @media(max-width: 550px) {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+
+            .user-image {
+                @include image(200px, 200px, #fff)
+            }
+
+            button {
+                @include button(130px, 25px, #fff, #000);
+                box-shadow: none;
+                font-size: 18px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            }
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            color: #fff;
+
+            .top {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-family: 'elsie';
+
+                button {
+                    @include button(100px, 20px, #fff, $wish-blue);
+                    font-size: 16px;
+                    box-shadow: none;
+                }
+            }
+
+            .section {
+                display: flex;
+                gap: 10px;
+                font-family: 'roboto';
+
+                @media(max-width: 550px) {
+                    display: none;
+                }
+            }
+
+            .user-info {
+                font-family: 'roboto';
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                @media(max-width: 550px) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    section {
+        padding: 30px 10% 0;
+    }
+}
