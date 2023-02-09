@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom"
-import { useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom"
+import { useContext, useEffect, useState } from "react";
 //--------------
 import logo from '../../images/logo.jpg'
 import { ThemeContext } from "../../App";
@@ -14,8 +14,18 @@ import { FiSettings } from "react-icons/fi";
 
 
 export default function Navbar() {
-
     const { theme, toggleTheme } = useContext(ThemeContext)
+    const navigate = useNavigate()
+    const [currentUser, setCurrentUser] = useState(false)
+
+
+    useEffect(() => {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser')) || null
+        if (currentUser) {
+            setCurrentUser(true)
+        }
+    }, [])
+
     return (
         <div
             style={{
@@ -35,7 +45,7 @@ export default function Navbar() {
                     <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/profile"><CgProfile /> <span className="nav-txt">Profile</span></NavLink></li>
                     <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/settings"><FiSettings /> <span className="nav-txt">Settings</span></NavLink></li>
                     <li onClick={toggleTheme} className="switch" >{theme === 'dark' ? <BsFillMoonStarsFill /> : <BsFillSunFill />} <span className="nav-txt">Switch appearance</span></li>
-                    <li className="logout" ><CiLogout /> <span className="nav-txt">Log Out</span></li>
+                    <li style={{ display: currentUser ? 'block' : 'none' }} className="logout" onClick={() => { localStorage.removeItem('currentUser'); navigate('/') }}  ><CiLogout /> <span className="nav-txt">Log Out</span></li>
                 </ul>
             </nav>
         </div>

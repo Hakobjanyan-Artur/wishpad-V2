@@ -9,6 +9,72 @@
     justify-content: center;
     align-items: center;
 
+    .popup {
+        width: 30%;
+        height: 20%;
+        position: absolute;
+        border: 2px solid $wish-dark-grey;
+        background: #fff;
+        border-radius: 20px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 99;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @media(max-width: 750px) {
+            width: 80%;
+        }
+
+        .title {
+            font-family: 'elsie';
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .loadingAnim {
+            margin-top: 20px;
+            width: 80%;
+            height: 5px;
+            border-radius: 10px;
+            background: $wish-blue;
+            position: relative;
+        }
+
+        .loadingAnim::after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            position: absolute;
+            top: 0;
+            -webkit-animation: load 5s ease-in-out;
+            animation: load 5s ease-in-out;
+        }
+    }
+
+    @-webkit-keyframes load {
+        0% {
+            left: 100%;
+        }
+
+        100% {
+            left: 0;
+        }
+    }
+
+    @keyframes load {
+        0% {
+            left: 100%;
+        }
+
+        100% {
+            left: 0;
+        }
+    }
+
     .sign-up-content {
         width: 500px;
         min-height: 600px;
@@ -80,12 +146,53 @@
                     }
                 }
 
-                h5 {
+                .terms {
                     text-align: center;
                     color: $wish-blue;
                     font-family: 'roboto';
                     cursor: pointer;
                     transform: translateY(-20px);
+                }
+
+                .password {
+                    width: 80%;
+                    position: relative;
+
+                    .password-logic {
+                        width: 100%;
+                        height: 200px;
+                        border-bottom-left-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                        position: absolute;
+                        background: #fff;
+                        border: 2px solid $wish-dark-grey;
+                        z-index: 99;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 20px;
+                        padding: 20px;
+
+                        .range {
+                            width: 10px;
+                            height: 10px;
+                            border-radius: 50%;
+                            background: $wish-dark-grey;
+                            display: block;
+                            ;
+                        }
+
+                        .logic-content {
+                            height: 15px;
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            font-family: 'roboto';
+                        }
+                    }
+
+                    input {
+                        width: 100%;
+                    }
                 }
 
                 input {

@@ -12,10 +12,10 @@ import SignUp from './components/signup/SignUp';
 import widthTeme from './hoc/WidthTeme';
 import HomeWrapper from './pages/HomeWrapper';
 
-
 export const ThemeContext = createContext()
 
 function App({ theme, toggleTheme }) {
+
   return (
     <div className="App">
       <ThemeContext.Provider value={{ theme, toggleTheme }}>

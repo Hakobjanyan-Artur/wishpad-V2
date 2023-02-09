@@ -1,0 +1,33 @@
+@include font('roboto', './fonts/Roboto-Thin.ttf');
+
+.top-user {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .top-user-images {
+        max-width: 70px;
+        max-height: 70px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    img {
+        max-width: 60px;
+        max-height: 60px;
+        border-radius: 50%;
+    }
+
+    .top-user-name {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'roboto';
+        color: #fff;
+    }
+}
