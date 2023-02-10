@@ -4,6 +4,7 @@ import userImage from '../../images/user.png'
 import { collection, query, where, onSnapshot, addDoc, serverTimestamp, orderBy } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig"
 import { FaTelegramPlane } from "react-icons/fa";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux"
 import { selectUsers, toggleUser } from "../../store/slices/users/usersSlices"
 import { ThemeContext } from "../../App"
@@ -12,7 +13,7 @@ import { v4 } from "uuid";
 
 export default function Messenger() {
     const { id } = useParams()
-    const { theme } = useContext(ThemeContext)
+    const { theme, toggleHiden } = useContext(ThemeContext)
     const [userByClick, setUserByClick] = useState(null)
     const { currentUser } = useSelector(selectUsers)
     const [txt, setTxt] = useState('')
@@ -21,35 +22,38 @@ export default function Messenger() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-
     useEffect(() => {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser')) || null
-        if (currentUser) {
-            dispatch(toggleUser(currentUser))
+
+        const localUser = JSON.parse(localStorage.getItem('currentUser')) || null
+        if (localUser) {
+            dispatch(toggleUser(localUser))
         }
         if (!currentUser) {
             navigate('/')
         }
-        const q = query(collection(db, "users"), where("user_id", "==", id));
-        const unsubscribe = async () => onSnapshot(q, (querySnapshot) => {
-            let user = {};
-            querySnapshot.forEach((doc) => {
-                user = doc.data()
+        if (currentUser) {
+            const q = query(collection(db, "users"), where("user_id", "==", id));
+            const unsubscribe = async () => onSnapshot(q, (querySnapshot) => {
+                let user = {};
+                querySnapshot.forEach((doc) => {
+                    user = doc.data()
+                })
+                setUserByClick(user)
+            });
+            unsubscribe()
+
+            const m = query(collection(db, "messenger"), where("user", "in", [currentUser?.user_id, id]), orderBy('createdAd'));
+            const messenger = async () => onSnapshot(m, (querySnapshot) => {
+                let user = [];
+                querySnapshot.forEach((doc) => { user.push({ ...doc.data(), id: doc.id }) })
+                const filterMess = user.filter((mess) => mess.user === currentUser?.user_id && mess.companion === id || mess.user === id && mess.companion === currentUser?.user_id)
+                setMessage(filterMess)
             })
-            setUserByClick(user)
-        });
-        unsubscribe()
+            messenger()
 
-        const m = query(collection(db, "messenger"), where("user", "in", [currentUser?.user_id, id]), orderBy('createdAd'));
-        const messenger = async () => onSnapshot(m, (querySnapshot) => {
-            let user = [];
-            querySnapshot.forEach((doc) => { user.push({ ...doc.data(), id: doc.id }) })
-            const filterMess = user.filter((mess) => mess.user === currentUser?.user_id && mess.companion === id || mess.user === id && mess.companion === currentUser?.user_id)
-            setMessage(filterMess)
-        });
-        messenger()
+            return () => messenger()
+        }
 
-        return () => messenger()
     }, [])
 
     const handleSubmit = async (e) => {
@@ -71,16 +75,15 @@ export default function Messenger() {
 
         }
 
-        if (txt !== "") {
-            await addDoc(messagesRef, {
-                txt: txt,
-                id: v4Id,
-                createdAd: serverTimestamp(),
-                dataMess: dataMess(),
-                user: currentUser?.user_id,
-                companion: userByClick?.user_id,
-            })
-        }
+        if (txt === "") return
+        await addDoc(messagesRef, {
+            txt: txt,
+            id: v4Id,
+            createdAd: serverTimestamp(),
+            dataMess: dataMess(),
+            user: currentUser?.user_id,
+            companion: userByClick?.user_id,
+        })
 
         setTxt("")
 
@@ -90,6 +93,9 @@ export default function Messenger() {
         <div className="messenger">
             <div className="left">
                 <header style={{ background: theme === 'dark' ? '' : '#000' }}>
+                    <div onClick={toggleHiden} className="logo">
+                        <RxHamburgerMenu />
+                    </div>
                     <div className="user-image">
                         <img src={userImage} alt="" />
                     </div>
@@ -98,8 +104,27 @@ export default function Messenger() {
                     </div>
                 </header>
                 <section>
-                    {message.map((mess) => (
-                        <div key={mess?.id} className="message-content">{mess?.txt}</div>
+                    {message?.map((mess) => (
+                        <div key={mess?.id} className="message-content">
+                            <div
+                                style={{
+                                    right: mess.user === id ? '0' : '',
+                                    borderBottomLeftRadius: mess?.user === id ? '20px' : '',
+                                    borderBottomRightRadius: mess?.user === id ? '' : '20px',
+                                    borderTopLeftRadius: mess?.user === id ? '20px' : '',
+                                    borderTopRightRadius: mess?.user === id ? '' : '20px',
+                                    flexDirection: mess?.user === id ? 'row-reverse' : ''
+                                }}
+                                className="content">
+                                <div className="user-info">
+                                    <h3>{mess?.user === id ? userByClick?.name : currentUser?.name}</h3>
+                                    <h6>{mess?.dataMess}</h6>
+                                </div>
+                                <div className="mess-txt">
+                                    <p>{mess?.txt}</p>
+                                </div>
+                            </div>
+                        </div>
                     ))}
                 </section>
                 <footer>

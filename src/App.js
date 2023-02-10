@@ -16,11 +16,11 @@ import HomeWrapper from './pages/HomeWrapper';
 
 export const ThemeContext = createContext()
 
-function App({ theme, toggleTheme }) {
+function App({ theme, toggleTheme, hiden, toggleHiden }) {
 
   return (
     <div className="App">
-      <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <ThemeContext.Provider value={{ theme, toggleTheme, hiden, toggleHiden }}>
         <Routes>
           <Route index element={<SingIn />} />
           <Route path='signup' element={<SignUp />} />

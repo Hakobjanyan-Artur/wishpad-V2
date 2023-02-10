@@ -60,9 +60,9 @@ export default function SingIn() {
 
     useEffect(() => {
         fetchUsers()
-        const currentUser = JSON.parse(localStorage.getItem('currentUser')) || null
-        if (currentUser) {
-            dispatch(toggleUser(currentUser))
+        const localUser = JSON.parse(localStorage.getItem('currentUser')) || null
+        if (localUser) {
+            dispatch(toggleUser(localUser))
             navigate('main')
         }
 

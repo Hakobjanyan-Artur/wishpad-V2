@@ -574,6 +574,11 @@
     width: 12%;
   }
 }
+@media (max-width: 450px) {
+  .navbar {
+    display: none;
+  }
+}
 .navbar .logo {
   width: 80%;
   height: 170px;
@@ -945,6 +950,12 @@
   width: 90%;
   display: flex;
 }
+@media (max-width: 450px) {
+  .messenger {
+    width: 100%;
+    height: 100vh;
+  }
+}
 .messenger .left {
   width: 70%;
 }
@@ -960,6 +971,18 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
+}
+.messenger .left header .logo {
+  margin-right: 20px;
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+}
+@media (max-width: 450px) {
+  .messenger .left header .logo {
+    display: block;
+  }
 }
 .messenger .left header .user-image {
   width: 100px;
@@ -980,11 +1003,25 @@
   font-family: "elsie";
 }
 .messenger .left section {
-  height: 70%;
+  height: 68%;
+}
+.messenger .left section .message-content {
+  min-height: 70px;
+  margin: 10px 0;
+  position: relative;
+}
+.messenger .left section .message-content .content {
+  width: 50%;
+  height: 100%;
+  border: 1px solid rgb(201, 201, 201);
+  position: absolute;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-between;
 }
 .messenger .left footer {
   height: 10%;
-  padding-bottom: 20px;
   border-top: 1px solid rgb(201, 201, 201);
 }
 .messenger .left footer form {

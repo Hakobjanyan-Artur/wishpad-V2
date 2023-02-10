@@ -14,7 +14,7 @@ import { FiSettings } from "react-icons/fi";
 
 
 export default function Navbar() {
-    const { theme, toggleTheme } = useContext(ThemeContext)
+    const { theme, toggleTheme, hiden } = useContext(ThemeContext)
     const navigate = useNavigate()
     const [currentUser, setCurrentUser] = useState(false)
 
@@ -29,7 +29,8 @@ export default function Navbar() {
     return (
         <div
             style={{
-                backgroundColor: theme === 'dark' ? '' : '#000'
+                backgroundColor: theme === 'dark' ? '' : '#000',
+                display: hiden ? 'flex' : ''
             }}
             className="navbar">
             <div className="logo">

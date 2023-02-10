@@ -11,6 +11,10 @@
         width: 12%;
     }
 
+    @media(max-width: 450px) {
+        display: none;
+    }
+
     .logo {
         width: 80%;
         height: 170px;
