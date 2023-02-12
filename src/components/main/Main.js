@@ -3,19 +3,48 @@ import TopUser from "../topUser/TopUser";
 import userImage from '../../images/user.png'
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../App";
-import { useSelector } from "react-redux";
-import { selectUsers } from "../../store/slices/users/usersSlices";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUsers, toggleUser } from "../../store/slices/users/usersSlices";
+import { collection, onSnapshot } from "firebase/firestore"
+import { db } from "../../firebaseConfig/FrirebaseConfig";
+import { FaTelegramPlane } from "react-icons/fa";
 
 
-export default function Main() {
+export default function Main({ users }) {
     const { theme } = useContext(ThemeContext)
     const { currentUser } = useSelector(selectUsers)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [newMessUsers, setNewMessUsers] = useState(null)
 
     useEffect(() => {
         if (!currentUser) {
             navigate('/')
         }
+        const fetchUsers = async () => {
+            const usersRef = collection(db, "users")
+            await onSnapshot(usersRef, (snapShot) => {
+                let users = []
+                let newMessUsers = []
+                snapShot.forEach((doc) => users.push({ ...doc.data(), id: doc.id }))
+                users.forEach((user) => {
+                    if (user.user_id === currentUser?.user_id) {
+                        dispatch(toggleUser(user))
+                    }
+                })
+                users.forEach((user) => {
+                    if (currentUser?.newMessageUsers?.length > 0) {
+                        currentUser?.newMessageUsers?.forEach((el) => {
+                            if (el.user === user.user_id) {
+                                newMessUsers.unshift(user)
+                                setNewMessUsers(newMessUsers)
+                            }
+                        })
+                    }
+                })
+            })
+        }
+        fetchUsers()
     }, [])
 
     return (
@@ -61,7 +90,21 @@ export default function Main() {
                 <div className="notification">
                     <h3>Notifications</h3>
                     <div className="notification-content">
-
+                        {newMessUsers?.map((user) => (
+                            <div
+                                onClick={() => navigate(`/userByClick/${user.user_id}`)}
+                                key={user?.id}
+                                className="content">
+                                <div className="user-image">
+                                    <img src={userImage} alt="" />
+                                </div>
+                                < FaTelegramPlane />
+                                <div className="user-info">
+                                    <h4>{user?.name}</h4>
+                                    <h5>{user?.userName}</h5>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

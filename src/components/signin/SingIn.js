@@ -7,7 +7,7 @@ import bcrypt from 'bcryptjs'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUsers, toggleUser } from '../../store/slices/users/usersSlices'
 
-export default function SingIn() {
+export default function SingIn({ setUsersMain }) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [users, setUsers] = useState(null)
@@ -17,6 +17,7 @@ export default function SingIn() {
     const [successfully, setSuccessfully] = useState(false)
     const [showPopup, setShowPopup] = useState(false)
     const { currentUser } = useSelector(selectUsers)
+
 
     const fetchUsers = async () => {
         const usersRef = collection(db, "users")
@@ -37,6 +38,7 @@ export default function SingIn() {
                     localStorage.setItem('currentUser', JSON.stringify(user))
                 }
                 dispatch(toggleUser(user))
+                setUsersMain(users)
                 setShowPopup(true)
                 setTimeout(() => {
                     navigate('main')
@@ -65,6 +67,7 @@ export default function SingIn() {
             dispatch(toggleUser(localUser))
             navigate('main')
         }
+
 
     }, [])
 

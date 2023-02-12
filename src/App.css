@@ -111,6 +111,41 @@
   color: #fff;
   font-family: "elsie";
 }
+.main .right .notification .notification-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  gap: 10px;
+  overflow-y: auto;
+}
+.main .right .notification .notification-content .content {
+  width: 80%;
+  height: 60px;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #fff;
+  font-family: "roboto";
+  cursor: pointer;
+}
+.main .right .notification .notification-content .content .user-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main .right .notification .notification-content .content .user-image img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
 
 @font-face {
   font-family: "roboto";
@@ -574,9 +609,14 @@
     width: 12%;
   }
 }
-@media (max-width: 450px) {
+@media (max-width: 550px) {
   .navbar {
-    display: none;
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
   }
 }
 .navbar .logo {
@@ -604,6 +644,11 @@
     display: none;
   }
 }
+@media (max-width: 550px) {
+  .navbar .logo {
+    width: 20%;
+  }
+}
 @media (max-width: 950px) {
   .navbar .logo img {
     display: none;
@@ -623,6 +668,13 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
+}
+@media (max-width: 550px) {
+  .navbar nav ul {
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+  }
 }
 .navbar nav .standart {
   display: flex;
@@ -719,6 +771,16 @@
   font-family: "roboto";
   background-color: rgb(239, 239, 239);
   outline: none;
+}
+@media (max-width: 550px) {
+  .search .header .search-input input {
+    padding-left: 10px;
+  }
+}
+@media (max-width: 550px) {
+  .search .header .search-input input::-webkit-input-placeholder {
+    font-size: 14px;
+  }
 }
 .search .search-display {
   padding: 20px;
@@ -948,6 +1010,7 @@
 }
 .messenger {
   width: 90%;
+  height: 100vh;
   display: flex;
 }
 @media (max-width: 450px) {
@@ -972,18 +1035,6 @@
   justify-content: center;
   gap: 20px;
 }
-.messenger .left header .logo {
-  margin-right: 20px;
-  font-size: 30px;
-  color: #fff;
-  cursor: pointer;
-  display: none;
-}
-@media (max-width: 450px) {
-  .messenger .left header .logo {
-    display: block;
-  }
-}
 .messenger .left header .user-image {
   width: 100px;
   height: 100px;
@@ -1004,6 +1055,7 @@
 }
 .messenger .left section {
   height: 68%;
+  overflow-y: auto;
 }
 .messenger .left section .message-content {
   min-height: 70px;
@@ -1049,6 +1101,7 @@
 }
 .messenger .right {
   width: 30%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1084,6 +1137,44 @@
   height: 140px;
   border-radius: 50%;
 }
+.messenger .right .section {
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.messenger .right .section .user-content {
+  width: 80%;
+  height: 70px;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.messenger .right .section .user-content .left {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgb(33, 92, 243);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.messenger .right .section .user-content .left img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.messenger .right .section .user-content .right {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-family: "roboto";
+  width: 70%;
+}
 
 * {
   margin: 0;
@@ -1106,4 +1197,10 @@ img {
 
 .App {
   display: flex;
+}
+@media (max-width: 550px) {
+  .App {
+    flex-direction: column;
+    height: 100vh;
+  }
 }/*# sourceMappingURL=App.css.map */

@@ -4,6 +4,7 @@
 
 .messenger {
     width: 90%;
+    height: 100vh;
     display: flex;
 
     @media(max-width:450px) {
@@ -26,18 +27,6 @@
             justify-content: center;
             gap: 20px;
 
-            .logo {
-                margin-right: 20px;
-                font-size: 30px;
-                color: #fff;
-                cursor: pointer;
-                display: none;
-
-                @media(max-width: 450px) {
-                    display: block;
-                }
-            }
-
             .user-image {
                 @include image(100px, 100px, #fff)
             }
@@ -50,6 +39,7 @@
 
         section {
             height: 68%;
+            overflow-y: auto;
 
             .message-content {
                 min-height: 70px;
@@ -71,7 +61,6 @@
 
         footer {
             height: 10%;
-            // padding-bottom: 20px;
             border-top: 1px solid $wish-dark-grey;
 
             form {
@@ -104,6 +93,7 @@
 
     .right {
         width: 30%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -126,6 +116,37 @@
 
             .user-image {
                 @include image(150px, 150px, $wish-blue)
+            }
+        }
+
+        .section {
+            width: 100%;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+
+            .user-content {
+                width: 80%;
+                height: 70px;
+                border: 1px solid $wish-dark-grey;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+
+                .left {
+                    @include image(60px, 60px, $wish-blue)
+                }
+
+                .right {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    font-family: 'roboto';
+                    width: 70%;
+                }
             }
         }
 

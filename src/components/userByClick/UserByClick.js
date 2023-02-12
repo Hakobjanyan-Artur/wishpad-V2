@@ -18,7 +18,7 @@ export default function UserByClick() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        const q = query(collection(db, "users"), where("user_id", "==", id));
+        const q = query(collection(db, "users"), where("user_id", "==", id))
         const unsubscribe = async () => onSnapshot(q, (querySnapshot) => {
             let user = {};
             querySnapshot.forEach((doc) => {

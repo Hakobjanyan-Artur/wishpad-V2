@@ -36,6 +36,17 @@
                 font-family: 'roboto';
                 background-color: $wish-grey;
                 outline: none;
+
+                @media(max-width: 550px) {
+                    padding-left: 10px;
+                }
+            }
+
+            input::-webkit-input-placeholder {
+
+                @media(max-width: 550px) {
+                    font-size: 14px;
+                }
             }
         }
     }

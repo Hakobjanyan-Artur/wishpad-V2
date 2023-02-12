@@ -1,28 +1,86 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import userImage from '../../images/user.png'
-import { collection, query, where, onSnapshot, addDoc, serverTimestamp, orderBy } from "firebase/firestore"
+import { collection, query, where, onSnapshot, orderBy, updateDoc, doc } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig"
 import { FaTelegramPlane } from "react-icons/fa";
-import { RxHamburgerMenu } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux"
-import { selectUsers, toggleUser } from "../../store/slices/users/usersSlices"
+import { currentUserDelNewMessUser, selectUsers, toggleUser } from "../../store/slices/users/usersSlices"
 import { ThemeContext } from "../../App"
-import { v4 } from "uuid";
-
+import { selectMessenger, toggleMessageUsers, toggleNewMessage } from "../../store/slices/messages/messageSlices"
 
 export default function Messenger() {
     const { id } = useParams()
-    const { theme, toggleHiden } = useContext(ThemeContext)
+    const { theme } = useContext(ThemeContext)
+    const { messId } = useSelector(selectMessenger)
     const [userByClick, setUserByClick] = useState(null)
     const { currentUser } = useSelector(selectUsers)
     const [txt, setTxt] = useState('')
     const [message, setMessage] = useState([])
-    const messagesRef = collection(db, "messenger")
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const [userMess, setUserMess] = useState(null)
+    const [users, setusers] = useState(null)
 
     useEffect(() => {
+        const fetchUsers = async () => {
+            const usersRef = collection(db, "users")
+            await onSnapshot(usersRef, (snapShot) => {
+                let users = []
+                snapShot.forEach((doc) => users.push({ ...doc.data(), id: doc.id }))
+                setusers(users)
+            })
+        }
+        fetchUsers()
+        //--------del uder newMessUser
+        const delUser = async (arr, id) => {
+
+            const userDoc = doc(db, "users", id)
+            const newFileds = {
+                newMessageUsers: [
+                    ...arr
+                ]
+            }
+            await updateDoc(userDoc, newFileds)
+        }
+
+        const delNewMessUser = async () => {
+            const newMessageUser = []
+            for (const newMessUser of currentUser?.newMessageUsers) {
+                if (newMessUser?.user !== id) {
+                    newMessageUser.push(newMessUser)
+                }
+            }
+            delUser(newMessageUser, currentUser?.id)
+            dispatch(currentUserDelNewMessUser(newMessageUser))
+        }
+
+        delNewMessUser()
+        //--------------------            
+
+        if (currentUser) {
+            const m = query(collection(db, "messenger"))
+            const messenger = async () => await onSnapshot(m, (querySnapshot) => {
+                let currentUserMess = [];
+                let result
+                querySnapshot.forEach((doc) => {
+                    users?.forEach((el) => {
+                        if (doc.data().user === currentUser?.user_id && doc.data().companion === el.user_id) {
+                            currentUserMess.push(el)
+                            const uniq = (arr) => {
+                                const uniqSet = new Set(arr)
+                                return [...uniqSet]
+                            }
+                            result = uniq(currentUserMess)
+                        }
+                    })
+                })
+                setUserMess(result)
+            })
+            messenger()
+        }
+
+        //---------------------
 
         const localUser = JSON.parse(localStorage.getItem('currentUser')) || null
         if (localUser) {
@@ -56,33 +114,20 @@ export default function Messenger() {
 
     }, [])
 
+
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const v4Id = v4()
-        function dataMess() {
-            let time = new Date()
-            let d = time.getDate().toString()
-            let m = time.getUTCMonth() + 1
-            m = m.toString()
-            let y = time.getFullYear().toString()
-            let h = time.getHours().toString()
-            let min = time.getMinutes().toString()
-
-            if (h.length < 2) { h = '0' + h }
-            if (min.length < 2) { min = '0' + min }
-            if (m.length < 2) { m = '0' + m }
-            return d + '.' + m + '.' + y + ' ' + h + ':' + min
-
+        //----send Message
+        dispatch(toggleNewMessage({ txt: txt, currentUser: currentUser, userByClick: userByClick }))
+        //---------------
+        //----upload user and add newMessageUser
+        if (userByClick.newMessageUsers.length === 0) {
+            dispatch(toggleMessageUsers({ userByClick: userByClick, user_id: currentUser?.user_id, id: messId }))
         }
-
-        if (txt === "") return
-        await addDoc(messagesRef, {
-            txt: txt,
-            id: v4Id,
-            createdAd: serverTimestamp(),
-            dataMess: dataMess(),
-            user: currentUser?.user_id,
-            companion: userByClick?.user_id,
+        userByClick?.newMessageUsers.forEach((el) => {
+            if (el.user !== currentUser.user_id) {
+                dispatch(toggleMessageUsers({ userByClick: userByClick, user_id: currentUser?.user_id, id: messId }))
+            }
         })
 
         setTxt("")
@@ -93,9 +138,6 @@ export default function Messenger() {
         <div className="messenger">
             <div className="left">
                 <header style={{ background: theme === 'dark' ? '' : '#000' }}>
-                    <div onClick={toggleHiden} className="logo">
-                        <RxHamburgerMenu />
-                    </div>
                     <div className="user-image">
                         <img src={userImage} alt="" />
                     </div>
@@ -148,7 +190,19 @@ export default function Messenger() {
                     </div>
                 </div>
                 <div className="section">
-
+                    {userMess?.map((user) => (
+                        <div key={user?.user_id}
+                            onClick={() => navigate(`/userByClick/${user.user_id}`)}
+                            className="user-content">
+                            <div className="left">
+                                <img src={userImage} alt="" />
+                            </div>
+                            <div className="right">
+                                <h3>{user?.name}</h3>
+                                <h4>{user?.userName}</h4>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Friend from './components/friend/Friend';
@@ -16,16 +16,17 @@ import HomeWrapper from './pages/HomeWrapper';
 
 export const ThemeContext = createContext()
 
-function App({ theme, toggleTheme, hiden, toggleHiden }) {
+function App({ theme, toggleTheme }) {
+  const [users, setUsersMain] = useState(null)
 
   return (
     <div className="App">
-      <ThemeContext.Provider value={{ theme, toggleTheme, hiden, toggleHiden }}>
+      <ThemeContext.Provider value={{ theme, toggleTheme }}>
         <Routes>
-          <Route index element={<SingIn />} />
+          <Route index element={<SingIn setUsersMain={setUsersMain} />} />
           <Route path='signup' element={<SignUp />} />
           <Route path='/' element={<HomeWrapper />}>
-            <Route path='main' element={<Main />} />
+            <Route path='main' element={<Main users={users} />} />
             <Route path='friend' element={<Friend />} />
             <Route path='messages' element={<Messages />} />
             <Route path='search' element={<Search />} />
