@@ -54,6 +54,24 @@
                     @include button(100px, 20px, #fff, $wish-blue);
                     font-size: 16px;
                     box-shadow: none;
+
+                    .request,
+                    .friend {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 5px;
+                        cursor: auto;
+                    }
+
+                    ;
+
+                    .join {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 5px;
+                    }
                 }
             }
 

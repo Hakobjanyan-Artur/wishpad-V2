@@ -701,6 +701,27 @@
   padding: 5px;
   transform: scale(110%);
 }
+.navbar nav .notification {
+  position: relative;
+}
+.navbar nav .notification .quantity {
+  width: 25px;
+  height: 25px;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: -30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 550px) {
+  .navbar nav .notification .quantity {
+    top: auto;
+    bottom: -20px;
+  }
+}
 .navbar nav .switch,
 .navbar nav .logout {
   display: flex;
@@ -927,6 +948,20 @@
   font-size: 16px;
   box-shadow: none;
 }
+.user-by-click header .right .top button .request,
+.user-by-click header .right .top button .friend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: auto;
+}
+.user-by-click header .right .top button .join {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
 .user-by-click header .right .section {
   display: flex;
   gap: 10px;
@@ -1013,7 +1048,7 @@
   height: 100vh;
   display: flex;
 }
-@media (max-width: 450px) {
+@media (max-width: 750px) {
   .messenger {
     width: 100%;
     height: 100vh;

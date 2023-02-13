@@ -106,6 +106,28 @@
             transform: scale(110%);
         }
 
+        .notification {
+            position: relative;
+
+            .quantity {
+                width: 25px;
+                height: 25px;
+                border: 1px solid $wish-dark-grey;
+                border-radius: 50%;
+                position: absolute;
+                left: 0;
+                top: -30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                @media(max-width: 550px) {
+                    top: auto;
+                    bottom: -20px;
+                }
+            }
+        }
+
         .switch,
         .logout {
             display: flex;

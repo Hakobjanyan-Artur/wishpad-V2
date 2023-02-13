@@ -8,6 +8,7 @@ import { selectUsers, toggleUser } from "../../store/slices/users/usersSlices";
 import { collection, onSnapshot } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig";
 import { FaTelegramPlane } from "react-icons/fa";
+import { TbFriends } from "react-icons/tb";
 
 
 export default function Main({ users }) {
@@ -16,6 +17,7 @@ export default function Main({ users }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [newMessUsers, setNewMessUsers] = useState(null)
+    const [newRequestFriend, setNewRequestFriend] = useState(null)
 
     useEffect(() => {
         if (!currentUser) {
@@ -26,6 +28,7 @@ export default function Main({ users }) {
             await onSnapshot(usersRef, (snapShot) => {
                 let users = []
                 let newMessUsers = []
+                let newRequestFriend = []
                 snapShot.forEach((doc) => users.push({ ...doc.data(), id: doc.id }))
                 users.forEach((user) => {
                     if (user.user_id === currentUser?.user_id) {
@@ -40,6 +43,14 @@ export default function Main({ users }) {
                                 setNewMessUsers(newMessUsers)
                             }
                         })
+                    }
+                    if (currentUser?.friendRequest?.length > 0) {
+                        currentUser?.friendRequest?.forEach(el => {
+                            if (el.user === user.id) {
+                                newRequestFriend.unshift(user)
+                                setNewRequestFriend(newRequestFriend)
+                            }
+                        });
                     }
                 })
             })
@@ -99,6 +110,21 @@ export default function Main({ users }) {
                                     <img src={userImage} alt="" />
                                 </div>
                                 < FaTelegramPlane />
+                                <div className="user-info">
+                                    <h4>{user?.name}</h4>
+                                    <h5>{user?.userName}</h5>
+                                </div>
+                            </div>
+                        ))}
+                        {newRequestFriend?.map((user) => (
+                            <div
+                                onClick={() => navigate(`/userByClick/${user.user_id}`)}
+                                key={user?.id}
+                                className="content">
+                                <div className="user-image">
+                                    <img src={userImage} alt="" />
+                                </div>
+                                <TbFriends />
                                 <div className="user-info">
                                     <h4>{user?.name}</h4>
                                     <h5>{user?.userName}</h5>

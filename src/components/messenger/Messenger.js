@@ -20,15 +20,31 @@ export default function Messenger() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [userMess, setUserMess] = useState(null)
-    const [users, setusers] = useState(null)
 
     useEffect(() => {
         const fetchUsers = async () => {
+            const m = query(collection(db, "messenger"))
             const usersRef = collection(db, "users")
             await onSnapshot(usersRef, (snapShot) => {
                 let users = []
                 snapShot.forEach((doc) => users.push({ ...doc.data(), id: doc.id }))
-                setusers(users)
+                onSnapshot(m, (querySnapshot) => {
+                    let currentUserMess = [];
+                    let result
+                    querySnapshot.forEach((document) => {
+                        users.forEach((el) => {
+                            if (document.data().user === currentUser?.user_id && document.data().companion === el.user_id) {
+                                currentUserMess.push(el)
+                                const uniq = (arr) => {
+                                    const uniqSet = new Set(arr)
+                                    return [...uniqSet]
+                                }
+                                result = uniq(currentUserMess)
+                            }
+                        })
+                    })
+                    setUserMess(result)
+                })
             })
         }
         fetchUsers()
@@ -56,31 +72,6 @@ export default function Messenger() {
         }
 
         delNewMessUser()
-        //--------------------            
-
-        if (currentUser) {
-            const m = query(collection(db, "messenger"))
-            const messenger = async () => await onSnapshot(m, (querySnapshot) => {
-                let currentUserMess = [];
-                let result
-                querySnapshot.forEach((doc) => {
-                    users?.forEach((el) => {
-                        if (doc.data().user === currentUser?.user_id && doc.data().companion === el.user_id) {
-                            currentUserMess.push(el)
-                            const uniq = (arr) => {
-                                const uniqSet = new Set(arr)
-                                return [...uniqSet]
-                            }
-                            result = uniq(currentUserMess)
-                        }
-                    })
-                })
-                setUserMess(result)
-            })
-            messenger()
-        }
-
-        //---------------------
 
         const localUser = JSON.parse(localStorage.getItem('currentUser')) || null
         if (localUser) {

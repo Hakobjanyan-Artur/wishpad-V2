@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Friend from './components/friend/Friend';
 import Main from './components/main/Main';
-import Messages from './components/messages/Messages';
+import Notification from './components/notification/Notification';
 import Messenger from './components/messenger/Messenger';
 import Profile from './components/profile/Profile';
 import Search from './components/search/Search';
@@ -28,7 +28,7 @@ function App({ theme, toggleTheme }) {
           <Route path='/' element={<HomeWrapper />}>
             <Route path='main' element={<Main users={users} />} />
             <Route path='friend' element={<Friend />} />
-            <Route path='messages' element={<Messages />} />
+            <Route path='notification' element={<Notification />} />
             <Route path='search' element={<Search />} />
             <Route path='profile' element={<Profile />} />
             <Route path='settings' element={<Settings />} />

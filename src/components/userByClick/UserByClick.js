@@ -6,28 +6,60 @@ import { collection, query, where, onSnapshot } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig"
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { TbBrandTelegram } from 'react-icons/tb';
+import { GoRequestChanges } from 'react-icons/go';
+import { GrAggregate } from 'react-icons/gr';
+import { FaUserFriends } from 'react-icons/fa';
 import UserWrapper from "../../pages/UserWrapper"
 import UserByClickFriends from "../userByClickFriends/UserByclickFriends"
 import UserByClickImages from "../userByClickImages/UserByClickImages"
-
+import { useDispatch, useSelector } from "react-redux"
+import { addNewFrined, selectUsers } from "../../store/slices/users/usersSlices"
 
 export default function UserByClick() {
     const { theme } = useContext(ThemeContext)
     const { id } = useParams()
     const [userByClick, setUserByClick] = useState(null)
+    const [friendBtn, setFriendBtn] = useState('add')
+    const { currentUser } = useSelector(selectUsers)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     useEffect(() => {
+        userByClick?.friendRequest?.forEach((user) => {
+            if (user.user === currentUser?.id) {
+                setFriendBtn('request')
+            }
+        })
+        currentUser?.friendRequest.forEach((user) => {
+            if (user.user === userByClick?.id) {
+                setFriendBtn('join')
+            }
+        })
+    }, [userByClick?.friendRequest, currentUser?.friendRequest])
+
+
+    useEffect(() => {
+        if (!currentUser) {
+            navigate('/')
+        }
+
+        currentUser?.friends.forEach((friend) => {
+            if (friend.id === userByClick?.id) {
+                setFriendBtn('friend')
+            }
+        })
         const q = query(collection(db, "users"), where("user_id", "==", id))
         const unsubscribe = async () => onSnapshot(q, (querySnapshot) => {
             let user = {};
             querySnapshot.forEach((doc) => {
-                user = doc.data()
+                user = { ...doc.data(), id: doc.id }
             })
             setUserByClick(user)
         });
         unsubscribe()
+
     }, [])
+
 
     return (
         <div className="user-by-click">
@@ -43,7 +75,11 @@ export default function UserByClick() {
                 <div className="right">
                     <div className="top">
                         <h2>{userByClick?.name} {userByClick?.lastname}</h2>
-                        <button><AiOutlineUserAdd /> Add</button>
+                        {friendBtn === 'add' ? <button onClick={() => dispatch(addNewFrined({ userByClick: userByClick, currentUser: currentUser?.id }))} ><div><AiOutlineUserAdd /> add </div> </button> :
+                            friendBtn === 'request' ? <button><div className="request"><GoRequestChanges /><h6>Request sent</h6></div> </button> :
+                                friendBtn === 'join' ? <button onClick={() => console.log(userByClick, currentUser)}><div className="join"><GrAggregate /> <h5>Join</h5></div></button> :
+                                    <button><div className="friend"><FaUserFriends /><h6>Friend</h6></div></button>
+                        }
                     </div>
                     <div className="section">
                         <h3>friends({userByClick?.friends.length})</h3>

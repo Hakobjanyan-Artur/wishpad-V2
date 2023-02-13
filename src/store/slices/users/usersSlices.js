@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from 'uuid'
 import { db } from "../../../firebaseConfig/FrirebaseConfig";
-import { addDoc, collection } from "firebase/firestore"
+import { addDoc, collection, doc, updateDoc, onSnapshot } from "firebase/firestore"
 const usersRef = collection(db, "users")
 
 const usersSlice = createSlice({
@@ -52,14 +52,33 @@ const usersSlice = createSlice({
                 ...state,
                 currentUser: { ...payload }
             }
-        }, currentUserDelNewMessUser(state, { payload }) {
+        },
+        currentUserDelNewMessUser(state, { payload }) {
             state.currentUser.newMessageUsers = payload
+        },
+        addNewFrined(state, { payload }) {
+
+            const updateUser = async (id) => {
+
+                const userDoc = doc(db, "users", id)
+                const newFileds = {
+                    friendRequest: [
+                        ...payload.userByClick.friendRequest,
+                        {
+                            id: uuidv4(),
+                            user: payload.currentUser
+                        }
+                    ]
+                }
+                await updateDoc(userDoc, newFileds)
+            }
+            updateUser(payload.userByClick.id)
         }
     }
 })
 
 export const selectUsers = state => state.users
 
-export const { addNewUser, toggleUser, currentUserDelNewMessUser } = usersSlice.actions
+export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrined } = usersSlice.actions
 
 export const usersReducer = usersSlice.reducer
