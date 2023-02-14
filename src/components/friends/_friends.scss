@@ -1,0 +1,118 @@
+@include font('roboto', './fonts/Roboto-Thin.ttf');
+@include font('clash', './fonts/ClashDisplay-Medium.ttf');
+@include font('elsie', './fonts/Elsie-Regular.ttf');
+
+.friend {
+    width: 100%;
+    height: 100vh;
+
+    .delete-popup {
+        width: 300px;
+        height: 200px;
+        position: absolute;
+        background: #fff;
+        border: 1px solid $wish-dark-grey;
+        border-radius: 10px;
+        box-shadow: 0 0 10px $wish-dark-grey;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 50px;
+        gap: 30%;
+        z-index: 99;
+
+        .x-icon {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button {
+            width: 60px;
+            height: 20px;
+            border: none;
+            background-color: $wish-blue;
+            color: #fff;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: .4s;
+        }
+
+        button:hover {
+            box-shadow: 0 0 10px $wish-blue;
+        }
+    }
+
+    header {
+        width: 100%;
+        height: 20%;
+        background: $wish-blue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .title {
+            color: #fff;
+            font-family: 'elsie';
+        }
+    }
+
+    section {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 0 20px 50px;
+        overflow-y: auto;
+
+        @media(max-width: 850px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media(max-width: 550px) {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .friend-content {
+            border: 1px solid $wish-dark-grey;
+            height: 100px;
+            margin-top: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            gap: 20px;
+            position: relative;
+
+            .friend-content-image {
+                cursor: pointer;
+                @include image(80px, 80px, $wish-blue)
+            }
+
+            .delete-friend {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 10px;
+                font-size: 20px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .friends-null {
+        text-align: center;
+        margin-top: 50px;
+
+        h1 {
+            font-family: 'roboto';
+        }
+    }
+}

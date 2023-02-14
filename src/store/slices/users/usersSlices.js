@@ -116,12 +116,32 @@ const usersSlice = createSlice({
                 await updateDoc(userDoc, newFileds)
             }
             addNewFriendUserByClick(payload.userByClick.id)
+        },
+        deleteFriend(stste, { payload }) {
+            const deleteFriendCurrentUser = async (id) => {
+
+                const userDoc = doc(db, "users", id)
+                const newFileds = {
+                    friends: payload.currentUser.friends.filter((friend) => friend.user !== payload.friend.id)
+                }
+                await updateDoc(userDoc, newFileds)
+            }
+            deleteFriendCurrentUser(payload.currentUser.id)
+            const deleteFriendUserByClick = async (id) => {
+
+                const userDoc = doc(db, "users", id)
+                const newFileds = {
+                    friends: payload.friend.friends.filter((friend) => friend.user !== payload.currentUser.id)
+                }
+                await updateDoc(userDoc, newFileds)
+            }
+            deleteFriendUserByClick(payload.friend.id)
         }
     }
 })
 
 export const selectUsers = state => state.users
 
-export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrinedRequest, addNewFriend } = usersSlice.actions
+export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrinedRequest, addNewFriend, deleteFriend } = usersSlice.actions
 
 export const usersReducer = usersSlice.reducer

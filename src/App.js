@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Friend from './components/friend/Friend';
+import Friend from './components/friends/Friends';
 import Main from './components/main/Main';
 import Notification from './components/notification/Notification';
 import Messenger from './components/messenger/Messenger';
