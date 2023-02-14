@@ -13,7 +13,7 @@ import UserWrapper from "../../pages/UserWrapper"
 import UserByClickFriends from "../userByClickFriends/UserByclickFriends"
 import UserByClickImages from "../userByClickImages/UserByClickImages"
 import { useDispatch, useSelector } from "react-redux"
-import { addNewFrined, selectUsers } from "../../store/slices/users/usersSlices"
+import { addNewFriend, addNewFrinedRequest, selectUsers } from "../../store/slices/users/usersSlices"
 
 export default function UserByClick() {
     const { theme } = useContext(ThemeContext)
@@ -35,7 +35,12 @@ export default function UserByClick() {
                 setFriendBtn('join')
             }
         })
-    }, [userByClick?.friendRequest, currentUser?.friendRequest])
+        currentUser?.friends?.forEach((friend) => {
+            if (friend.user === userByClick?.id) {
+                setFriendBtn('friend')
+            }
+        })
+    }, [userByClick?.friendRequest, currentUser?.friendRequest, currentUser.friends])
 
 
     useEffect(() => {
@@ -43,11 +48,6 @@ export default function UserByClick() {
             navigate('/')
         }
 
-        currentUser?.friends.forEach((friend) => {
-            if (friend.id === userByClick?.id) {
-                setFriendBtn('friend')
-            }
-        })
         const q = query(collection(db, "users"), where("user_id", "==", id))
         const unsubscribe = async () => onSnapshot(q, (querySnapshot) => {
             let user = {};
@@ -75,9 +75,9 @@ export default function UserByClick() {
                 <div className="right">
                     <div className="top">
                         <h2>{userByClick?.name} {userByClick?.lastname}</h2>
-                        {friendBtn === 'add' ? <button onClick={() => dispatch(addNewFrined({ userByClick: userByClick, currentUser: currentUser?.id }))} ><div><AiOutlineUserAdd /> add </div> </button> :
+                        {friendBtn === 'add' ? <button onClick={() => dispatch(addNewFrinedRequest({ userByClick: userByClick, currentUser: currentUser?.id }))} ><div><AiOutlineUserAdd /> add </div> </button> :
                             friendBtn === 'request' ? <button><div className="request"><GoRequestChanges /><h6>Request sent</h6></div> </button> :
-                                friendBtn === 'join' ? <button onClick={() => console.log(userByClick, currentUser)}><div className="join"><GrAggregate /> <h5>Join</h5></div></button> :
+                                friendBtn === 'join' ? <button onClick={() => dispatch(addNewFriend({ userByClick: userByClick, currentUser: currentUser }))}><div className="join"><GrAggregate /> <h5>Join</h5></div></button> :
                                     <button><div className="friend"><FaUserFriends /><h6>Friend</h6></div></button>
                         }
                     </div>

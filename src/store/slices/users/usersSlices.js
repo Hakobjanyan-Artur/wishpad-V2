@@ -56,7 +56,7 @@ const usersSlice = createSlice({
         currentUserDelNewMessUser(state, { payload }) {
             state.currentUser.newMessageUsers = payload
         },
-        addNewFrined(state, { payload }) {
+        addNewFrinedRequest(state, { payload }) {
 
             const updateUser = async (id) => {
 
@@ -73,12 +73,55 @@ const usersSlice = createSlice({
                 await updateDoc(userDoc, newFileds)
             }
             updateUser(payload.userByClick.id)
+        },
+        addNewFriend(state, { payload }) {
+            const remooveFriendrequest = async (id) => {
+
+                const userDoc = doc(db, "users", id)
+                const newFileds = {
+                    friendRequest: payload.currentUser.friendRequest.filter((friend) => friend.user !== payload.userByClick.id)
+                }
+                await updateDoc(userDoc, newFileds)
+            }
+            remooveFriendrequest(payload.currentUser.id)
+
+            const addNewFriendCurrentUser = async (id) => {
+
+                const userDoc = doc(db, "users", id)
+                const newFileds = {
+                    friends: [
+                        ...payload.currentUser.friends,
+                        {
+                            id: uuidv4(),
+                            user: payload.userByClick.id
+                        }
+                    ]
+                }
+                await updateDoc(userDoc, newFileds)
+            }
+            addNewFriendCurrentUser(payload.currentUser.id)
+
+            const addNewFriendUserByClick = async (id) => {
+
+                const userDoc = doc(db, "users", id)
+                const newFileds = {
+                    friends: [
+                        ...payload.userByClick.friends,
+                        {
+                            id: uuidv4(),
+                            user: payload.currentUser.id
+                        }
+                    ]
+                }
+                await updateDoc(userDoc, newFileds)
+            }
+            addNewFriendUserByClick(payload.userByClick.id)
         }
     }
 })
 
 export const selectUsers = state => state.users
 
-export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrined } = usersSlice.actions
+export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrinedRequest, addNewFriend } = usersSlice.actions
 
 export const usersReducer = usersSlice.reducer

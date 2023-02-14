@@ -30,7 +30,7 @@ export default function Navbar() {
             setCurrentUser(true)
         }
         setNotificationLength(currentUser?.friendRequest?.length + currentUser?.newMessageUsers?.length)
-    }, [])
+    }, [currentUser?.friendRequest, currentUser?.newMessageUsers])
 
     return (
         <div
