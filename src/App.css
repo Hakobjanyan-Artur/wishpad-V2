@@ -1542,6 +1542,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+}
+.profile .popup-cover {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+  width: 350px;
+  height: 250px;
+  background-color: #fff;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(201, 201, 201);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.profile .popup-cover .icon {
+  transform: translate(130px);
+  cursor: pointer;
+  font-size: 18px;
 }
 .profile header {
   width: 100%;
@@ -1561,16 +1584,16 @@
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   background-repeat: no-repeat;
-  background-position: bottom;
+  background-position: center;
   background-size: cover;
   position: relative;
 }
 .profile header .header-top button {
   position: absolute;
+  bottom: 30px;
+  right: 30px;
   width: 200px;
   height: 30px;
-  right: 30px;
-  bottom: 30px;
   border: none;
   border-radius: 10px;
   display: flex;
@@ -1645,6 +1668,10 @@
   display: flex;
   justify-content: center;
   margin-top: 30px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
 }
 .profile-navbar ul {
   display: flex;
@@ -1744,6 +1771,7 @@
 .settings section .account-settings form .middle input {
   height: 25px;
   border: 1px solid rgb(201, 201, 201);
+  border-radius: 10px;
   outline: none;
   font-size: 14px;
   padding-left: 15px;
@@ -1763,11 +1791,11 @@
 .settings section .account-settings form .right input {
   height: 25px;
   border: 1px solid rgb(201, 201, 201);
+  border-radius: 10px;
   outline: none;
   font-size: 14px;
   padding-left: 15px;
   font-family: "roboto";
-  border-radius: 10px;
 }
 .settings section .account-settings form button {
   position: absolute;
@@ -1814,19 +1842,18 @@
 }
 .settings section .security .change-email form {
   width: 80%;
-  height: 120px;
   border: 1px solid rgb(201, 201, 201);
   border-radius: 20px;
+  padding: 50px 0;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  font-family: "roboto";
   position: relative;
 }
 @media (max-width: 880px) {
   .settings section .security .change-email form {
     flex-direction: column;
-    height: 200px;
-    justify-content: center;
+    align-items: center;
     gap: 20px;
   }
 }
@@ -1836,15 +1863,15 @@
 .settings section .security .change-email form input {
   height: 25px;
   border: 1px solid rgb(201, 201, 201);
+  border-radius: 10px;
   outline: none;
   font-size: 14px;
   padding-left: 15px;
   font-family: "roboto";
-  border-radius: 10px;
 }
 .settings section .security .change-email form button {
   position: absolute;
-  bottom: 5px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   width: 130px;
@@ -1875,38 +1902,38 @@
 }
 .settings section .security .change-password form {
   width: 80%;
-  height: 120px;
   border: 1px solid rgb(201, 201, 201);
-  border-radius: 10px;
+  border-radius: 20px;
+  padding: 50px 0;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  font-family: "roboto";
   position: relative;
 }
 @media (max-width: 880px) {
   .settings section .security .change-password form {
     flex-direction: column;
     height: 200px;
-    justify-content: center;
+    align-items: center;
     gap: 20px;
   }
 }
 .settings section .security .change-password form input {
   height: 25px;
   border: 1px solid rgb(201, 201, 201);
+  border-radius: 10px;
   outline: none;
   font-size: 14px;
   padding-left: 15px;
   font-family: "roboto";
-  border-radius: 10px;
 }
 .settings section .security .change-password form button {
-  width: 150px;
-  height: 30px;
   position: absolute;
-  bottom: 5px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
+  width: 150px;
+  height: 30px;
   border: none;
   background: rgb(33, 92, 243);
   border-radius: 10px;
@@ -1917,6 +1944,65 @@
   cursor: pointer;
 }
 .settings section .security .change-password form button:hover {
+  box-shadow: 0 0 10px rgb(33, 92, 243);
+}
+.settings section .security .delete-account {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.settings section .security .delete-account h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.settings section .security .delete-account form {
+  width: 80%;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 20px;
+  padding: 50px 0;
+  display: flex;
+  justify-content: space-around;
+  font-family: "roboto";
+  position: relative;
+}
+@media (max-width: 880px) {
+  .settings section .security .delete-account form {
+    flex-direction: column;
+    height: 200px;
+    align-items: center;
+    gap: 20px;
+  }
+}
+.settings section .security .delete-account form input {
+  height: 25px;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  padding-left: 15px;
+  font-family: "roboto";
+}
+.settings section .security .delete-account form button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 30px;
+  border: none;
+  background: rgb(33, 92, 243);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-family: "roboto";
+  transition: 0.3s;
+  cursor: pointer;
+  position: static;
+  transform: translateX(0);
+}
+.settings section .security .delete-account form button:hover {
   box-shadow: 0 0 10px rgb(33, 92, 243);
 }
 

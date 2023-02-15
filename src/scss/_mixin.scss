@@ -19,6 +19,46 @@
     transition: .5s;
 }
 
+// ---------setting mixin ----------
+@mixin settingBtn($width, $height) {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: $width;
+    height: $height;
+    border: none;
+    background: $wish-blue;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    font-family: 'roboto';
+    transition: .3s;
+    cursor: pointer;
+}
+
+@mixin settingForm($width, $height: auto) {
+    width: 80%;
+    border: 1px solid $wish-dark-grey;
+    border-radius: 20px;
+    padding: 50px 0;
+    display: flex;
+    justify-content: space-around;
+    font-family: 'roboto';
+    position: relative;
+}
+
+@mixin settingInput () {
+    height: 25px;
+    border: 1px solid $wish-dark-grey;
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+    padding-left: 15px;
+    font-family: 'roboto';
+}
+
+//---------  -----------------
 @mixin image ($width, $height, $bgColor) {
     width: $width;
     height: $height;

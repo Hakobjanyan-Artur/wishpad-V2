@@ -5,6 +5,7 @@ import { selectUsers, toggleUser } from "../../store/slices/users/usersSlices"
 import { MdManageAccounts, MdAttachEmail } from 'react-icons/md';
 import { GrShieldSecurity } from 'react-icons/gr';
 import { RiLockPasswordLine } from 'react-icons/ri';
+import { TiFolderDelete } from 'react-icons/ti';
 import { useNavigate } from "react-router-dom";
 import countryData from "../../country/country";
 import { collection, onSnapshot } from "firebase/firestore"
@@ -127,6 +128,18 @@ export default function Settings() {
                                 placeholder="Confirm new password"
                                 type="password" />
                             <button>Send new password</button>
+                        </form>
+                    </div>
+                    <div className="delete-account">
+                        <h3><TiFolderDelete /> Delete account</h3>
+                        <form>
+                            <input
+                                placeholder="Enter your email"
+                                type="email" />
+                            <input
+                                placeholder="Enter your password"
+                                type="password" />
+                            <button>Delete account</button>
                         </form>
                     </div>
                 </div>

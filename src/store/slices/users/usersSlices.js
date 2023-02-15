@@ -7,7 +7,8 @@ const usersRef = collection(db, "users")
 const usersSlice = createSlice({
     name: 'users',
     initialState: {
-        currentUser: null
+        currentUser: null,
+        coverUrl: null
     },
     reducers: {
         addNewUser(state, { payload }) {
@@ -136,12 +137,29 @@ const usersSlice = createSlice({
                 await updateDoc(userDoc, newFileds)
             }
             deleteFriendUserByClick(payload.friend.id)
+        },
+        coverImageAdd(state, { payload }) {
+            const updateUser = async (id) => {
+
+                const userDoc = doc(db, "users", id)
+                const newFileds = {
+                    coverImage: payload.name
+                }
+                await updateDoc(userDoc, newFileds)
+            }
+            updateUser(payload.id)
+        },
+        setCoverUrl(state, { payload }) {
+            return {
+                ...state,
+                coverUrl: payload
+            }
         }
     }
 })
 
 export const selectUsers = state => state.users
 
-export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrinedRequest, addNewFriend, deleteFriend } = usersSlice.actions
+export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrinedRequest, addNewFriend, deleteFriend, coverImageAdd, setCoverUrl } = usersSlice.actions
 
 export const usersReducer = usersSlice.reducer

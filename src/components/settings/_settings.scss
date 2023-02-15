@@ -38,14 +38,7 @@
             }
 
             form {
-                width: 80%;
-                border: 1px solid $wish-dark-grey;
-                border-radius: 20px;
-                padding: 50px 0;
-                display: flex;
-                justify-content: space-around;
-                font-family: 'roboto';
-                position: relative;
+                @include settingForm(80%);
 
                 .left,
                 .middle {
@@ -54,12 +47,7 @@
                     gap: 20px;
 
                     input {
-                        height: 25px;
-                        border: 1px solid $wish-dark-grey;
-                        outline: none;
-                        font-size: 14px;
-                        padding-left: 15px;
-                        font-family: 'roboto';
+                        @include settingInput
                     }
 
                     @media(max-width: 700px) {
@@ -73,31 +61,12 @@
                     gap: 20px;
 
                     input {
-                        height: 25px;
-                        border: 1px solid $wish-dark-grey;
-                        outline: none;
-                        font-size: 14px;
-                        padding-left: 15px;
-                        font-family: 'roboto';
-                        border-radius: 10px;
+                        @include settingInput
                     }
                 }
 
                 button {
-                    position: absolute;
-                    bottom: 10px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: 130px;
-                    height: 30px;
-                    border: none;
-                    background: $wish-blue;
-                    border-radius: 10px;
-                    color: #fff;
-                    font-size: 16px;
-                    font-family: 'roboto';
-                    transition: .3s;
-                    cursor: pointer;
+                    @include settingBtn(130px, 30px)
                 }
 
                 button:hover {
@@ -133,19 +102,11 @@
                 }
 
                 form {
-                    width: 80%;
-                    height: 120px;
-                    border: 1px solid $wish-dark-grey;
-                    border-radius: 20px;
-                    display: flex;
-                    justify-content: space-around;
-                    align-items: center;
-                    position: relative;
+                    @include settingForm(80%, 120px);
 
                     @media (max-width:880px) {
                         flex-direction: column;
-                        height: 200px;
-                        justify-content: center;
+                        align-items: center;
                         gap: 20px;
                     }
 
@@ -154,30 +115,11 @@
                     }
 
                     input {
-                        height: 25px;
-                        border: 1px solid $wish-dark-grey;
-                        outline: none;
-                        font-size: 14px;
-                        padding-left: 15px;
-                        font-family: 'roboto';
-                        border-radius: 10px;
+                        @include settingInput
                     }
 
                     button {
-                        position: absolute;
-                        bottom: 5px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        width: 130px;
-                        height: 30px;
-                        border: none;
-                        background: $wish-blue;
-                        border-radius: 10px;
-                        color: #fff;
-                        font-size: 16px;
-                        font-family: 'roboto';
-                        transition: .3s;
-                        cursor: pointer;
+                        @include settingBtn(130px, 30px)
                     }
 
                     button:hover {
@@ -200,47 +142,59 @@
                 }
 
                 form {
-                    width: 80%;
-                    height: 120px;
-                    border: 1px solid $wish-dark-grey;
-                    border-radius: 10px;
-                    display: flex;
-                    justify-content: space-around;
-                    align-items: center;
-                    position: relative;
+                    @include settingForm(80%, 120px);
 
                     @media (max-width:880px) {
                         flex-direction: column;
                         height: 200px;
-                        justify-content: center;
+                        align-items: center;
                         gap: 20px;
                     }
 
                     input {
-                        height: 25px;
-                        border: 1px solid $wish-dark-grey;
-                        outline: none;
-                        font-size: 14px;
-                        padding-left: 15px;
-                        font-family: 'roboto';
-                        border-radius: 10px;
+                        @include settingInput
                     }
 
                     button {
-                        width: 150px;
-                        height: 30px;
-                        position: absolute;
-                        bottom: 5px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        border: none;
-                        background: $wish-blue;
-                        border-radius: 10px;
-                        color: #fff;
-                        font-size: 16px;
-                        font-family: 'roboto';
-                        transition: .3s;
-                        cursor: pointer;
+                        @include settingBtn(150px, 30px)
+                    }
+
+                    button:hover {
+                        box-shadow: 0 0 10px $wish-blue;
+                    }
+                }
+            }
+
+            .delete-account {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                h3 {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+
+                form {
+                    @include settingForm(80%, 120px);
+
+                    @media(max-width: 880px) {
+                        flex-direction: column;
+                        height: 200px;
+                        align-items: center;
+                        gap: 20px;
+                    }
+
+                    input {
+                        @include settingInput
+                    }
+
+                    button {
+                        @include settingBtn(150px, 30px);
+                        position: static;
+                        transform: translateX(0);
                     }
 
                     button:hover {

@@ -8,6 +8,31 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+
+    .popup-cover {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 99;
+        width: 350px;
+        height: 250px;
+        background-color: #fff;
+        border: 1px solid $wish-dark-grey;
+        border-radius: 10px;
+        box-shadow: 0 0 10px $wish-dark-grey;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+
+        .icon {
+            transform: translate(130px);
+            cursor: pointer;
+            font-size: 18px;
+        }
+    }
 
     header {
         width: 100%;
@@ -26,16 +51,16 @@
             border-bottom-left-radius: 20px;
             border-bottom-right-radius: 20px;
             background-repeat: no-repeat;
-            background-position: bottom;
+            background-position: center;
             background-size: cover;
             position: relative;
 
             button {
                 position: absolute;
+                bottom: 30px;
+                right: 30px;
                 width: 200px;
                 height: 30px;
-                right: 30px;
-                bottom: 30px;
                 border: none;
                 border-radius: 10px;
                 display: flex;
