@@ -1,0 +1,106 @@
+@include font('roboto', './fonts/Roboto-Thin.ttf');
+@include font('clash', './fonts/ClashDisplay-Medium.ttf');
+@include font('elsie', './fonts/Elsie-Regular.ttf');
+
+.profile {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    header {
+        width: 100%;
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @media(max-width: 550px) {
+            height: 300px;
+        }
+
+        .header-top {
+            width: 90%;
+            height: 80%;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: cover;
+            position: relative;
+
+            button {
+                position: absolute;
+                width: 200px;
+                height: 30px;
+                right: 30px;
+                bottom: 30px;
+                border: none;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                font-size: 16px;
+                cursor: pointer;
+                background: #fff;
+                color: #000;
+                transition: .3s;
+            }
+
+            button:hover {
+                background: $wish-grey;
+            }
+        }
+
+        .header-section {
+            width: 90%;
+            padding-left: 50px;
+            display: flex;
+            border-bottom: 1px solid $wish-dark-grey;
+            position: relative;
+
+            .header-section-image {
+                transform: translateY(-30px);
+                @include image(150px, 150px, $wish-blue)
+            }
+
+            .currentUser-info {
+                padding-top: 20px;
+                margin-left: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                font-family: 'elsie';
+            }
+
+            button {
+                position: absolute;
+                width: 200px;
+                height: 30px;
+                right: 30px;
+                bottom: 30px;
+                border: none;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                font-size: 16px;
+                cursor: pointer;
+                background: $wish-blue;
+                color: #fff;
+                transition: .3s;
+            }
+
+            button:hover {
+                box-shadow: 0 0 10px $wish-blue;
+            }
+        }
+    }
+
+    section {
+        width: 90%;
+    }
+}

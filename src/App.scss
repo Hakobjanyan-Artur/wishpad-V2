@@ -10,6 +10,11 @@
 @import './components/usernavbar/userNavbar';
 @import './components/messenger/messenger';
 @import './components/friends/friends';
+@import './components/notification/notification';
+@import './components/profile/profile';
+@import './components/profileNavbar/_profileNavbar';
+@import './components/settings/settings';
+
 
 * {
     margin: 0;
@@ -35,6 +40,6 @@ img {
 
     @media(max-width: 550px) {
         flex-direction: column;
-        height: 100vh;
+        min-height: 100vh;
     }
 }

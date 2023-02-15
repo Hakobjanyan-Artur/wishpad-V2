@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { deleteFriend, selectUsers } from "../../store/slices/users/usersSlices"
 import { collection, onSnapshot } from "firebase/firestore"
@@ -7,9 +7,11 @@ import userImage from '../../images/user.png'
 import { AiOutlineUsergroupDelete } from 'react-icons/ai';
 import { RiChatDeleteLine } from 'react-icons/ri';
 import { useNavigate } from "react-router-dom"
+import { ThemeContext } from "../../App"
 
 
 export default function Friends() {
+    const { theme } = useContext(ThemeContext)
     const [friends, setFriends] = useState(null)
     const [popupFriend, setPopupFriend] = useState(null)
     const { currentUser } = useSelector(selectUsers)
@@ -22,6 +24,9 @@ export default function Friends() {
             navigate('/')
         }
 
+    }, [])
+
+    useEffect(() => {
         const fetchUsers = async () => {
             const usersRef = collection(db, "users")
             await onSnapshot(usersRef, (snapShot) => {
@@ -60,7 +65,11 @@ export default function Friends() {
                 <p>Are you sure you want to remove {popupFriend?.name} from friends?</p>
                 <button onClick={() => removeFriend()}>ok</button>
             </div>
-            <header>
+            <header
+                style={{
+                    background: theme === 'dark' ? '' : '#000'
+                }}
+            >
                 <div className="title">
                     <h1>My friends</h1>
                 </div>

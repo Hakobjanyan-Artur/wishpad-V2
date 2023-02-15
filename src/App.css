@@ -597,7 +597,7 @@
 
 .navbar {
   width: 17%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: rgb(33, 92, 243);
   display: flex;
   flex-direction: column;
@@ -612,6 +612,7 @@
 @media (max-width: 550px) {
   .navbar {
     width: 100%;
+    min-height: auto;
     height: 60px;
     flex-direction: row;
     justify-content: center;
@@ -692,6 +693,7 @@
   width: 80%;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   font-size: 20px;
   color: #fff;
@@ -699,27 +701,27 @@
   border: 1px solid rgb(201, 201, 201);
   border-radius: 10px;
   padding: 5px;
-  transform: scale(110%);
+  transform: scale(120%);
 }
-.navbar nav .notification {
+.navbar nav .notification-icon {
   position: relative;
 }
-.navbar nav .notification .quantity {
+.navbar nav .notification-icon .quantity {
   width: 25px;
   height: 25px;
   border: 1px solid rgb(201, 201, 201);
   border-radius: 50%;
   position: absolute;
-  left: 0;
+  left: -2px;
   top: -30px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 @media (max-width: 550px) {
-  .navbar nav .notification .quantity {
+  .navbar nav .notification-icon .quantity {
     top: auto;
-    bottom: -20px;
+    bottom: -30px;
   }
 }
 .navbar nav .switch,
@@ -1344,6 +1346,580 @@
   font-family: "roboto";
 }
 
+@font-face {
+  font-family: "roboto";
+  src: url("./fonts/Roboto-Thin.ttf");
+}
+@font-face {
+  font-family: "clash";
+  src: url("./fonts/ClashDisplay-Medium.ttf");
+}
+@font-face {
+  font-family: "elsie";
+  src: url("./fonts/Elsie-Regular.ttf");
+}
+.notification {
+  width: 100%;
+  height: 100vh;
+}
+.notification header {
+  height: 20%;
+  background: rgb(33, 92, 243);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding-top: 20px;
+}
+.notification header h1 {
+  font-family: "elsie";
+  color: #fff;
+}
+.notification header p {
+  font-size: 18px;
+  color: #fff;
+  font-family: "roboto";
+}
+.notification section {
+  width: 100%;
+  display: flex;
+}
+.notification section .title {
+  font-family: "elsie";
+  color: rgb(33, 92, 243);
+}
+.notification section .left {
+  padding-top: 30px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  border-right: 1px solid rgb(201, 201, 201);
+  border-bottom: 1px solid rgb(201, 201, 201);
+}
+.notification section .left .content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  padding: 0 10px 10px;
+  gap: 10px;
+}
+@media (max-width: 950px) {
+  .notification section .left .content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.notification section .left .content .friend-content {
+  height: 80px;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  justify-content: space-around;
+}
+@media (max-width: 550px) {
+  .notification section .left .content .friend-content {
+    padding-left: 0;
+  }
+}
+.notification section .left .content .friend-content .friend-image {
+  cursor: pointer;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: rgb(33, 92, 243);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notification section .left .content .friend-content .friend-image img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.notification section .left .content .friend-content button {
+  width: 70px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 16px;
+  border: none;
+  background-color: rgb(33, 92, 243);
+  cursor: pointer;
+  color: #fff;
+  border-radius: 10px;
+}
+.notification section .left .content .friend-content button .icon {
+  color: #fff;
+}
+.notification section .right {
+  padding-top: 30px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  border-left: 1px solid rgb(201, 201, 201);
+  border-bottom: 1px solid rgb(201, 201, 201);
+}
+.notification section .right .content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  padding: 0 10px 10px;
+  gap: 10px;
+}
+@media (max-width: 950px) {
+  .notification section .right .content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.notification section .right .content .friend-content {
+  height: 80px;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  justify-content: space-around;
+}
+@media (max-width: 550px) {
+  .notification section .right .content .friend-content {
+    padding-left: 0;
+  }
+}
+.notification section .right .content .friend-content .friend-image {
+  cursor: pointer;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: rgb(33, 92, 243);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notification section .right .content .friend-content .friend-image img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.notification section .right .content .friend-content button {
+  width: 80px;
+  height: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #fff;
+  border: none;
+  background-color: rgb(33, 92, 243);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("./fonts/Roboto-Thin.ttf");
+}
+@font-face {
+  font-family: "clash";
+  src: url("./fonts/ClashDisplay-Medium.ttf");
+}
+@font-face {
+  font-family: "elsie";
+  src: url("./fonts/Elsie-Regular.ttf");
+}
+.profile {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile header {
+  width: 100%;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (max-width: 550px) {
+  .profile header {
+    height: 300px;
+  }
+}
+.profile header .header-top {
+  width: 90%;
+  height: 80%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  position: relative;
+}
+.profile header .header-top button {
+  position: absolute;
+  width: 200px;
+  height: 30px;
+  right: 30px;
+  bottom: 30px;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #fff;
+  color: #000;
+  transition: 0.3s;
+}
+.profile header .header-top button:hover {
+  background: rgb(239, 239, 239);
+}
+.profile header .header-section {
+  width: 90%;
+  padding-left: 50px;
+  display: flex;
+  border-bottom: 1px solid rgb(201, 201, 201);
+  position: relative;
+}
+.profile header .header-section .header-section-image {
+  transform: translateY(-30px);
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: rgb(33, 92, 243);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile header .header-section .header-section-image img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+}
+.profile header .header-section .currentUser-info {
+  padding-top: 20px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: "elsie";
+}
+.profile header .header-section button {
+  position: absolute;
+  width: 200px;
+  height: 30px;
+  right: 30px;
+  bottom: 30px;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background: rgb(33, 92, 243);
+  color: #fff;
+  transition: 0.3s;
+}
+.profile header .header-section button:hover {
+  box-shadow: 0 0 10px rgb(33, 92, 243);
+}
+.profile section {
+  width: 90%;
+}
+
+.profile-navbar {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+.profile-navbar ul {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.profile-navbar ul li .standart {
+  display: flex;
+  width: 120px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  color: rgb(201, 201, 201);
+  padding-bottom: 5px;
+  transition: 0.3s;
+}
+.profile-navbar ul li .standart:hover {
+  color: rgb(33, 92, 243);
+  border-bottom: 2px solid rgb(33, 92, 243);
+}
+.profile-navbar ul li .active {
+  display: flex;
+  width: 120px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  color: rgb(33, 92, 243);
+  padding-bottom: 5px;
+  border-bottom: 2px solid rgb(33, 92, 243);
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("./fonts/Roboto-Thin.ttf");
+}
+@font-face {
+  font-family: "clash";
+  src: url("./fonts/ClashDisplay-Medium.ttf");
+}
+@font-face {
+  font-family: "elsie";
+  src: url("./fonts/Elsie-Regular.ttf");
+}
+.settings {
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 100px;
+}
+.settings header {
+  height: 200px;
+  background-color: rgb(33, 92, 243);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.settings header .header-title {
+  color: #fff;
+  font-family: "elsie";
+}
+.settings section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.settings section .account-settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.settings section .account-settings .account-setting-header {
+  width: 80%;
+  text-align: center;
+  font-family: "roboto";
+}
+.settings section .account-settings form {
+  width: 80%;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 20px;
+  padding: 50px 0;
+  display: flex;
+  justify-content: space-around;
+  font-family: "roboto";
+  position: relative;
+}
+.settings section .account-settings form .left,
+.settings section .account-settings form .middle {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.settings section .account-settings form .left input,
+.settings section .account-settings form .middle input {
+  height: 25px;
+  border: 1px solid rgb(201, 201, 201);
+  outline: none;
+  font-size: 14px;
+  padding-left: 15px;
+  font-family: "roboto";
+}
+@media (max-width: 700px) {
+  .settings section .account-settings form .left,
+.settings section .account-settings form .middle {
+    display: none;
+  }
+}
+.settings section .account-settings form .right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.settings section .account-settings form .right input {
+  height: 25px;
+  border: 1px solid rgb(201, 201, 201);
+  outline: none;
+  font-size: 14px;
+  padding-left: 15px;
+  font-family: "roboto";
+  border-radius: 10px;
+}
+.settings section .account-settings form button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: 30px;
+  border: none;
+  background: rgb(33, 92, 243);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-family: "roboto";
+  transition: 0.3s;
+  cursor: pointer;
+}
+.settings section .account-settings form button:hover {
+  box-shadow: 0 0 10px rgb(33, 92, 243);
+}
+.settings section .security {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+.settings section .security .security-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "roboto";
+}
+.settings section .security .change-email {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.settings section .security .change-email h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.settings section .security .change-email form {
+  width: 80%;
+  height: 120px;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+@media (max-width: 880px) {
+  .settings section .security .change-email form {
+    flex-direction: column;
+    height: 200px;
+    justify-content: center;
+    gap: 20px;
+  }
+}
+.settings section .security .change-email form h4 {
+  font-family: "roboto";
+}
+.settings section .security .change-email form input {
+  height: 25px;
+  border: 1px solid rgb(201, 201, 201);
+  outline: none;
+  font-size: 14px;
+  padding-left: 15px;
+  font-family: "roboto";
+  border-radius: 10px;
+}
+.settings section .security .change-email form button {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: 30px;
+  border: none;
+  background: rgb(33, 92, 243);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-family: "roboto";
+  transition: 0.3s;
+  cursor: pointer;
+}
+.settings section .security .change-email form button:hover {
+  box-shadow: 0 0 10px rgb(33, 92, 243);
+}
+.settings section .security .change-password {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.settings section .security .change-password h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.settings section .security .change-password form {
+  width: 80%;
+  height: 120px;
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+@media (max-width: 880px) {
+  .settings section .security .change-password form {
+    flex-direction: column;
+    height: 200px;
+    justify-content: center;
+    gap: 20px;
+  }
+}
+.settings section .security .change-password form input {
+  height: 25px;
+  border: 1px solid rgb(201, 201, 201);
+  outline: none;
+  font-size: 14px;
+  padding-left: 15px;
+  font-family: "roboto";
+  border-radius: 10px;
+}
+.settings section .security .change-password form button {
+  width: 150px;
+  height: 30px;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: none;
+  background: rgb(33, 92, 243);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-family: "roboto";
+  transition: 0.3s;
+  cursor: pointer;
+}
+.settings section .security .change-password form button:hover {
+  box-shadow: 0 0 10px rgb(33, 92, 243);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -1369,6 +1945,6 @@ img {
 @media (max-width: 550px) {
   .App {
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
   }
 }/*# sourceMappingURL=App.css.map */

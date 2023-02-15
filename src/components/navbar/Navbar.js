@@ -44,7 +44,7 @@ export default function Navbar() {
                 <ul>
                     <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/main"><BiHomeHeart /> <span className="nav-txt">Home</span></NavLink></li>
                     <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/friend"><FaUserFriends /> <span className="nav-txt">Friends</span></NavLink></li>
-                    <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/notification">{notificationLength === 0 ? <MdCircleNotifications /> : <span className="notification"><MdNotificationsActive /> <div className="quantity"><h5>{notificationLength}</h5></div></span>} <span className="nav-txt">Notification</span></NavLink></li>
+                    <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/notification">{notificationLength === 0 ? <MdCircleNotifications /> : <span className="notification-icon"><MdNotificationsActive /> <div className="quantity"><h5>{notificationLength}</h5></div></span>} <span className="nav-txt">Notification</span></NavLink></li>
                     <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/search"><FaSearch /> <span className="nav-txt">Search</span></NavLink></li>
                     <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/profile"><CgProfile /> <span className="nav-txt">Profile</span></NavLink></li>
                     <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/settings"><FiSettings /> <span className="nav-txt">Settings</span></NavLink></li>

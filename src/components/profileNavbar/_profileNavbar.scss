@@ -1,0 +1,44 @@
+.profile-navbar {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+
+    ul {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+
+        li {
+            .standart {
+                display: flex;
+                width: 120px;
+                height: 20px;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                font-size: 18px;
+                color: $wish-dark-grey;
+                padding-bottom: 5px;
+                transition: .3s;
+            }
+
+            .standart:hover {
+                color: $wish-blue;
+                border-bottom: 2px solid $wish-blue;
+            }
+
+            .active {
+                display: flex;
+                width: 120px;
+                height: 20px;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                font-size: 18px;
+                color: $wish-blue;
+                padding-bottom: 5px;
+                border-bottom: 2px solid $wish-blue;
+            }
+        }
+    }
+}

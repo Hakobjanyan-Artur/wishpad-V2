@@ -1,0 +1,253 @@
+@include font('roboto', './fonts/Roboto-Thin.ttf');
+@include font('clash', './fonts/ClashDisplay-Medium.ttf');
+@include font('elsie', './fonts/Elsie-Regular.ttf');
+
+.settings {
+    width: 100%;
+    min-height: 100vh;
+    padding-bottom: 100px;
+
+    header {
+        height: 200px;
+        background-color: $wish-blue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .header-title {
+            color: #fff;
+            font-family: 'elsie';
+        }
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+
+        .account-settings {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+
+            .account-setting-header {
+                width: 80%;
+                text-align: center;
+                font-family: 'roboto';
+            }
+
+            form {
+                width: 80%;
+                border: 1px solid $wish-dark-grey;
+                border-radius: 20px;
+                padding: 50px 0;
+                display: flex;
+                justify-content: space-around;
+                font-family: 'roboto';
+                position: relative;
+
+                .left,
+                .middle {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+
+                    input {
+                        height: 25px;
+                        border: 1px solid $wish-dark-grey;
+                        outline: none;
+                        font-size: 14px;
+                        padding-left: 15px;
+                        font-family: 'roboto';
+                    }
+
+                    @media(max-width: 700px) {
+                        display: none;
+                    }
+                }
+
+                .right {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+
+                    input {
+                        height: 25px;
+                        border: 1px solid $wish-dark-grey;
+                        outline: none;
+                        font-size: 14px;
+                        padding-left: 15px;
+                        font-family: 'roboto';
+                        border-radius: 10px;
+                    }
+                }
+
+                button {
+                    position: absolute;
+                    bottom: 10px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 130px;
+                    height: 30px;
+                    border: none;
+                    background: $wish-blue;
+                    border-radius: 10px;
+                    color: #fff;
+                    font-size: 16px;
+                    font-family: 'roboto';
+                    transition: .3s;
+                    cursor: pointer;
+                }
+
+                button:hover {
+                    box-shadow: 0 0 10px $wish-blue;
+                }
+            }
+        }
+
+        .security {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+
+            .security-header {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: 'roboto';
+            }
+
+            .change-email {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+
+                h3 {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+
+                form {
+                    width: 80%;
+                    height: 120px;
+                    border: 1px solid $wish-dark-grey;
+                    border-radius: 20px;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    position: relative;
+
+                    @media (max-width:880px) {
+                        flex-direction: column;
+                        height: 200px;
+                        justify-content: center;
+                        gap: 20px;
+                    }
+
+                    h4 {
+                        font-family: 'roboto';
+                    }
+
+                    input {
+                        height: 25px;
+                        border: 1px solid $wish-dark-grey;
+                        outline: none;
+                        font-size: 14px;
+                        padding-left: 15px;
+                        font-family: 'roboto';
+                        border-radius: 10px;
+                    }
+
+                    button {
+                        position: absolute;
+                        bottom: 5px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 130px;
+                        height: 30px;
+                        border: none;
+                        background: $wish-blue;
+                        border-radius: 10px;
+                        color: #fff;
+                        font-size: 16px;
+                        font-family: 'roboto';
+                        transition: .3s;
+                        cursor: pointer;
+                    }
+
+                    button:hover {
+                        box-shadow: 0 0 10px $wish-blue;
+                    }
+                }
+            }
+
+            .change-password {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+
+                h3 {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+
+                form {
+                    width: 80%;
+                    height: 120px;
+                    border: 1px solid $wish-dark-grey;
+                    border-radius: 10px;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    position: relative;
+
+                    @media (max-width:880px) {
+                        flex-direction: column;
+                        height: 200px;
+                        justify-content: center;
+                        gap: 20px;
+                    }
+
+                    input {
+                        height: 25px;
+                        border: 1px solid $wish-dark-grey;
+                        outline: none;
+                        font-size: 14px;
+                        padding-left: 15px;
+                        font-family: 'roboto';
+                        border-radius: 10px;
+                    }
+
+                    button {
+                        width: 150px;
+                        height: 30px;
+                        position: absolute;
+                        bottom: 5px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        border: none;
+                        background: $wish-blue;
+                        border-radius: 10px;
+                        color: #fff;
+                        font-size: 16px;
+                        font-family: 'roboto';
+                        transition: .3s;
+                        cursor: pointer;
+                    }
+
+                    button:hover {
+                        box-shadow: 0 0 10px $wish-blue;
+                    }
+                }
+            }
+        }
+    }
+}

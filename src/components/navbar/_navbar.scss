@@ -1,6 +1,6 @@
 .navbar {
     width: 17%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: $wish-blue;
     display: flex;
     flex-direction: column;
@@ -13,6 +13,7 @@
 
     @media(max-width: 550px) {
         width: 100%;
+        min-height: auto;
         height: 60px;
         flex-direction: row;
         justify-content: center;
@@ -96,6 +97,7 @@
             width: 80%;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             font-size: 20px;
             color: #fff;
@@ -103,10 +105,10 @@
             border: 1px solid $wish-dark-grey;
             border-radius: 10px;
             padding: 5px;
-            transform: scale(110%);
+            transform: scale(120%);
         }
 
-        .notification {
+        .notification-icon {
             position: relative;
 
             .quantity {
@@ -115,7 +117,7 @@
                 border: 1px solid $wish-dark-grey;
                 border-radius: 50%;
                 position: absolute;
-                left: 0;
+                left: -2px;
                 top: -30px;
                 display: flex;
                 justify-content: center;
@@ -123,7 +125,7 @@
 
                 @media(max-width: 550px) {
                     top: auto;
-                    bottom: -20px;
+                    bottom: -30px;
                 }
             }
         }

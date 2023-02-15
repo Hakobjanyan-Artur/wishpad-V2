@@ -30,7 +30,7 @@ function App({ theme, toggleTheme }) {
             <Route path='friend' element={<Friend />} />
             <Route path='notification' element={<Notification />} />
             <Route path='search' element={<Search />} />
-            <Route path='profile' element={<Profile />} />
+            <Route path='profile/*' element={<Profile />} />
             <Route path='settings' element={<Settings />} />
             <Route path='userByClick'>
               <Route path=':id/*' element={<UserByClick />} />

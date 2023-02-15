@@ -29,7 +29,7 @@ const usersSlice = createSlice({
             const addUser = {
                 avatar: '',
                 coverImage: '',
-                images: '',
+                images: [],
                 name: payload.realName,
                 lastname: '',
                 userName: payload.userName,
