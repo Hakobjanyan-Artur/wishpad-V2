@@ -8,7 +8,6 @@ import { MdAddAPhoto } from 'react-icons/md';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import ProfileWrapper from '../../pages/profileWrapper'
 import ProfileInfo from '../profileInfo/profileInfo'
-import ProfileFriends from '../profileFriends/profileFriends'
 import ProfileImages from '../profileImages/profileImages'
 import { ThemeContext } from '../../App'
 import ProfilePosts from '../profilePosts/profilePosts'
@@ -88,7 +87,7 @@ export default function Profile() {
                     onChange={(e) => setCoverimg(e.target.files[0])}
                     type="file" />
                 <button onClick={() => coverImageSend()}>Send photo</button>
-                <h2>loaded {progressCover} %</h2>
+                <h2>loading {progressCover} %</h2>
             </div>
             <header
                 style={{
@@ -117,7 +116,6 @@ export default function Profile() {
                 <Routes>
                     <Route path='/' element={<ProfileWrapper />}>
                         <Route index element={<ProfileInfo />} />
-                        <Route path='profileFriends' element={<ProfileFriends />} />
                         <Route path='profileImages' element={<ProfileImages />} />
                         <Route path='profilePosts' element={<ProfilePosts />} />
                     </Route>
