@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import countryData from "../../country/country";
 import { collection, onSnapshot } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig";
-import { accountSettingChange, emailChange, passwordChange } from "../../store/slices/setting/settingSlices";
+import { accountSettingChange, deleteAccount, emailChange, passwordChange } from "../../store/slices/setting/settingSlices";
 import bcrypt from 'bcryptjs'
 
 
@@ -27,6 +27,7 @@ export default function Settings() {
     const [passUpperCase, setPassUpperCase] = useState(false)
     const [passLowerCase, setPassLowerCase] = useState(false)
     //--------------------
+    const [deleteError, setDeleteError] = useState(false)
     const navigate = useNavigate()
     const [country, setCountry] = useState(null)
     const dispatch = useDispatch()
@@ -141,6 +142,25 @@ export default function Settings() {
         e.target.reset()
     }
 
+    //delete account
+
+    const deleteAccountSubmit = async (e) => {
+        e.preventDefault()
+        const email = e.target[0].value
+        const password = e.target[1].value
+        await bcrypt.compare(password, currentUser?.password).then((res) => {
+            if (res && email === currentUser?.email) {
+                dispatch(deleteAccount(currentUser?.id))
+                setTimeout(() => {
+                    navigate('/')
+                }, 500)
+            } else {
+                setDeleteError(true)
+            }
+        })
+        e.target.reset()
+    }
+
     return (
         <div className="settings">
             <header
@@ -204,7 +224,7 @@ export default function Settings() {
                             style={{
                                 display: emailPassword ? 'block' : 'none',
                                 color: 'red'
-                            }}>incorrect password</h2>
+                            }}>Incorrect password</h2>
                         <form onSubmit={changeEmailSubmit}>
                             <h4>{currentUser?.email}</h4>
                             <input
@@ -223,7 +243,7 @@ export default function Settings() {
                             style={{
                                 display: changePass ? 'block' : 'none',
                                 color: 'red'
-                            }}>incorrect password</h2>
+                            }}>Incorrect password</h2>
                         <form onSubmit={changePasswordSubmit}>
                             <input
                                 onChange={() => setChangePass(false)}
@@ -281,8 +301,15 @@ export default function Settings() {
                     </div>
                     <div className="delete-account">
                         <h3><TiFolderDelete /> Delete account</h3>
-                        <form>
+                        <form onSubmit={deleteAccountSubmit}>
+                            <h2
+                                style={{
+                                    color: 'red',
+                                    display: deleteError ? 'block' : 'none'
+                                }}
+                            >Incorrect email or password</h2>
                             <input
+                                onChange={() => setDeleteError(false)}
                                 placeholder="Enter your email"
                                 type="email" />
                             <input
