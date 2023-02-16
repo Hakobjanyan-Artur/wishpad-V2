@@ -174,7 +174,7 @@ export default function Messenger() {
             <div className="right">
                 <div className="header">
                     <div className="user-image">
-                        <img src={currentUser?.avatar ? currentUser?.avatar : userImage} alt="" />
+                        <img src={currentUser?.avatar ? `https://firebasestorage.googleapis.com/v0/b/artchat-86d4b.appspot.com/o/${currentUser?.id}%2Favatar%2F${currentUser?.avatar}?alt=media&token=c0c3f294-1e41-48c8-8ebb-590bfe9b5904` : userImage} alt="" />
                     </div>
                     <div className="user-info">
                         <h2>{currentUser?.userName}</h2>

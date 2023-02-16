@@ -112,9 +112,25 @@
             border-bottom: 1px solid $wish-dark-grey;
             position: relative;
 
+            @media(max-width: 630px) {
+                padding-left: 0;
+            }
+
+            @media(max-width: 550px) {
+                height: 150px;
+            }
+
             .header-section-image {
                 transform: translateY(-30px);
-                @include image(150px, 150px, $wish-blue)
+                @include image(150px, 150px, $wish-blue);
+
+                @media(max-width: 550px) {
+                    @include image(100px, 100px, $wish-blue)
+                }
+
+                @media(max-width: 450px) {
+                    @include image(80px, 80px, $wish-blue)
+                }
             }
 
             .currentUser-info {
@@ -124,6 +140,12 @@
                 flex-direction: column;
                 gap: 10px;
                 font-family: 'elsie';
+
+                h1 {
+                    @media(max-width: 480px) {
+                        font-size: 30px;
+                    }
+                }
             }
 
             button {
@@ -143,6 +165,10 @@
                 background: $wish-blue;
                 color: #fff;
                 transition: .3s;
+
+                @media(max-width: 550px) {
+                    bottom: 5px
+                }
             }
 
             button:hover {

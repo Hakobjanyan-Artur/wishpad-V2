@@ -155,6 +155,43 @@
                         @include settingInput
                     }
 
+                    .new-password {
+                        position: relative;
+
+                        .password-logic {
+                            width: 150%;
+                            height: 200px;
+                            background: #fff;
+                            border: 1px solid $wish-dark-grey;
+                            border-bottom-left-radius: 10px;
+                            border-bottom-right-radius: 10px;
+                            position: absolute;
+                            bottom: -200px;
+                            left: -25%;
+                            z-index: 99;
+                            padding: 10px;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 20px;
+
+                            .logic-content {
+                                display: flex;
+                                gap: 10px;
+                                height: 15px;
+                                align-items: center;
+                                font-family: 'roboto';
+
+                                .range {
+                                    display: block;
+                                    width: 10px;
+                                    height: 10px;
+                                    background-color: $wish-dark-grey;
+                                    border-radius: 50%;
+                                }
+                            }
+                        }
+                    }
+
                     button {
                         @include settingBtn(150px, 30px)
                     }

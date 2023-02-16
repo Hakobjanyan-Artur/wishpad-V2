@@ -565,6 +565,12 @@
 .sign-up .sign-up-content .section form .show-password .checkbox {
   width: 15px;
 }
+.sign-up .sign-up-content .section form .gender {
+  display: flex;
+  transform: translateX(-150%);
+  justify-content: flex-start;
+  align-items: center;
+}
 .sign-up .sign-up-content .section form button {
   width: 60%;
   height: 30px;
@@ -677,6 +683,24 @@
     align-items: center;
   }
 }
+.navbar nav ul .nav-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar nav ul .nav-image img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.navbar nav ul .nav-image img {
+  width: 28px;
+  height: 28px;
+}
 .navbar nav .standart {
   display: flex;
   align-items: center;
@@ -702,6 +726,11 @@
   border-radius: 10px;
   padding: 5px;
   transform: scale(120%);
+}
+@media (max-width: 950px) {
+  .navbar nav .active {
+    width: 100%;
+  }
 }
 .navbar nav .notification-icon {
   position: relative;
@@ -1637,6 +1666,16 @@
   border-bottom: 1px solid rgb(201, 201, 201);
   position: relative;
 }
+@media (max-width: 630px) {
+  .profile header .header-section {
+    padding-left: 0;
+  }
+}
+@media (max-width: 550px) {
+  .profile header .header-section {
+    height: 150px;
+  }
+}
 .profile header .header-section .header-section-image {
   transform: translateY(-30px);
   width: 150px;
@@ -1652,6 +1691,38 @@
   height: 140px;
   border-radius: 50%;
 }
+@media (max-width: 550px) {
+  .profile header .header-section .header-section-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgb(33, 92, 243);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .profile header .header-section .header-section-image img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+  }
+}
+@media (max-width: 450px) {
+  .profile header .header-section .header-section-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgb(33, 92, 243);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .profile header .header-section .header-section-image img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+  }
+}
 .profile header .header-section .currentUser-info {
   padding-top: 20px;
   margin-left: 20px;
@@ -1659,6 +1730,11 @@
   flex-direction: column;
   gap: 10px;
   font-family: "elsie";
+}
+@media (max-width: 480px) {
+  .profile header .header-section .currentUser-info h1 {
+    font-size: 30px;
+  }
 }
 .profile header .header-section button {
   position: absolute;
@@ -1677,6 +1753,11 @@
   background: rgb(33, 92, 243);
   color: #fff;
   transition: 0.3s;
+}
+@media (max-width: 550px) {
+  .profile header .header-section button {
+    bottom: 5px;
+  }
 }
 .profile header .header-section button:hover {
   box-shadow: 0 0 10px rgb(33, 92, 243);
@@ -1947,6 +2028,39 @@
   font-size: 14px;
   padding-left: 15px;
   font-family: "roboto";
+}
+.settings section .security .change-password form .new-password {
+  position: relative;
+}
+.settings section .security .change-password form .new-password .password-logic {
+  width: 150%;
+  height: 200px;
+  background: #fff;
+  border: 1px solid rgb(201, 201, 201);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: absolute;
+  bottom: -200px;
+  left: -25%;
+  z-index: 99;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.settings section .security .change-password form .new-password .password-logic .logic-content {
+  display: flex;
+  gap: 10px;
+  height: 15px;
+  align-items: center;
+  font-family: "roboto";
+}
+.settings section .security .change-password form .new-password .password-logic .logic-content .range {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: rgb(201, 201, 201);
+  border-radius: 50%;
 }
 .settings section .security .change-password form button {
   position: absolute;

@@ -77,6 +77,15 @@
                 gap: 20px;
                 align-items: center;
             }
+
+            .nav-image {
+                @include image(30px, 30px, #fff);
+
+                img {
+                    width: 28px;
+                    height: 28px;
+                }
+            }
         }
 
         .standart {
@@ -106,6 +115,10 @@
             border-radius: 10px;
             padding: 5px;
             transform: scale(120%);
+
+            @media(max-width: 950px) {
+                width: 100%;
+            }
         }
 
         .notification-icon {

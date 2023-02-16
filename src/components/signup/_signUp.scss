@@ -178,7 +178,6 @@
                             border-radius: 50%;
                             background: $wish-dark-grey;
                             display: block;
-                            ;
                         }
 
                         .logic-content {
@@ -216,6 +215,13 @@
                     .checkbox {
                         width: 15px;
                     }
+                }
+
+                .gender {
+                    display: flex;
+                    transform: translateX(-150%);
+                    justify-content: flex-start;
+                    align-items: center;
                 }
 
                 button {

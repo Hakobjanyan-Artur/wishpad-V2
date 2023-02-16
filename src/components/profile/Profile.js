@@ -166,7 +166,6 @@ export default function Profile() {
                     </div>
                     <div className='currentUser-info'>
                         <h1>{currentUser?.name} {currentUser?.lastname}</h1>
-                        <h2>{currentUser?.userName}</h2>
                     </div>
                     <button onClick={() => setPopupAvatar(true)}><MdAddAPhoto /> Edit profile photo</button>
                 </div>

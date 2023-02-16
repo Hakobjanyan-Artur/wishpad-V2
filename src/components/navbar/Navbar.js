@@ -3,10 +3,10 @@ import { useContext, useEffect, useState } from "react";
 //--------------
 import logo from '../../images/logo.jpg'
 import { ThemeContext } from "../../App";
+import userImage from '../../images/user.png'
 //-------------icons----------
 import { BiHomeHeart } from "react-icons/bi";
 import { FaUserFriends, FaSearch } from "react-icons/fa";
-import { CgProfile } from "react-icons/cg";
 import { MdCircleNotifications, MdNotificationsActive } from "react-icons/md";
 import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
 import { CiLogout } from "react-icons/ci";
@@ -46,7 +46,7 @@ export default function Navbar() {
                     <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/friend"><FaUserFriends /> <span className="nav-txt">Friends</span></NavLink></li>
                     <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/notification">{notificationLength === 0 ? <MdCircleNotifications /> : <span className="notification-icon"><MdNotificationsActive /> <div className="quantity"><h5>{notificationLength}</h5></div></span>} <span className="nav-txt">Notification</span></NavLink></li>
                     <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/search"><FaSearch /> <span className="nav-txt">Search</span></NavLink></li>
-                    <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/profile"><CgProfile /> <span className="nav-txt">Profile</span></NavLink></li>
+                    <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/profile"><div className="nav-image"> <img src={currentUser?.avatar ? `https://firebasestorage.googleapis.com/v0/b/artchat-86d4b.appspot.com/o/${currentUser?.id}%2Favatar%2F${currentUser?.avatar}?alt=media&token=c0c3f294-1e41-48c8-8ebb-590bfe9b5904` : userImage} alt="" /></div><span className="nav-txt">Profile</span></NavLink></li>
                     <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/settings"><FiSettings /> <span className="nav-txt">Settings</span></NavLink></li>
                     <li onClick={toggleTheme} className="switch" >{theme === 'dark' ? <BsFillMoonStarsFill /> : <BsFillSunFill />} <span className="nav-txt">Switch appearance</span></li>
                     <li style={{ display: localCurrentUser ? 'block' : 'none' }} className="logout" onClick={() => { localStorage.removeItem('currentUser'); navigate('/') }}  ><CiLogout /> <span className="nav-txt">Log Out</span></li>

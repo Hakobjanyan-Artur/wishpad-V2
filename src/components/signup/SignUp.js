@@ -9,6 +9,7 @@ import bcrypt from 'bcryptjs'
 
 export default function SignUp() {
     const [showPass, setShowPass] = useState(false)
+    const [genderInput, setGenderInput] = useState(true)
     const [showLogicPass, setShowLogicPass] = useState(false)
     const [passLength, setPassLength] = useState(false)
     const [passSymbol, setPassSimbol] = useState(false)
@@ -16,12 +17,10 @@ export default function SignUp() {
     const [passUpperCase, setPassUpperCase] = useState(false)
     const [passLowerCase, setPassLowerCase] = useState(false)
     const [realNameErr, setRealNameErr] = useState(false)
-    const [userNameErr, setUserNameErr] = useState(false)
     const [regError, setRegError] = useState(false)
     const [successfulreg, setSuccessfulReg] = useState(false)
     const [users, setUsers] = useState(null)
     const [emailError, setEmailError] = useState(false)
-    const [usNameExistError, setUsNameExistError] = useState(false)
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -73,18 +72,13 @@ export default function SignUp() {
         e.preventDefault()
         const email = e.target[0].value
         const realName = e.target[1].value
-        const userName = e.target[2].value
-        const password = e.target[3].value
-        const confirmPassword = e.target[4].value
+        const password = e.target[2].value
+        const confirmPassword = e.target[3].value
+        const gender = genderInput ? 'Male' : 'Female'
 
         for (const user of users) {
             if (user.email === email) {
                 setEmailError(true)
-            }
-        }
-        for (const user of users) {
-            if (user.userName === userName) {
-                setUsNameExistError(true)
             }
         }
 
@@ -97,15 +91,12 @@ export default function SignUp() {
             email &&
             realName &&
             !realNameErr &&
-            userName &&
-            !userNameErr &&
             password === confirmPassword &&
-            !emailError &&
-            !usNameExistError
+            !emailError
         ) {
             setSuccessfulReg(true)
 
-            dispatch(addNewUser({ email: email, realName: realName, userName: userName, password: bcrypt.hashSync(password, 10) }))
+            dispatch(addNewUser({ email: email, realName: realName, gender: gender, password: bcrypt.hashSync(password, 10) }))
 
             setTimeout(() => {
                 navigate('/')
@@ -140,19 +131,13 @@ export default function SignUp() {
                     <form onSubmit={handleSubmit}>
                         <h3 style={{ color: 'red', display: emailError ? 'block' : 'none' }} >Email exists</h3>
                         <input
-                            onChange={() => { setRegError(false); setEmailError(false); setUsNameExistError(false) }}
+                            onChange={() => { setRegError(false); setEmailError(false) }}
                             placeholder='Enter your email (must be unique) '
                             type="email" />
                         <h3 style={{ color: 'red', display: realNameErr ? 'block' : 'none' }}>At least 3 characters</h3>
                         <input
                             onBlur={(e) => e.target.value.length < 3 ? setRealNameErr(true) : setRealNameErr(false)}
                             placeholder='Real name'
-                            type="text" />
-                        <h3 style={{ color: 'red', display: userNameErr ? 'block' : 'none' }}>At least 3 characters</h3>
-                        <h3 style={{ color: 'red', display: usNameExistError ? 'block' : 'none' }} >UserName exists</h3>
-                        <input
-                            onBlur={(e) => e.target.value.length < 3 ? setUserNameErr(true) : setUserNameErr(false)}
-                            placeholder='User name (must be unique)'
                             type="text" />
                         <div className='password'>
                             <input
@@ -197,6 +182,10 @@ export default function SignUp() {
                                 className='checkbox'
                                 type="checkbox" />
                             <h4>Show password</h4>
+                        </div>
+                        <div className='gender'>
+                            Male: <input onChange={() => setGenderInput(!genderInput)} type="radio" name='gender' value="man" defaultChecked />
+                            Female: <input onChange={() => setGenderInput(!genderInput)} type="radio" name='gender' value="woman" />
                         </div>
                         <div className='check'>
                             <h4>Do you agree with us</h4>

@@ -32,7 +32,6 @@ const usersSlice = createSlice({
                 images: [],
                 name: payload.realName,
                 lastname: '',
-                userName: payload.userName,
                 city: '',
                 country: '',
                 dateOfbirth: '',
@@ -41,7 +40,7 @@ const usersSlice = createSlice({
                 friendRequest: [],
                 newMessageUsers: [],
                 friends: [],
-                gender: '',
+                gender: payload.gender,
                 password: payload.password,
                 user_id: uuidv4(),
             }
