@@ -169,21 +169,26 @@ export default function Settings() {
                             <h3>{currentUser?.city ? currentUser?.city : 'not filled'}</h3>
                         </div>
                         <div className="right">
+                            <h4 className="media">{currentUser?.name}</h4>
                             <input
                                 placeholder="Change Name"
                                 type="text" />
+                            <h4 className="media">{currentUser?.lastname ? currentUser?.lastname : 'Last name'}</h4>
                             <input
                                 placeholder="Change Last name"
                                 type="text" />
+                            <h4 className="media">{currentUser?.dateOfbirth ? currentUser?.dateOfbirth : 'Date of birth'}</h4>
                             <input
                                 placeholder="Change date of bitrh"
                                 type="date" />
+                            <h4 className="media">{currentUser?.country ? currentUser?.country : 'Country'}</h4>
                             <select className="select" >
                                 <option value="Country">Country</option>
                                 {country?.map((el) => (
                                     <option value={el.country} key={el.country}>{el.country}</option>
                                 ))}
                             </select>
+                            <h4 className="media">{currentUser?.city ? currentUser?.city : 'City'}</h4>
                             <input
                                 placeholder="Change city"
                                 type="text" />
