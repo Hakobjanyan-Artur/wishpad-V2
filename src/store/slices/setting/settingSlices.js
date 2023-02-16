@@ -2,11 +2,12 @@ import { db } from "../../../firebaseConfig/FrirebaseConfig";
 import { createSlice } from "@reduxjs/toolkit";
 import { doc, updateDoc, deleteDoc } from "firebase/firestore"
 import bcrypt from 'bcryptjs'
+import time from "../../../components/timeFunc/timeFunc";
 
 const settingSlices = createSlice({
     name: 'setting',
     initialState: {
-        setting: null
+        setting: null,
     },
     reducers: {
         accountSettingChange(state, { payload }) {
@@ -53,12 +54,23 @@ const settingSlices = createSlice({
                 await deleteDoc(userDoc)
             }
             deleteUser(payload)
+        },
+        isOnline(state, { payload }) {
+            const updateUser = async (id) => {
+
+                const userDoc = doc(db, "users", id)
+                const newFileds = {
+                    time: time()
+                }
+                await updateDoc(userDoc, newFileds)
+            }
+            updateUser(payload)
         }
     }
 })
 
 export const selectSettings = state => state.setting
 
-export const { accountSettingChange, emailChange, passwordChange, deleteAccount } = settingSlices.actions
+export const { accountSettingChange, emailChange, passwordChange, deleteAccount, isOnline } = settingSlices.actions
 
 export const settingsReducer = settingSlices.reducer

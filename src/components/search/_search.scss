@@ -86,6 +86,17 @@
                     justify-content: center;
                     align-items: center;
                     background-color: $wish-blue;
+                    position: relative;
+
+                    .isOnline {
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 50%;
+                        background-color: red;
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+                    }
 
                     img {
                         width: 90%;

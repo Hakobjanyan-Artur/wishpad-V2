@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Friend from './components/friends/Friends';
@@ -14,10 +14,12 @@ import UserByClick from './components/userByClick/UserByClick';
 import widthTeme from './hoc/WidthTeme';
 import HomeWrapper from './pages/HomeWrapper';
 
+
 export const ThemeContext = createContext()
 
 function App({ theme, toggleTheme }) {
   const [users, setUsersMain] = useState(null)
+
 
   return (
     <div className="App">

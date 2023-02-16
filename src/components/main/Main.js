@@ -5,13 +5,13 @@ import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../App";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUsers, toggleUser } from "../../store/slices/users/usersSlices";
-import { collection, onSnapshot } from "firebase/firestore"
+import { collection, onSnapshot, doc, updateDoc } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig";
 import { FaTelegramPlane } from "react-icons/fa";
 import { TbFriends } from "react-icons/tb";
+import { isOnline } from "../../store/slices/setting/settingSlices";
 
-
-export default function Main({ users }) {
+export default function Main() {
     const { theme } = useContext(ThemeContext)
     const { currentUser } = useSelector(selectUsers)
     const dispatch = useDispatch()
@@ -19,10 +19,12 @@ export default function Main({ users }) {
     const [newMessUsers, setNewMessUsers] = useState(null)
     const [newRequestFriend, setNewRequestFriend] = useState(null)
 
+
     useEffect(() => {
         if (!currentUser) {
             navigate('/')
         }
+
         const fetchUsers = async () => {
             const usersRef = collection(db, "users")
             await onSnapshot(usersRef, (snapShot) => {
@@ -56,6 +58,13 @@ export default function Main({ users }) {
             })
         }
         fetchUsers()
+
+        dispatch(isOnline(currentUser?.id))
+
+        setInterval(() => {
+            dispatch(isOnline(currentUser?.id))
+        }, 60000 * 3)
+
     }, [])
 
     return (

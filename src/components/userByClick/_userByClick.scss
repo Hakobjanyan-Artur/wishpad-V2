@@ -22,9 +22,20 @@
             flex-direction: column;
             align-items: center;
             gap: 20px;
+            position: relative;
 
             .user-image {
-                @include image(200px, 200px, #fff)
+                @include image(200px, 200px, #fff);
+
+                .isOnline {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    background-color: red;
+                    position: absolute;
+                    bottom: 40px;
+                    right: 40px;
+                }
             }
 
             button {

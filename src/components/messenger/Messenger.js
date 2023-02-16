@@ -22,6 +22,9 @@ export default function Messenger() {
     const [userMess, setUserMess] = useState(null)
 
     useEffect(() => {
+        if (!currentUser) {
+            navigate('/')
+        }
         const fetchUsers = async () => {
             const m = query(collection(db, "messenger"))
             const usersRef = collection(db, "users")

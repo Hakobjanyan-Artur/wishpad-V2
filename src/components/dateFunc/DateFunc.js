@@ -11,5 +11,4 @@ export default function data() {
     if (min.length < 2) { min = '0' + min }
     if (m.length < 2) { m = '0' + m }
     return d + '.' + m + '.' + y + ' ' + h + ':' + min
-
 }

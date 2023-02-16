@@ -4,8 +4,10 @@ import { collection, onSnapshot } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig"
 import userImage from '../../images/user.png'
 import { useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { newMessageId } from "../../store/slices/messages/messageSlices"
+import time from "../timeFunc/timeFunc"
+import { selectUsers } from "../../store/slices/users/usersSlices"
 
 export default function Search() {
     const { theme } = useContext(ThemeContext)
@@ -13,6 +15,7 @@ export default function Search() {
     const [inputTxt, setInputTxt] = useState('')
     const [users, setUsers] = useState(null)
     const dispatch = useDispatch()
+    const { currentUser } = useSelector(selectUsers)
     let searchUser
 
     if (inputTxt) {
@@ -33,6 +36,9 @@ export default function Search() {
     }
 
     useEffect(() => {
+        if (!currentUser) {
+            navigate('/')
+        }
         const fetchUsers = async () => {
             const usersRef = collection(db, "users")
             await onSnapshot(usersRef, (snapShot) => {
@@ -54,10 +60,15 @@ export default function Search() {
             </div>
             <div className="search-display">
                 {searchUser?.map((user) => (
-                    <div onClick={() => { navigate(`/userByClick/${user.user_id}`); dispatch(newMessageId(user.id)) }} key={user?.id} className="user-content">
+                    <div onClick={() => { navigate(`/userByClick/${user?.user_id}`); dispatch(newMessageId(user?.id)) }} key={user?.id} className="user-content">
                         <div className="left">
                             <div className="user-image">
-                                <img src={user?.avatar ? user?.avatar : userImage} alt="" />
+                                <div
+                                    style={{
+                                        backgroundColor: user?.time + 5 >= time() ? 'rgb(159, 219, 53)' : ''
+                                    }}
+                                    className="isOnline"></div>
+                                <img src={user?.avatar ? `https://firebasestorage.googleapis.com/v0/b/artchat-86d4b.appspot.com/o/${user?.id}%2Favatar%2F${user?.avatar}?alt=media&token=c0c3f294-1e41-48c8-8ebb-590bfe9b5904` : userImage} alt="" />
                             </div>
                         </div>
                         <div className="right">
