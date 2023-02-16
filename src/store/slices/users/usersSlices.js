@@ -8,7 +8,6 @@ const usersSlice = createSlice({
     name: 'users',
     initialState: {
         currentUser: null,
-        coverUrl: null
     },
     reducers: {
         addNewUser(state, { payload }) {
@@ -149,17 +148,22 @@ const usersSlice = createSlice({
             }
             updateUser(payload.id)
         },
-        setCoverUrl(state, { payload }) {
-            return {
-                ...state,
-                coverUrl: payload
+        avatarImageAdd(state, { payload }) {
+            const updateUser = async (id) => {
+
+                const userDoc = doc(db, "users", id)
+                const newFileds = {
+                    avatar: payload.name
+                }
+                await updateDoc(userDoc, newFileds)
             }
+            updateUser(payload.id)
         }
     }
 })
 
 export const selectUsers = state => state.users
 
-export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrinedRequest, addNewFriend, deleteFriend, coverImageAdd, setCoverUrl } = usersSlice.actions
+export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrinedRequest, addNewFriend, deleteFriend, coverImageAdd, avatarImageAdd } = usersSlice.actions
 
 export const usersReducer = usersSlice.reducer
