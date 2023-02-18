@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { ThemeContext } from "../../App"
 import { selectUsers, toggleUser } from "../../store/slices/users/usersSlices"
@@ -11,7 +11,9 @@ import countryData from "../../country/country";
 import { collection, onSnapshot } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig";
 import { accountSettingChange, deleteAccount, emailChange, passwordChange } from "../../store/slices/setting/settingSlices";
-import bcrypt from 'bcryptjs'
+import bcrypt from 'bcryptjs';
+import emailjs from '@emailjs/browser';
+import { BallTriangle } from 'react-loader-spinner'
 
 
 export default function Settings() {
@@ -31,6 +33,10 @@ export default function Settings() {
     const navigate = useNavigate()
     const [country, setCountry] = useState(null)
     const dispatch = useDispatch()
+    const [sentRequest, setSentRequest] = useState(false)
+    const [errorSent, setErrorSent] = useState(false)
+    const [popupDelete, setPopupDelete] = useState(false)
+    const [loader, setLoader] = useState(true)
 
     useEffect(() => {
         if (!currentUser) {
@@ -144,16 +150,33 @@ export default function Settings() {
 
     //delete account
 
+    const deleteForm = useRef(null)
+
     const deleteAccountSubmit = async (e) => {
         e.preventDefault()
+        setPopupDelete(true)
         const email = e.target[0].value
         const password = e.target[1].value
         await bcrypt.compare(password, currentUser?.password).then((res) => {
             if (res && email === currentUser?.email) {
-                dispatch(deleteAccount(currentUser?.id))
-                setTimeout(() => {
-                    navigate('/')
-                }, 500)
+                emailjs.sendForm('service_xpmv19l', 'template_35mwuxc', deleteForm.current, 'EOmDCVndZfE-6I-Az')
+                    .then((result) => {
+                        setLoader(false)
+                        setSentRequest(true)
+                        dispatch(deleteAccount(currentUser?.id))
+                        setTimeout(() => {
+                            navigate('/')
+                        }, 2000)
+                    },
+                        (error) => {
+                            setLoader(false)
+                            setErrorSent(true)
+                            setTimeout(() => {
+                                setPopupDelete(false)
+                                setLoader(true)
+                            }, 3000)
+                        })
+
             } else {
                 setDeleteError(true)
             }
@@ -300,8 +323,26 @@ export default function Settings() {
                         </form>
                     </div>
                     <div className="delete-account">
+                        <div
+                            style={{
+                                display: popupDelete ? 'flex' : 'none'
+                            }}
+                            className="delete-popup">
+                            <BallTriangle
+                                height={100}
+                                width={100}
+                                radius={5}
+                                color="#4fa94d"
+                                ariaLabel="ball-triangle-loading"
+                                wrapperClass={{}}
+                                wrapperStyle=""
+                                visible={loader ? true : false}
+                            />
+                            <h2 style={{ display: sentRequest ? 'block' : 'none' }}>Account deletion request sent</h2>
+                            <h2 style={{ display: errorSent ? 'block' : 'none' }}>Error sending request to delete account</h2>
+                        </div>
                         <h3><TiFolderDelete /> Delete account</h3>
-                        <form onSubmit={deleteAccountSubmit}>
+                        <form ref={deleteForm} onSubmit={deleteAccountSubmit}>
                             <h2
                                 style={{
                                     color: 'red',
@@ -309,12 +350,14 @@ export default function Settings() {
                                 }}
                             >Incorrect email or password</h2>
                             <input
+                                name="email"
                                 onChange={() => setDeleteError(false)}
                                 placeholder="Enter your email"
                                 type="email" />
                             <input
                                 placeholder="Enter your password"
                                 type="password" />
+                            <input type="text" hidden name="message" value={currentUser?.id} />
                             <button>Delete account</button>
                         </form>
                     </div>

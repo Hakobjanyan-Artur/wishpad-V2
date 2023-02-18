@@ -13,6 +13,7 @@ import { ThemeContext } from '../../App'
 import ProfilePosts from '../profilePosts/profilePosts'
 import { storage } from '../../firebaseConfig/FrirebaseConfig'
 import { ref, uploadBytesResumable, getStorage, deleteObject } from "@firebase/storage";
+import { avatar, cover } from '../imageUrl/imageUrl'
 
 export default function Profile() {
     const { currentUser } = useSelector(selectUsers)
@@ -56,7 +57,7 @@ export default function Profile() {
                     const storage = getStorage();
 
                     // Create a reference to the file to delete
-                    const desertRef = ref(storage, `https://firebasestorage.googleapis.com/v0/b/artchat-86d4b.appspot.com/o/${currentUser?.id}%2Fcover%2F${currentUser?.coverImage}?alt=media&token=c0c3f294-1e41-48c8-8ebb-590bfe9b5904`);
+                    const desertRef = ref(storage, cover(currentUser?.id, currentUser?.coverImage));
 
                     // Delete the file
                     await deleteObject(desertRef).then(() => {
@@ -97,7 +98,7 @@ export default function Profile() {
                     const storage = getStorage();
 
                     // Create a reference to the file to delete
-                    const desertRef = ref(storage, `https://firebasestorage.googleapis.com/v0/b/artchat-86d4b.appspot.com/o/${currentUser?.id}%2Favatar%2F${currentUser?.avatar}?alt=media&token=c0c3f294-1e41-48c8-8ebb-590bfe9b5904`);
+                    const desertRef = ref(storage, avatar(currentUser?.id, currentUser?.avatar));
 
                     // Delete the file
                     await deleteObject(desertRef).then(() => {
@@ -155,14 +156,14 @@ export default function Profile() {
             >
                 <div
                     style={{
-                        backgroundImage: `url(${currentUser?.coverImage ? `https://firebasestorage.googleapis.com/v0/b/artchat-86d4b.appspot.com/o/${currentUser?.id}%2Fcover%2F${currentUser?.coverImage}?alt=media&token=c0c3f294-1e41-48c8-8ebb-590bfe9b5904` : coverImage})`
+                        backgroundImage: `url(${currentUser?.coverImage ? cover(currentUser?.id, currentUser?.coverImage) : coverImage})`
                     }}
                     className="header-top">
                     <button onClick={() => setPopupCover(true)} ><MdAddAPhoto /> Edit cover photo</button>
                 </div>
                 <div className="header-section">
                     <div className='header-section-image'>
-                        <img src={currentUser?.avatar ? `https://firebasestorage.googleapis.com/v0/b/artchat-86d4b.appspot.com/o/${currentUser?.id}%2Favatar%2F${currentUser?.avatar}?alt=media&token=c0c3f294-1e41-48c8-8ebb-590bfe9b5904` : userImage} alt="" />
+                        <img src={currentUser?.avatar ? avatar(currentUser?.id, currentUser?.avatar) : userImage} alt="" />
                     </div>
                     <div className='currentUser-info'>
                         <h1>{currentUser?.name} {currentUser?.lastname}</h1>

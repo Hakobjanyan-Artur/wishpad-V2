@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { newMessageId } from "../../store/slices/messages/messageSlices"
 import time from "../timeFunc/timeFunc"
 import { selectUsers } from "../../store/slices/users/usersSlices"
+import { avatar } from "../imageUrl/imageUrl"
 
 export default function Search() {
     const { theme } = useContext(ThemeContext)
@@ -68,7 +69,7 @@ export default function Search() {
                                         backgroundColor: user?.time + 5 >= time() ? 'rgb(159, 219, 53)' : ''
                                     }}
                                     className="isOnline"></div>
-                                <img src={user?.avatar ? `https://firebasestorage.googleapis.com/v0/b/artchat-86d4b.appspot.com/o/${user?.id}%2Favatar%2F${user?.avatar}?alt=media&token=c0c3f294-1e41-48c8-8ebb-590bfe9b5904` : userImage} alt="" />
+                                <img src={user?.avatar ? avatar(user?.id, user?.avatar) : userImage} alt="" />
                             </div>
                         </div>
                         <div className="right">

@@ -15,6 +15,8 @@ import UserByClickImages from "../userByClickImages/UserByClickImages"
 import { useDispatch, useSelector } from "react-redux"
 import { addNewFriend, addNewFrinedRequest, selectUsers } from "../../store/slices/users/usersSlices"
 import time from "../timeFunc/timeFunc"
+import { avatar } from "../imageUrl/imageUrl"
+
 
 export default function UserByClick() {
     const { theme } = useContext(ThemeContext)
@@ -71,7 +73,7 @@ export default function UserByClick() {
                                 backgroundColor: userByClick?.time >= time() - 5 || userByClick?.time <= time() + 5 ? 'rgb(159, 219, 53)' : ''
                             }}
                             className="isOnline"></div>
-                        <img src={userByClick?.avatar ? `https://firebasestorage.googleapis.com/v0/b/artchat-86d4b.appspot.com/o/${userByClick?.id}%2Favatar%2F${userByClick?.avatar}?alt=media&token=c0c3f294-1e41-48c8-8ebb-590bfe9b5904` : userImage} alt="" />
+                        <img src={userByClick?.avatar ? avatar(userByClick?.id, userByClick?.avatar) : userImage} alt="" />
                     </div>
                     <div className="message">
                         <button onClick={() => navigate(`/messenger/${id}`)}><TbBrandTelegram /> Messages</button>

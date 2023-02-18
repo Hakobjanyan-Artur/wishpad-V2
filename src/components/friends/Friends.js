@@ -8,6 +8,7 @@ import { AiOutlineUsergroupDelete } from 'react-icons/ai';
 import { RiChatDeleteLine } from 'react-icons/ri';
 import { useNavigate } from "react-router-dom"
 import { ThemeContext } from "../../App"
+import { avatar } from "../imageUrl/imageUrl"
 
 
 export default function Friends() {
@@ -81,7 +82,7 @@ export default function Friends() {
                             <div
                                 onClick={() => navigate(`/userByClick/${friend?.user_id}`)}
                                 className="friend-content-image">
-                                <img src={userImage} alt="" />
+                                <img src={avatar(friend?.id, friend?.avatar)} alt="" />
                             </div>
                             <div className="friend-info">
                                 <h4>{friend?.name}</h4>

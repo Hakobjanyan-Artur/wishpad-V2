@@ -5,11 +5,12 @@ import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../App";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUsers, toggleUser } from "../../store/slices/users/usersSlices";
-import { collection, onSnapshot, doc, updateDoc } from "firebase/firestore"
+import { collection, onSnapshot } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig";
 import { FaTelegramPlane } from "react-icons/fa";
 import { TbFriends } from "react-icons/tb";
-import { isOnline } from "../../store/slices/setting/settingSlices";
+import { dateOfLastActivity, isOnline } from "../../store/slices/setting/settingSlices";
+import { avatar } from "../imageUrl/imageUrl";
 
 export default function Main() {
     const { theme } = useContext(ThemeContext)
@@ -24,6 +25,8 @@ export default function Main() {
         if (!currentUser) {
             navigate('/')
         }
+
+        dispatch(dateOfLastActivity(currentUser?.id))
 
         const fetchUsers = async () => {
             const usersRef = collection(db, "users")
@@ -100,11 +103,10 @@ export default function Main() {
                 <div className="user">
                     <div
                         className="user-image">
-                        <img src={currentUser?.avatar ? `https://firebasestorage.googleapis.com/v0/b/artchat-86d4b.appspot.com/o/${currentUser?.id}%2Favatar%2F${currentUser?.avatar}?alt=media&token=c0c3f294-1e41-48c8-8ebb-590bfe9b5904` : userImage} alt="" />
+                        <img src={currentUser?.avatar ? avatar(currentUser?.id, currentUser?.avatar) : userImage} alt="" />
                     </div>
                     <div className="user-name">
-                        <h3>{currentUser?.name}</h3>
-                        <h4>{currentUser?.userName}</h4>
+                        <h3>{currentUser?.name} {currentUser?.lastname}</h3>
                     </div>
                 </div>
                 <div className="notification">
