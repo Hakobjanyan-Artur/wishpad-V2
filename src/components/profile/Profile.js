@@ -5,7 +5,7 @@ import coverImage from '../../images/background.jpg'
 import userImage from '../../images/user.png'
 import { avatarImageAdd, coverImageAdd, selectUsers } from '../../store/slices/users/usersSlices'
 import { MdAddAPhoto } from 'react-icons/md';
-import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { AiOutlineCloseCircle, AiOutlineSend } from 'react-icons/ai';
 import ProfileWrapper from '../../pages/profileWrapper'
 import ProfileInfo from '../profileInfo/profileInfo'
 import ProfileImages from '../profileImages/profileImages'
@@ -128,12 +128,12 @@ export default function Profile() {
                     display: popupCover ? 'flex' : 'none'
                 }}
                 className='popup-cover'>
-                <h2>Upload cover</h2>
                 <AiOutlineCloseCircle className='icon' onClick={() => setPopupCover(false)} />
+                <h2>Upload cover</h2>
                 <input
                     onChange={(e) => setCoverimg(e.target.files[0])}
                     type="file" />
-                <button onClick={() => coverImageSend()}>Send photo</button>
+                <button onClick={() => coverImageSend()}>Send photo <AiOutlineSend /> </button>
                 <h2>Loading {progressCover} %</h2>
             </div>
             <div
@@ -141,12 +141,12 @@ export default function Profile() {
                     display: popupAvatar ? 'flex' : 'none'
                 }}
                 className='popup-avatar'>
-                <h2>Upload Avatar</h2>
                 <AiOutlineCloseCircle className='icon' onClick={() => setPopupAvatar(false)} />
+                <h2>Upload Avatar</h2>
                 <input
                     onChange={(e) => setAvatarImg(e.target.files[0])}
                     type="file" />
-                <button onClick={() => avatarImgSend()}>Send photo</button>
+                <button onClick={() => avatarImgSend()}>Send photo <AiOutlineSend /></button>
                 <h2>Loading {progressAvatar} %</h2>
             </div>
             <header

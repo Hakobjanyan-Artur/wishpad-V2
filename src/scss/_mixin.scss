@@ -74,3 +74,22 @@
         border-radius: 50%;
     }
 }
+
+@mixin buttonProfile($width, $height, $bgColor, $color) {
+    position: absolute;
+    width: $width;
+    height: $height;
+    right: 30px;
+    bottom: 30px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background: $bgColor;
+    color: $color;
+    transition: .3s;
+}

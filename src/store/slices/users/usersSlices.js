@@ -157,12 +157,43 @@ const usersSlice = createSlice({
                 await updateDoc(userDoc, newFileds)
             }
             updateUser(payload.id)
+        },
+        imagesAdd(state, { payload }) {
+            const updateUser = async (id) => {
+
+                const userDoc = doc(db, "users", id)
+                const newFileds = {
+                    images: [
+                        ...payload.currentUser.images,
+                        {
+                            id: uuidv4(),
+                            name: payload.name,
+                            comments: [],
+                            likes: []
+                        }
+                    ]
+                }
+                await updateDoc(userDoc, newFileds)
+            }
+            updateUser(payload.currentUser.id)
+        },
+        deleteImageUsers(state, { payload }) {
+            const updateUser = async (id) => {
+
+                const userDoc = doc(db, "users", id)
+                const newFileds = {
+                    images: payload.currentUser.images.filter((image) => image.id !== payload.image.id)
+                }
+                await updateDoc(userDoc, newFileds)
+            }
+            updateUser(payload.currentUser.id)
+
         }
     }
 })
 
 export const selectUsers = state => state.users
 
-export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrinedRequest, addNewFriend, deleteFriend, coverImageAdd, avatarImageAdd } = usersSlice.actions
+export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrinedRequest, addNewFriend, deleteFriend, coverImageAdd, avatarImageAdd, imagesAdd, deleteImageUsers } = usersSlice.actions
 
 export const usersReducer = usersSlice.reducer

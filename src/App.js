@@ -13,6 +13,7 @@ import SignUp from './components/signup/SignUp';
 import UserByClick from './components/userByClick/UserByClick';
 import widthTeme from './hoc/WidthTeme';
 import HomeWrapper from './pages/HomeWrapper';
+import ProfileClickImage from './components/profileClickImage/profileClickImage';
 
 
 export const ThemeContext = createContext()
@@ -39,6 +40,9 @@ function App({ theme, toggleTheme }) {
             </Route>
             <Route path='messenger'>
               <Route path=':id/' element={<Messenger />} />
+            </Route>
+            <Route path='profileClickImage'>
+              <Route path=':id' element={<ProfileClickImage />} />
             </Route>
           </Route>
         </Routes>

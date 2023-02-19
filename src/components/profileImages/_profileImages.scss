@@ -1,0 +1,131 @@
+@include font('roboto', './fonts/Roboto-Thin.ttf');
+@include font('clash', './fonts/ClashDisplay-Medium.ttf');
+@include font('elsie', './fonts/Elsie-Regular.ttf');
+
+.profile-images {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 20px 0 50px;
+    min-height: 400px;
+
+    .popup-profile-images {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: #fff;
+        box-shadow: 0 0 15px $wish-dark-grey;
+        border-radius: 20px;
+        z-index: 99;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+
+        .icon-close {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+        }
+
+        button {
+            @include buttonProfile(200px, 30px, $wish-blue, #fff);
+            position: static;
+        }
+
+        button:hover {
+            box-shadow: 0 0 10px $wish-blue;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    }
+
+    .profile-images-header {
+        height: 80px;
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        @media (max-width: 700px) {
+            padding-top: 20px;
+            align-items: baseline;
+            height: 120px;
+        }
+
+        h2 {
+            font-family: 'elsie'
+        }
+
+        button {
+            @include buttonProfile(200px, 30px, $wish-blue, #fff);
+            right: 30px;
+            bottom: 10px;
+        }
+
+        button:hover {
+            box-shadow: 0 0 10px $wish-blue;
+        }
+    }
+
+    .profile-images-section {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+        padding-top: 20px;
+
+        @media(max-width: 950px) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        @media(max-width: 850px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media(max-width: 700px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media(max-width: 550px) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .content {
+
+            @media(max-width: 550px) {
+                width: 50%;
+            }
+
+            cursor: pointer;
+
+            .image {
+                height: 200px;
+                overflow: hidden;
+                border-radius: 20px;
+
+                @media(max-width: 950px) {
+                    height: 180px;
+                }
+
+                @media(max-width: 850px) {
+                    height: 220px;
+                }
+
+                @media(max-width: 700px) {
+                    height: 250px;
+                }
+
+                img {
+                    border-radius: 20px;
+                }
+            }
+        }
+    }
+}

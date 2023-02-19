@@ -11,6 +11,8 @@ import { FaTelegramPlane } from "react-icons/fa";
 import { TbFriends } from "react-icons/tb";
 import { dateOfLastActivity, isOnline } from "../../store/slices/setting/settingSlices";
 import { avatar } from "../imageUrl/imageUrl";
+import data from "../dateFunc/DateFunc";
+
 
 export default function Main() {
     const { theme } = useContext(ThemeContext)
@@ -123,7 +125,7 @@ export default function Main() {
                                 < FaTelegramPlane />
                                 <div className="user-info">
                                     <h4>{user?.name}</h4>
-                                    <h5>{user?.userName}</h5>
+                                    <h5>{user?.userlastname}</h5>
                                 </div>
                             </div>
                         ))}
@@ -138,7 +140,7 @@ export default function Main() {
                                 <TbFriends />
                                 <div className="user-info">
                                     <h4>{user?.name}</h4>
-                                    <h5>{user?.userName}</h5>
+                                    <h5>{user?.lastname}</h5>
                                 </div>
                             </div>
                         ))}

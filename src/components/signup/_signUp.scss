@@ -219,9 +219,10 @@
 
                 .gender {
                     display: flex;
-                    transform: translateX(-150%);
+                    transform: translateX(-20%);
                     justify-content: flex-start;
                     align-items: center;
+                    gap: 20px;
                 }
 
                 button {
