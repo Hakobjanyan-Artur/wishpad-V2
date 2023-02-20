@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { deleteImageUsers, selectUsers } from "../../store/slices/users/usersSlices"
-import { images } from "../imageUrl/imageUrl"
 import { AiOutlineCloseCircle } from 'react-icons/ai';
-import { MdDeleteForever } from 'react-icons/md';
 import { ImPrevious, ImNext } from 'react-icons/im';
-import { ref, deleteObject, getStorage } from 'firebase/storage'
+import { images } from "../imageUrl/imageUrl";
+import { useSelector } from "react-redux";
+import { selectUsers } from "../../store/slices/users/usersSlices";
 
-export default function ProfileClickImage() {
+
+export default function UserByClickImageItem() {
     const { id } = useParams()
-    const { currentUser } = useSelector(selectUsers)
-    const [image, setImage] = useState(null)
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const { userByClick, currentUser } = useSelector(selectUsers)
+    const [image, setImage] = useState(null)
 
     useEffect(() => {
 
@@ -21,7 +19,7 @@ export default function ProfileClickImage() {
             navigate('/')
         }
 
-        currentUser?.images.forEach((image) => {
+        userByClick?.images.forEach((image) => {
             if (image.id === id) {
                 setImage(image)
             }
@@ -29,38 +27,23 @@ export default function ProfileClickImage() {
     }, [])
 
     const prevClick = () => {
-        let idx = currentUser.images.indexOf(image)
-        if (currentUser.images[idx - 1] !== undefined) {
-            setImage(currentUser.images[idx - 1])
+        let idx = userByClick?.images.indexOf(image)
+        if (userByClick?.images[idx - 1] !== undefined) {
+            setImage(userByClick?.images[idx - 1])
         }
     }
 
     const nextClick = () => {
-        let idx = currentUser.images.indexOf(image)
-        if (currentUser.images[idx + 1] !== undefined) {
-            setImage(currentUser.images[idx + 1])
+        let idx = userByClick?.images.indexOf(image)
+        if (userByClick?.images[idx + 1] !== undefined) {
+            setImage(userByClick?.images[idx + 1])
         }
     }
 
-    const deleteImage = async () => {
-
-        const storage = getStorage();
-
-        // Create a reference to the file to delete
-        const desertRef = ref(storage, images(currentUser?.id, image?.name))
-        // Delete the file
-        await deleteObject(desertRef).then(() => {
-            dispatch(deleteImageUsers({ currentUser: currentUser, image: image }))
-            navigate(-1)
-        }).catch((error) => {
-            alert('Error deleted')
-        });
-    }
     return (
-        <div className="profile-click-image">
+        <div className="user-byclcik-image-item">
             <div className="left">
                 <div className="header">
-                    <MdDeleteForever onClick={() => deleteImage()} className="icon delete" />
                     <AiOutlineCloseCircle onClick={() => navigate(-1)} className="icon" />
                 </div>
                 <div className="content">
@@ -70,7 +53,7 @@ export default function ProfileClickImage() {
                         <ImPrevious className="icon" />
                     </div>
                     <div className="image">
-                        <img src={images(currentUser?.id, image?.name)} alt="" />
+                        <img src={images(userByClick?.id, image?.name)} alt="" />
                     </div>
                     <div
                         onClick={() => nextClick()}

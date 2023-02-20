@@ -8,6 +8,7 @@ const usersSlice = createSlice({
     name: 'users',
     initialState: {
         currentUser: null,
+        userByClick: null
     },
     reducers: {
         addNewUser(state, { payload }) {
@@ -50,6 +51,12 @@ const usersSlice = createSlice({
             return {
                 ...state,
                 currentUser: { ...payload }
+            }
+        },
+        toggleUserByClick(state, { payload }) {
+            return {
+                ...state,
+                userByClick: { ...payload }
             }
         },
         currentUserDelNewMessUser(state, { payload }) {
@@ -194,6 +201,6 @@ const usersSlice = createSlice({
 
 export const selectUsers = state => state.users
 
-export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrinedRequest, addNewFriend, deleteFriend, coverImageAdd, avatarImageAdd, imagesAdd, deleteImageUsers } = usersSlice.actions
+export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrinedRequest, addNewFriend, deleteFriend, coverImageAdd, avatarImageAdd, imagesAdd, deleteImageUsers, toggleUserByClick } = usersSlice.actions
 
 export const usersReducer = usersSlice.reducer

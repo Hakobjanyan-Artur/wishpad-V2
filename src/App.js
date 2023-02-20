@@ -14,6 +14,7 @@ import UserByClick from './components/userByClick/UserByClick';
 import widthTeme from './hoc/WidthTeme';
 import HomeWrapper from './pages/HomeWrapper';
 import ProfileClickImage from './components/profileClickImage/profileClickImage';
+import UserByClickImageItem from './components/userByclickImageItem/userByClickImageItem';
 
 
 export const ThemeContext = createContext()
@@ -34,15 +35,18 @@ function App({ theme, toggleTheme }) {
             <Route path='notification' element={<Notification />} />
             <Route path='search' element={<Search />} />
             <Route path='profile/*' element={<Profile />} />
+            <Route path='profileClickImage'>
+              <Route path=':id' element={<ProfileClickImage />} />
+            </Route>
             <Route path='settings' element={<Settings />} />
             <Route path='userByClick'>
               <Route path=':id/*' element={<UserByClick />} />
             </Route>
+            <Route path='userByClickImageItem'>
+              <Route path=':id' element={<UserByClickImageItem />} />
+            </Route>
             <Route path='messenger'>
               <Route path=':id/' element={<Messenger />} />
-            </Route>
-            <Route path='profileClickImage'>
-              <Route path=':id' element={<ProfileClickImage />} />
             </Route>
           </Route>
         </Routes>

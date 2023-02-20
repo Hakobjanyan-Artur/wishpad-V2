@@ -2,7 +2,7 @@
 @include font('clash', './fonts/ClashDisplay-Medium.ttf');
 @include font('elsie', './fonts/Elsie-Regular.ttf');
 
-.profile-click-image {
+.user-byclcik-image-item {
     width: 100%;
     display: flex;
     min-height: 100vh;
@@ -31,10 +31,6 @@
                 color: #fff;
                 font-size: 25px;
                 cursor: pointer;
-            }
-
-            .delete:hover {
-                color: red;
             }
         }
 

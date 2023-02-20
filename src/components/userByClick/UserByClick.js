@@ -13,7 +13,7 @@ import UserWrapper from "../../pages/UserWrapper"
 import UserByClickFriends from "../userByClickFriends/UserByclickFriends"
 import UserByClickImages from "../userByClickImages/UserByClickImages"
 import { useDispatch, useSelector } from "react-redux"
-import { addNewFriend, addNewFrinedRequest, selectUsers } from "../../store/slices/users/usersSlices"
+import { addNewFriend, addNewFrinedRequest, selectUsers, toggleUserByClick } from "../../store/slices/users/usersSlices"
 import time from "../timeFunc/timeFunc"
 import { avatar } from "../imageUrl/imageUrl"
 
@@ -58,6 +58,7 @@ export default function UserByClick() {
                 user = { ...doc.data(), id: doc.id }
             })
             setUserByClick(user)
+            dispatch(toggleUserByClick(user))
         });
         unsubscribe()
 
@@ -93,11 +94,11 @@ export default function UserByClick() {
                         <h3>Images({userByClick?.images.length})</h3>
                     </div>
                     <div className="user-info">
-                        <h3>user name: {userByClick?.userName}</h3>
                         <h4>Reg: {userByClick?.dateOfReg}</h4>
                         <h4>BirthDay: {userByClick?.dateOfbirth ? userByClick?.dateOfbirth : 'Not filled'}</h4>
-                        <h4>city: {userByClick?.city ? userByClick?.city : 'Not filled'}</h4>
-                        <h4>country:{userByClick?.country ? userByClick?.country : 'Not filled'}</h4>
+                        <h4>City: {userByClick?.city ? userByClick?.city : 'Not filled'}</h4>
+                        <h4>Country:{userByClick?.country ? userByClick?.country : 'Not filled'}</h4>
+                        <h4>Date of last activity: {userByClick?.dateOfLastActivity}</h4>
                     </div>
                 </div>
             </header>
