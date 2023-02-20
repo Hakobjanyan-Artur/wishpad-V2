@@ -8,7 +8,7 @@ const usersSlice = createSlice({
     name: 'users',
     initialState: {
         currentUser: null,
-        userByClick: null
+        userByClick: null,
     },
     reducers: {
         addNewUser(state, { payload }) {
@@ -195,12 +195,43 @@ const usersSlice = createSlice({
             }
             updateUser(payload.currentUser.id)
 
+        },
+        addComment(state, { payload }) {
+            const comment = {
+                id: uuidv4(),
+                comment: payload.comment,
+                userName: payload.name,
+                user_id: payload.user.user_id
+            }
+            const updateUser = async (id) => {
+
+                const userDoc = doc(db, "users", id)
+                const newFileds = {
+                    images: payload.user.images.map((image) => {
+                        if (image.id === payload.image.id) {
+                            return {
+                                ...image,
+                                comments: [
+                                    ...image.comments,
+                                    comment
+                                ]
+                            }
+                        } else {
+                            return {
+                                ...image
+                            }
+                        }
+                    })
+                }
+                await updateDoc(userDoc, newFileds)
+            }
+            updateUser(payload.user.id)
         }
     }
 })
 
 export const selectUsers = state => state.users
 
-export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrinedRequest, addNewFriend, deleteFriend, coverImageAdd, avatarImageAdd, imagesAdd, deleteImageUsers, toggleUserByClick } = usersSlice.actions
+export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrinedRequest, addNewFriend, deleteFriend, coverImageAdd, avatarImageAdd, imagesAdd, deleteImageUsers, toggleUserByClick, addComment } = usersSlice.actions
 
 export const usersReducer = usersSlice.reducer

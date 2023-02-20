@@ -11,7 +11,6 @@ import { FaTelegramPlane } from "react-icons/fa";
 import { TbFriends } from "react-icons/tb";
 import { dateOfLastActivity, isOnline } from "../../store/slices/setting/settingSlices";
 import { avatar } from "../imageUrl/imageUrl";
-import data from "../dateFunc/DateFunc";
 
 
 export default function Main() {

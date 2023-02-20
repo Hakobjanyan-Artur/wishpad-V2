@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { deleteImageUsers, selectUsers } from "../../store/slices/users/usersSlices"
+import { deleteImageUsers, selectUsers, toggleUser } from "../../store/slices/users/usersSlices"
 import { images } from "../imageUrl/imageUrl"
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { MdDeleteForever } from 'react-icons/md';
 import { ImPrevious, ImNext } from 'react-icons/im';
 import { ref, deleteObject, getStorage } from 'firebase/storage'
+import { collection, onSnapshot } from "firebase/firestore"
+import { db } from "../../firebaseConfig/FrirebaseConfig"
 
 export default function ProfileClickImage() {
     const { id } = useParams()
@@ -26,7 +28,11 @@ export default function ProfileClickImage() {
                 setImage(image)
             }
         })
+
     }, [])
+
+
+
 
     const prevClick = () => {
         let idx = currentUser.images.indexOf(image)
@@ -86,6 +92,18 @@ export default function ProfileClickImage() {
                             type="text" />
                         <button>Add</button>
                     </form>
+                    <div className="comments">
+                        {image?.comments.map((comment) => (
+                            <div key={comment?.id} className="comment-component">
+                                <div className="comment-header">
+                                    <h3>{comment.userName}</h3>
+                                </div>
+                                <div className="comment">
+                                    <p>{comment.comment}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
             <div className="right">
@@ -95,9 +113,18 @@ export default function ProfileClickImage() {
                         placeholder="write a comment..."
                         type="text" />
                 </form>
-                {image?.comments.map((comment) => (
-                    <div key={comment?.id} className="comment-component"></div>
-                ))}
+                <div className="comments">
+                    {image?.comments.map((comment) => (
+                        <div key={comment?.id} className="comment-component">
+                            <div className="comment-header">
+                                <h3>{comment.userName}</h3>
+                            </div>
+                            <div className="comment">
+                                <p>{comment.comment}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )

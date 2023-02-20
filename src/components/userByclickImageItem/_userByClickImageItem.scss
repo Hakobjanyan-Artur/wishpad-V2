@@ -8,7 +8,7 @@
     min-height: 100vh;
 
     .left {
-        width: 80%;
+        width: 70%;
         background-color: #000;
         display: flex;
         flex-direction: column;
@@ -128,8 +128,41 @@
                         cursor: pointer;
                     }
                 }
-            }
 
+                .comments {
+                    height: 180px;
+                    overflow-y: auto;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column-reverse;
+                    align-items: center;
+                    gap: 20px;
+
+                    .comment-component {
+                        margin-top: 10px;
+                        width: 80%;
+                        min-height: 30px;
+                        border-radius: 10px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+
+                        .comment-header {
+                            font-family: 'elsie';
+                            border-bottom: 1px dashed $wish-dark-grey;
+                            width: 100%;
+                            text-align: center;
+                        }
+
+                        .comment {
+                            padding: 5px;
+                            font-family: 'roboto';
+                            border-bottom: 1px solid $wish-dark-grey;
+                        }
+                    }
+                }
+
+            }
 
             @media(max-width: 550px) {
                 width: 90%;
@@ -138,7 +171,7 @@
     }
 
     .right {
-        width: 20%;
+        width: 30%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -172,6 +205,27 @@
             display: none;
         }
 
+        .comment-component {
+            width: 80%;
+            min-height: 30px;
+            border-bottom: 1px solid $wish-dark-grey;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            .comment-header {
+                font-family: 'elsie';
+                border-bottom: 1px dashed $wish-dark-grey;
+                width: 100%;
+                text-align: center;
+            }
+
+            .comment {
+                padding: 5px;
+                font-family: 'roboto';
+            }
+        }
 
     }
 }

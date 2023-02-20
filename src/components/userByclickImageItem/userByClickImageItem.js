@@ -3,8 +3,8 @@ import { useNavigate, useParams } from "react-router-dom"
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { ImPrevious, ImNext } from 'react-icons/im';
 import { images } from "../imageUrl/imageUrl";
-import { useSelector } from "react-redux";
-import { selectUsers } from "../../store/slices/users/usersSlices";
+import { useDispatch, useSelector } from "react-redux";
+import { addComment, selectUsers } from "../../store/slices/users/usersSlices";
 
 
 export default function UserByClickImageItem() {
@@ -12,6 +12,8 @@ export default function UserByClickImageItem() {
     const navigate = useNavigate()
     const { userByClick, currentUser } = useSelector(selectUsers)
     const [image, setImage] = useState(null)
+    const [commentTxt, setCommentTxt] = useState('')
+    const dispatch = useDispatch()
 
     useEffect(() => {
 
@@ -40,6 +42,15 @@ export default function UserByClickImageItem() {
         }
     }
 
+    const newCommentSubmit = (e) => {
+        e.preventDefault()
+        if (commentTxt !== "") {
+            dispatch(addComment({ user: userByClick, image: image, comment: commentTxt, name: currentUser?.name }))
+        }
+        setCommentTxt('')
+    }
+
+
     return (
         <div className="user-byclcik-image-item">
             <div className="left">
@@ -63,23 +74,46 @@ export default function UserByClickImageItem() {
                 </div>
                 <div className="media-comment">
                     <div className="title"><h2>Comments</h2></div>
-                    <form>
+                    <form onSubmit={newCommentSubmit}>
                         <input
+                            value={commentTxt}
+                            onChange={(e) => setCommentTxt(e.target.value)}
                             placeholder="write a comment..."
                             type="text" />
                         <button>Add</button>
                     </form>
+                    <div className="comments">
+                        {image?.comments.map((comment) => (
+                            <div key={comment?.id} className="comment-component">
+                                <div className="comment-header">
+                                    <h3>{comment.userName}</h3>
+                                </div>
+                                <div className="comment">
+                                    <p>{comment.comment}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
             <div className="right">
                 <div className="title"><h2>Comments {image?.comments.length}</h2></div>
-                <form>
+                <form onSubmit={newCommentSubmit}>
                     <input
+                        value={commentTxt}
+                        onChange={(e) => setCommentTxt(e.target.value)}
                         placeholder="write a comment..."
                         type="text" />
                 </form>
                 {image?.comments.map((comment) => (
-                    <div key={comment?.id} className="comment-component"></div>
+                    <div key={comment?.id} className="comment-component">
+                        <div className="comment-header">
+                            <h3>{comment.userName}</h3>
+                        </div>
+                        <div className="comment">
+                            <p>{comment.comment}</p>
+                        </div>
+                    </div>
                 ))}
             </div>
         </div>
