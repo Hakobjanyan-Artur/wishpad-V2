@@ -32,6 +32,10 @@
                 font-size: 25px;
                 cursor: pointer;
             }
+
+            .like:hover {
+                color: red;
+            }
         }
 
         .content {
@@ -86,7 +90,6 @@
         }
 
         .media-comment {
-            min-height: 100px;
             background: #fff;
             width: 80%;
             border-radius: 10px;
@@ -99,74 +102,121 @@
                 gap: 20px;
                 padding: 20px 0;
 
-                form {
-                    width: 100%;
-                    display: flex;
-                    justify-content: center;
+                .toggle {
+                    font-size: 22px;
+                    cursor: pointer;
 
-                    input {
-                        width: 70%;
-                        min-height: 30px;
-                        border: 1px solid $wish-dark-grey;
-                        border-top-left-radius: 10px;
-                        border-bottom-left-radius: 10px;
-                        outline: none;
-                        font-size: 16px;
-                        padding-left: 15px;
-                        font-family: 'roboto';
-                    }
-
-                    button {
-                        width: 20%;
-                        height: 30px;
-                        background: $wish-blue;
-                        border-top-right-radius: 10px;
-                        border-bottom-right-radius: 10px;
-                        color: #fff;
-                        border: none;
-                        font-size: 16px;
-                        cursor: pointer;
-                    }
-                }
-
-                .comments {
-                    height: 180px;
-                    overflow-y: auto;
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column-reverse;
-                    align-items: center;
-                    gap: 20px;
-
-                    .comment-component {
-                        margin-top: 10px;
-                        width: 80%;
-                        min-height: 30px;
-                        border-radius: 10px;
+                    .toggle-title {
                         display: flex;
                         flex-direction: column;
-                        gap: 5px;
+                        align-items: center;
+                    }
+                }
 
-                        .comment-header {
-                            font-family: 'elsie';
-                            border-bottom: 1px dashed $wish-dark-grey;
-                            width: 100%;
-                            text-align: center;
-                        }
+                .comments-content {
+                    width: 80%;
+                    overflow-y: auto;
 
-                        .comment {
-                            padding: 5px;
+                    h2 {
+                        text-align: center;
+                        padding: 10px 0;
+                    }
+
+                    form {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+
+                        input {
+                            width: 70%;
+                            min-height: 30px;
+                            border: 1px solid $wish-dark-grey;
+                            border-top-left-radius: 10px;
+                            border-bottom-left-radius: 10px;
+                            outline: none;
+                            font-size: 16px;
+                            padding-left: 15px;
                             font-family: 'roboto';
-                            border-bottom: 1px solid $wish-dark-grey;
                         }
+
+                        button {
+                            width: 20%;
+                            height: 30px;
+                            background: $wish-blue;
+                            border-top-right-radius: 10px;
+                            border-bottom-right-radius: 10px;
+                            color: #fff;
+                            border: none;
+                            font-size: 16px;
+                            cursor: pointer;
+                        }
+                    }
+
+                    .comments {
+                        max-height: 180px;
+                        overflow-y: auto;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column-reverse;
+                        align-items: center;
+                        gap: 20px;
+
+                        .comment-component {
+                            margin-top: 10px;
+                            width: 80%;
+                            min-height: 30px;
+                            border-radius: 10px;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 5px;
+
+                            .comment-header {
+                                font-family: 'elsie';
+                                border-bottom: 1px dashed $wish-dark-grey;
+                                width: 100%;
+                                text-align: center;
+                            }
+
+                            .comment {
+                                padding: 5px;
+                                font-family: 'roboto';
+                                border-bottom: 1px solid $wish-dark-grey;
+                            }
+                        }
+                    }
+                }
+
+                @media(max-width: 550px) {
+                    width: 90%;
+                }
+
+                .likes-content {
+                    width: 100%;
+                    max-height: 200px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 10px;
+                    overflow-y: auto;
+
+                    h2 {
+                        text-align: center;
+                    }
+
+                    .like-content {
+                        border: 1px solid $wish-blue;
+                        width: 70%;
+                        height: 30px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        border-radius: 10px;
                     }
                 }
 
             }
 
-            @media(max-width: 550px) {
-                width: 90%;
-            }
         }
     }
 
@@ -178,54 +228,117 @@
         padding-top: 20px;
         gap: 10px;
 
-        .title {
-            width: 100%;
-            border-bottom: 2px solid $wish-dark-grey;
-            text-align: center;
-        }
-
-        form {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-
-            input {
-                width: 90%;
-                min-height: 30px;
-                border: 1px solid $wish-dark-grey;
-                border-radius: 10px;
-                outline: none;
-                font-size: 16px;
-                padding-left: 15px;
-                font-family: 'roboto';
-            }
-        }
-
         @media(max-width: 750px) {
             display: none;
         }
 
-        .comment-component {
-            width: 80%;
-            min-height: 30px;
-            border-bottom: 1px solid $wish-dark-grey;
-            border-radius: 10px;
+        .title {
+            width: 100%;
+            border-bottom: 2px solid $wish-dark-grey;
             display: flex;
-            flex-direction: column;
-            gap: 5px;
+            justify-content: center;
+            gap: 15px;
+            align-items: center;
 
-            .comment-header {
-                font-family: 'elsie';
-                border-bottom: 1px dashed $wish-dark-grey;
-                width: 100%;
-                text-align: center;
+            @media (max-width: 950px) {
+                flex-direction: column;
             }
 
-            .comment {
-                padding: 5px;
-                font-family: 'roboto';
+            .com {
+                @media(max-width: 660px) {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+            }
+
+            .toggle {
+                transform: translateY(3px);
+                display: block;
+                font-size: 22px;
+                cursor: pointer;
+
+                .toggle-title {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
             }
         }
 
+        .comments-content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            height: 100vh;
+            overflow-y: auto;
+
+            form {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+
+                input {
+                    width: 90%;
+                    min-height: 30px;
+                    border: 1px solid $wish-dark-grey;
+                    border-radius: 10px;
+                    outline: none;
+                    font-size: 16px;
+                    padding-left: 15px;
+                    font-family: 'roboto';
+                }
+            }
+
+
+            .comment-component {
+                width: 80%;
+                min-height: 30px;
+                border-bottom: 1px solid $wish-dark-grey;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+
+                .comment-header {
+                    font-family: 'elsie';
+                    border-bottom: 1px dashed $wish-dark-grey;
+                    width: 100%;
+                    text-align: center;
+                }
+
+                .comment {
+                    padding: 5px;
+                    font-family: 'roboto';
+                }
+            }
+        }
+
+        .likes-content {
+            width: 100%;
+            height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            align-items: center;
+
+            .like-content {
+                width: 70%;
+                height: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 10px;
+                border: 1px solid $wish-blue;
+                cursor: pointer;
+
+                h3 {
+                    font-family: 'roboto';
+                }
+            }
+        }
     }
 }

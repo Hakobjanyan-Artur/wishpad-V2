@@ -2540,7 +2540,6 @@
   color: grey;
 }
 .profile-click-image .left .media-comment {
-  height: 300px;
   overflow: hidden;
   background: #fff;
   width: 80%;
@@ -2555,12 +2554,32 @@
     gap: 20px;
     padding: 20px 0;
   }
-  .profile-click-image .left .media-comment form {
+  .profile-click-image .left .media-comment .title {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgb(201, 201, 201);
+  }
+  .profile-click-image .left .media-comment .title .toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 22px;
+    cursor: pointer;
+  }
+  .profile-click-image .left .media-comment .comments-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .profile-click-image .left .media-comment .comments-content form {
     width: 100%;
     display: flex;
     justify-content: center;
   }
-  .profile-click-image .left .media-comment form input {
+  .profile-click-image .left .media-comment .comments-content form input {
     width: 70%;
     min-height: 30px;
     border: 1px solid rgb(201, 201, 201);
@@ -2571,7 +2590,7 @@
     padding-left: 15px;
     font-family: "roboto";
   }
-  .profile-click-image .left .media-comment form button {
+  .profile-click-image .left .media-comment .comments-content form button {
     width: 20%;
     height: 30px;
     background: rgb(33, 92, 243);
@@ -2582,39 +2601,60 @@
     font-size: 16px;
     cursor: pointer;
   }
+  .profile-click-image .left .media-comment .comments-content .comments {
+    max-height: 180px;
+    overflow-y: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 20px;
+  }
+  .profile-click-image .left .media-comment .comments-content .comments .comment-component {
+    margin-top: 10px;
+    width: 80%;
+    min-height: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .profile-click-image .left .media-comment .comments-content .comments .comment-component .comment-header {
+    font-family: "elsie";
+    border-bottom: 1px dashed rgb(201, 201, 201);
+    width: 100%;
+    text-align: center;
+  }
+  .profile-click-image .left .media-comment .comments-content .comments .comment-component .comment {
+    padding: 5px;
+    font-family: "roboto";
+    border-bottom: 1px solid rgb(201, 201, 201);
+  }
 }
-.profile-click-image .left .media-comment .comments {
-  height: 250px;
-  overflow-y: auto;
-  width: 100%;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-  gap: 20px;
-}
-.profile-click-image .left .media-comment .comments .comment-component {
-  margin-top: 10px;
-  width: 80%;
-  min-height: 30px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.profile-click-image .left .media-comment .comments .comment-component .comment-header {
-  font-family: "elsie";
-  border-bottom: 1px dashed rgb(201, 201, 201);
-  width: 100%;
-  text-align: center;
-}
-.profile-click-image .left .media-comment .comments .comment-component .comment {
-  padding: 5px;
-  font-family: "roboto";
-  border-bottom: 1px solid rgb(201, 201, 201);
-}
-@media (max-width: 550px) {
-  .profile-click-image .left .media-comment {
+@media (max-width: 750px) and (max-width: 550px) {
+  .profile-click-image .left .media-comment .comments-content {
     width: 90%;
+  }
+}
+@media (max-width: 750px) {
+  .profile-click-image .left .media-comment .likes-content {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    max-height: 180px;
+    overflow-y: auto;
+  }
+  .profile-click-image .left .media-comment .likes-content .like-content {
+    border: 1px solid rgb(33, 92, 243);
+    border-radius: 10px;
+    width: 70%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
   }
 }
 .profile-click-image .right {
@@ -2626,17 +2666,33 @@
   gap: 10px;
   overflow-y: auto;
 }
+@media (max-width: 750px) {
+  .profile-click-image .right {
+    display: none;
+  }
+}
 .profile-click-image .right .title {
   width: 100%;
   border-bottom: 2px solid rgb(201, 201, 201);
   text-align: center;
 }
-.profile-click-image .right form {
+.profile-click-image .right .title .toggle {
+  font-size: 22px;
+  cursor: pointer;
+}
+.profile-click-image .right .comments-content {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.profile-click-image .right .comments-content form {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-.profile-click-image .right form input {
+.profile-click-image .right .comments-content form input {
   width: 90%;
   min-height: 30px;
   border: 1px solid rgb(201, 201, 201);
@@ -2646,19 +2702,14 @@
   padding-left: 15px;
   font-family: "roboto";
 }
-@media (max-width: 750px) {
-  .profile-click-image .right {
-    display: none;
-  }
-}
-.profile-click-image .right .comments {
+.profile-click-image .right .comments-content .comments {
   width: 100%;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
   gap: 20px;
 }
-.profile-click-image .right .comments .comment-component {
+.profile-click-image .right .comments-content .comments .comment-component {
   width: 80%;
   min-height: 30px;
   border-bottom: 1px solid rgb(201, 201, 201);
@@ -2667,15 +2718,32 @@
   flex-direction: column;
   gap: 5px;
 }
-.profile-click-image .right .comments .comment-component .comment-header {
+.profile-click-image .right .comments-content .comments .comment-component .comment-header {
   font-family: "elsie";
   border-bottom: 1px dashed rgb(201, 201, 201);
   width: 100%;
   text-align: center;
 }
-.profile-click-image .right .comments .comment-component .comment {
+.profile-click-image .right .comments-content .comments .comment-component .comment {
   padding: 5px;
   font-family: "roboto";
+}
+.profile-click-image .right .likes-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.profile-click-image .right .likes-content .like-content {
+  width: 70%;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid rgb(33, 92, 243);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .user-by-click-images {
@@ -2783,6 +2851,9 @@
   font-size: 25px;
   cursor: pointer;
 }
+.user-byclcik-image-item .left .header .like:hover {
+  color: red;
+}
 .user-byclcik-image-item .left .content {
   display: flex;
 }
@@ -2832,7 +2903,6 @@
   color: grey;
 }
 .user-byclcik-image-item .left .media-comment {
-  min-height: 100px;
   background: #fff;
   width: 80%;
   border-radius: 10px;
@@ -2846,12 +2916,29 @@
     gap: 20px;
     padding: 20px 0;
   }
-  .user-byclcik-image-item .left .media-comment form {
+  .user-byclcik-image-item .left .media-comment .toggle {
+    font-size: 22px;
+    cursor: pointer;
+  }
+  .user-byclcik-image-item .left .media-comment .toggle .toggle-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .user-byclcik-image-item .left .media-comment .comments-content {
+    width: 80%;
+    overflow-y: auto;
+  }
+  .user-byclcik-image-item .left .media-comment .comments-content h2 {
+    text-align: center;
+    padding: 10px 0;
+  }
+  .user-byclcik-image-item .left .media-comment .comments-content form {
     width: 100%;
     display: flex;
     justify-content: center;
   }
-  .user-byclcik-image-item .left .media-comment form input {
+  .user-byclcik-image-item .left .media-comment .comments-content form input {
     width: 70%;
     min-height: 30px;
     border: 1px solid rgb(201, 201, 201);
@@ -2862,7 +2949,7 @@
     padding-left: 15px;
     font-family: "roboto";
   }
-  .user-byclcik-image-item .left .media-comment form button {
+  .user-byclcik-image-item .left .media-comment .comments-content form button {
     width: 20%;
     height: 30px;
     background: rgb(33, 92, 243);
@@ -2873,8 +2960,8 @@
     font-size: 16px;
     cursor: pointer;
   }
-  .user-byclcik-image-item .left .media-comment .comments {
-    height: 180px;
+  .user-byclcik-image-item .left .media-comment .comments-content .comments {
+    max-height: 180px;
     overflow-y: auto;
     width: 100%;
     display: flex;
@@ -2882,7 +2969,7 @@
     align-items: center;
     gap: 20px;
   }
-  .user-byclcik-image-item .left .media-comment .comments .comment-component {
+  .user-byclcik-image-item .left .media-comment .comments-content .comments .comment-component {
     margin-top: 10px;
     width: 80%;
     min-height: 30px;
@@ -2891,21 +2978,45 @@
     flex-direction: column;
     gap: 5px;
   }
-  .user-byclcik-image-item .left .media-comment .comments .comment-component .comment-header {
+  .user-byclcik-image-item .left .media-comment .comments-content .comments .comment-component .comment-header {
     font-family: "elsie";
     border-bottom: 1px dashed rgb(201, 201, 201);
     width: 100%;
     text-align: center;
   }
-  .user-byclcik-image-item .left .media-comment .comments .comment-component .comment {
+  .user-byclcik-image-item .left .media-comment .comments-content .comments .comment-component .comment {
     padding: 5px;
     font-family: "roboto";
     border-bottom: 1px solid rgb(201, 201, 201);
   }
 }
-@media (max-width: 550px) {
+@media (max-width: 750px) and (max-width: 550px) {
   .user-byclcik-image-item .left .media-comment {
     width: 90%;
+  }
+}
+@media (max-width: 750px) {
+  .user-byclcik-image-item .left .media-comment .likes-content {
+    width: 100%;
+    max-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    overflow-y: auto;
+  }
+  .user-byclcik-image-item .left .media-comment .likes-content h2 {
+    text-align: center;
+  }
+  .user-byclcik-image-item .left .media-comment .likes-content .like-content {
+    border: 1px solid rgb(33, 92, 243);
+    width: 70%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 10px;
   }
 }
 .user-byclcik-image-item .right {
@@ -2916,17 +3027,57 @@
   padding-top: 20px;
   gap: 10px;
 }
+@media (max-width: 750px) {
+  .user-byclcik-image-item .right {
+    display: none;
+  }
+}
 .user-byclcik-image-item .right .title {
   width: 100%;
   border-bottom: 2px solid rgb(201, 201, 201);
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  align-items: center;
 }
-.user-byclcik-image-item .right form {
+@media (max-width: 950px) {
+  .user-byclcik-image-item .right .title {
+    flex-direction: column;
+  }
+}
+@media (max-width: 660px) {
+  .user-byclcik-image-item .right .title .com {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.user-byclcik-image-item .right .title .toggle {
+  transform: translateY(3px);
+  display: block;
+  font-size: 22px;
+  cursor: pointer;
+}
+.user-byclcik-image-item .right .title .toggle .toggle-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user-byclcik-image-item .right .comments-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  height: 100vh;
+  overflow-y: auto;
+}
+.user-byclcik-image-item .right .comments-content form {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-.user-byclcik-image-item .right form input {
+.user-byclcik-image-item .right .comments-content form input {
   width: 90%;
   min-height: 30px;
   border: 1px solid rgb(201, 201, 201);
@@ -2936,12 +3087,7 @@
   padding-left: 15px;
   font-family: "roboto";
 }
-@media (max-width: 750px) {
-  .user-byclcik-image-item .right {
-    display: none;
-  }
-}
-.user-byclcik-image-item .right .comment-component {
+.user-byclcik-image-item .right .comments-content .comment-component {
   width: 80%;
   min-height: 30px;
   border-bottom: 1px solid rgb(201, 201, 201);
@@ -2950,14 +3096,36 @@
   flex-direction: column;
   gap: 5px;
 }
-.user-byclcik-image-item .right .comment-component .comment-header {
+.user-byclcik-image-item .right .comments-content .comment-component .comment-header {
   font-family: "elsie";
   border-bottom: 1px dashed rgb(201, 201, 201);
   width: 100%;
   text-align: center;
 }
-.user-byclcik-image-item .right .comment-component .comment {
+.user-byclcik-image-item .right .comments-content .comment-component .comment {
   padding: 5px;
+  font-family: "roboto";
+}
+.user-byclcik-image-item .right .likes-content {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+}
+.user-byclcik-image-item .right .likes-content .like-content {
+  width: 70%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid rgb(33, 92, 243);
+  cursor: pointer;
+}
+.user-byclcik-image-item .right .likes-content .like-content h3 {
   font-family: "roboto";
 }
 

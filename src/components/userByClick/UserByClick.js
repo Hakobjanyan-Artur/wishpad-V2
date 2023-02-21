@@ -62,6 +62,7 @@ export default function UserByClick() {
         });
         unsubscribe()
 
+
     }, [])
 
     return (
@@ -71,7 +72,7 @@ export default function UserByClick() {
                     <div className="user-image">
                         <div
                             style={{
-                                backgroundColor: userByClick?.time >= time() - 5 || userByClick?.time <= time() + 5 ? 'rgb(159, 219, 53)' : ''
+                                backgroundColor: userByClick?.time + 5 >= time() ? 'rgb(159, 219, 53)' : ''
                             }}
                             className="isOnline"></div>
                         <img src={userByClick?.avatar ? avatar(userByClick?.id, userByClick?.avatar) : userImage} alt="" />

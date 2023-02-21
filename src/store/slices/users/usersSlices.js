@@ -9,6 +9,7 @@ const usersSlice = createSlice({
     initialState: {
         currentUser: null,
         userByClick: null,
+        likes: null //
     },
     reducers: {
         addNewUser(state, { payload }) {
@@ -58,6 +59,9 @@ const usersSlice = createSlice({
                 ...state,
                 userByClick: { ...payload }
             }
+        },
+        toggleLikes(state, { payload }) {
+            state.likes = payload
         },
         currentUserDelNewMessUser(state, { payload }) {
             state.currentUser.newMessageUsers = payload
@@ -226,12 +230,43 @@ const usersSlice = createSlice({
                 await updateDoc(userDoc, newFileds)
             }
             updateUser(payload.user.id)
+        },
+        addLike(state, { payload }) {
+            const like = {
+                id: uuidv4(),
+                user_id: payload.currentUser.user_id,
+                name: payload.currentUser.name,
+                lastname: payload.currentUser.lastname
+            }
+            const updateUser = async (id) => {
+
+                const userDoc = doc(db, "users", id)
+                const newFileds = {
+                    images: payload.userByClick.images.map((image) => {
+                        if (image.id === payload.image.id) {
+                            return {
+                                ...image,
+                                likes: [
+                                    ...image.likes,
+                                    like
+                                ]
+                            }
+                        } else {
+                            return {
+                                ...image
+                            }
+                        }
+                    })
+                }
+                await updateDoc(userDoc, newFileds)
+            }
+            updateUser(payload.userByClick.id)
         }
     }
 })
 
 export const selectUsers = state => state.users
 
-export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrinedRequest, addNewFriend, deleteFriend, coverImageAdd, avatarImageAdd, imagesAdd, deleteImageUsers, toggleUserByClick, addComment } = usersSlice.actions
+export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrinedRequest, addNewFriend, deleteFriend, coverImageAdd, avatarImageAdd, imagesAdd, deleteImageUsers, toggleUserByClick, addComment, addLike, toggleLikes } = usersSlice.actions
 
 export const usersReducer = usersSlice.reducer

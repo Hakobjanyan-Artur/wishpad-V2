@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { deleteImageUsers, selectUsers, toggleUser } from "../../store/slices/users/usersSlices"
+import { addComment, deleteImageUsers, selectUsers } from "../../store/slices/users/usersSlices"
 import { images } from "../imageUrl/imageUrl"
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { MdDeleteForever } from 'react-icons/md';
 import { ImPrevious, ImNext } from 'react-icons/im';
 import { ref, deleteObject, getStorage } from 'firebase/storage'
-import { collection, onSnapshot } from "firebase/firestore"
-import { db } from "../../firebaseConfig/FrirebaseConfig"
+import { BiToggleLeft, BiToggleRight } from 'react-icons/bi';
 
 export default function ProfileClickImage() {
     const { id } = useParams()
@@ -16,6 +15,8 @@ export default function ProfileClickImage() {
     const [image, setImage] = useState(null)
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const [hidden, setHidden] = useState(false)
+    const [commentTxt, setCommentTxt] = useState("")
 
     useEffect(() => {
 
@@ -62,6 +63,14 @@ export default function ProfileClickImage() {
             alert('Error deleted')
         });
     }
+
+    const addNewComment = (e) => {
+        e.preventDefault()
+        if (commentTxt !== "") {
+            dispatch(addComment({ user: currentUser, image: image, comment: commentTxt, name: currentUser?.name }))
+        }
+        setCommentTxt('')
+    }
     return (
         <div className="profile-click-image">
             <div className="left">
@@ -85,12 +94,58 @@ export default function ProfileClickImage() {
                     </div>
                 </div>
                 <div className="media-comment">
-                    <div className="title"><h2>Comments</h2></div>
-                    <form>
+                    <div className="title">{!hidden ? <div onClick={() => setHidden(!hidden)} className="toggle"><h5>Likes: {image?.likes.length}</h5><BiToggleLeft /></div> : <div onClick={() => setHidden(!hidden)} className="toggle"><h5>Commentts: {image?.comments.length}</h5><BiToggleRight /> </div>}</div>
+                    <div
+                        style={{
+                            display: !hidden ? 'flex' : 'none'
+                        }}
+                        className="comments-content">
+                        <h2>Comments: {image?.comments.length}</h2>
+                        <form>
+                            <input
+                                placeholder="write a comment..."
+                                type="text" />
+                            <button>Add</button>
+                        </form>
+                        <div className="comments">
+                            {image?.comments.map((comment) => (
+                                <div key={comment?.id} className="comment-component">
+                                    <div className="comment-header">
+                                        <h3>{comment.userName}</h3>
+                                    </div>
+                                    <div className="comment">
+                                        <p>{comment.comment}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div
+                        style={{
+                            display: hidden ? 'flex' : 'none'
+                        }}
+                        className="likes-content">
+                        <h2>Likes: {image?.likes.length}</h2>
+                        {image?.likes.map((like) => (
+                            <div key={like.id} className="like-content"><h3>{like?.name} {like?.lastname}</h3></div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+            <div className="right">
+                <div className="title">{!hidden ? <div onClick={() => setHidden(!hidden)} className="toggle"><h5>Likes: {image?.likes.length}</h5><BiToggleLeft /></div> : <div onClick={() => setHidden(!hidden)} className="toggle"><h5>Commentts: {image?.comments.length}</h5><BiToggleRight /> </div>}</div>
+                <div
+                    style={{
+                        display: !hidden ? 'flex' : 'none'
+                    }}
+                    className="comments-content">
+                    <h2>Comments: {image?.comments.length}</h2>
+                    <form onSubmit={addNewComment}>
                         <input
+                            value={commentTxt}
+                            onChange={(e) => setCommentTxt(e.target.value)}
                             placeholder="write a comment..."
                             type="text" />
-                        <button>Add</button>
                     </form>
                     <div className="comments">
                         {image?.comments.map((comment) => (
@@ -105,24 +160,14 @@ export default function ProfileClickImage() {
                         ))}
                     </div>
                 </div>
-            </div>
-            <div className="right">
-                <div className="title"><h2>Comments {image?.comments.length}</h2></div>
-                <form>
-                    <input
-                        placeholder="write a comment..."
-                        type="text" />
-                </form>
-                <div className="comments">
-                    {image?.comments.map((comment) => (
-                        <div key={comment?.id} className="comment-component">
-                            <div className="comment-header">
-                                <h3>{comment.userName}</h3>
-                            </div>
-                            <div className="comment">
-                                <p>{comment.comment}</p>
-                            </div>
-                        </div>
+                <div
+                    style={{
+                        display: hidden ? 'flex' : 'none'
+                    }}
+                    className="likes-content">
+                    <h2>Likes: {image?.likes.length}</h2>
+                    {image?.likes.map((like) => (
+                        <div key={like?.id} onClick={() => navigate(`/userByClick/${like?.user_id}`)} className="like-content"><h3>{like?.name} {like?.lastname}</h3></div>
                     ))}
                 </div>
             </div>
