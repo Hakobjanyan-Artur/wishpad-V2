@@ -4,7 +4,7 @@ import { ThemeContext } from "../../App"
 import userImage from '../../images/user.png'
 import { collection, query, where, onSnapshot } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig"
-import { AiOutlineUserAdd } from 'react-icons/ai';
+import { AiOutlineUserAdd, AiOutlineUsergroupDelete } from 'react-icons/ai';
 import { TbBrandTelegram } from 'react-icons/tb';
 import { GoRequestChanges } from 'react-icons/go';
 import { GrAggregate } from 'react-icons/gr';
@@ -13,7 +13,7 @@ import UserWrapper from "../../pages/UserWrapper"
 import UserByClickFriends from "../userByClickFriends/UserByclickFriends"
 import UserByClickImages from "../userByClickImages/UserByClickImages"
 import { useDispatch, useSelector } from "react-redux"
-import { addNewFriend, addNewFrinedRequest, selectUsers, toggleUserByClick } from "../../store/slices/users/usersSlices"
+import { addNewFriend, addNewFrinedRequest, deleteFriend, deleteFriendRequest, selectUsers, toggleUserByClick } from "../../store/slices/users/usersSlices"
 import time from "../timeFunc/timeFunc"
 import { avatar } from "../imageUrl/imageUrl"
 
@@ -86,7 +86,10 @@ export default function UserByClick() {
                         <h2>{userByClick?.name} {userByClick?.lastname}</h2>
                         {friendBtn === 'add' ? <button onClick={() => dispatch(addNewFrinedRequest({ userByClick: userByClick, currentUser: currentUser?.id }))} ><div><AiOutlineUserAdd /> add </div> </button> :
                             friendBtn === 'request' ? <button><div className="request"><GoRequestChanges /><h6>Request sent</h6></div> </button> :
-                                friendBtn === 'join' ? <button onClick={() => dispatch(addNewFriend({ userByClick: userByClick, currentUser: currentUser }))}><div className="join"><GrAggregate /> <h5>Join</h5></div></button> :
+                                friendBtn === 'join' ? <div className="join-refuse">
+                                    <button onClick={() => dispatch(addNewFriend({ userByClick: userByClick, currentUser: currentUser }))}><div className="join"><GrAggregate /> <h5>Join</h5></div></button>
+                                    <button onClick={() => dispatch(deleteFriendRequest({ currentUser: currentUser, friend: userByClick }))} ><AiOutlineUsergroupDelete /> Refusal</button>
+                                </div> :
                                     <button><div className="friend"><FaUserFriends /><h6>Friend</h6></div></button>
                         }
                     </div>

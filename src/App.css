@@ -985,6 +985,11 @@
   gap: 10px;
   font-family: "elsie";
 }
+.user-by-click header .right .top .join-refuse {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
 .user-by-click header .right .top button {
   width: 100px;
   height: 20px;

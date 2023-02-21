@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux"
 import { deleteFriend, selectUsers } from "../../store/slices/users/usersSlices"
 import { collection, onSnapshot } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig"
-import userImage from '../../images/user.png'
 import { AiOutlineUsergroupDelete } from 'react-icons/ai';
 import { RiChatDeleteLine } from 'react-icons/ri';
 import { useNavigate } from "react-router-dom"
 import { ThemeContext } from "../../App"
 import { avatar } from "../imageUrl/imageUrl"
+import userImage from '../../images/user.png'
 
 
 export default function Friends() {
@@ -82,7 +82,7 @@ export default function Friends() {
                             <div
                                 onClick={() => navigate(`/userByClick/${friend?.user_id}`)}
                                 className="friend-content-image">
-                                <img src={avatar(friend?.id, friend?.avatar)} alt="" />
+                                <img src={friend?.avatar ? avatar(friend?.id, friend?.avatar) : userImage} alt="" />
                             </div>
                             <div className="friend-info">
                                 <h4>{friend?.name}</h4>

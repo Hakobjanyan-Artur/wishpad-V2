@@ -61,6 +61,12 @@
                 gap: 10px;
                 font-family: 'elsie';
 
+                .join-refuse {
+                    display: flex;
+                    align-items: center;
+                    gap: 3px
+                }
+
                 button {
                     @include button(100px, 20px, #fff, $wish-blue);
                     font-size: 16px;
@@ -87,6 +93,7 @@
                         justify-content: center;
                         gap: 5px;
                     }
+
                 }
             }
 
