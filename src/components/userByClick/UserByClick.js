@@ -15,7 +15,8 @@ import UserByClickImages from "../userByClickImages/UserByClickImages"
 import { useDispatch, useSelector } from "react-redux"
 import { addNewFriend, addNewFrinedRequest, deleteFriend, deleteFriendRequest, selectUsers, toggleUserByClick } from "../../store/slices/users/usersSlices"
 import time from "../timeFunc/timeFunc"
-import { avatar } from "../imageUrl/imageUrl"
+import { avatar, cover, images } from "../imageUrl/imageUrl"
+import coverImage from '../../images/background.jpg'
 
 
 export default function UserByClick() {
@@ -63,16 +64,26 @@ export default function UserByClick() {
         unsubscribe()
 
 
-    }, [])
+    }, [id])
 
     return (
         <div className="user-by-click">
-            <header style={{ backgroundColor: theme === 'dark' ? '' : '#000' }}>
-                <div className="left">
+            <header className="user-by-click-header" style={{ backgroundColor: theme === 'dark' ? '' : '#000' }} >
+                <div
+                    style={{
+                        width: '500px',
+                        backgroundImage: `url(${userByClick?.coverImage ? cover(userByClick?.id, userByClick?.coverImage) : coverImage})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                        borderRadius: '10px'
+                    }}
+                    className="left">
                     <div className="user-image">
                         <div
                             style={{
-                                backgroundColor: userByClick?.time + 5 >= time() ? 'rgb(159, 219, 53)' : ''
+                                backgroundColor: userByClick?.time + 5 >= time() ? 'rgb(159, 219, 53)' : '',
+                                right: '180px'
                             }}
                             className="isOnline"></div>
                         <img src={userByClick?.avatar ? avatar(userByClick?.id, userByClick?.avatar) : userImage} alt="" />

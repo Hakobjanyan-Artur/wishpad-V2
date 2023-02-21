@@ -68,7 +68,11 @@ export default function Notification() {
             </header>
             <section>
                 <div className="left">
-                    <h2 className="title">friend requests</h2>
+                    <h2
+                        style={{
+                            color: theme === 'dark' ? '' : '#000'
+                        }}
+                        className="title">friend requests</h2>
                     <div className="content">
                         {newRequestFriend?.map((friend) => (
                             <div key={friend?.id} className="friend-content">
@@ -87,7 +91,11 @@ export default function Notification() {
                     </div>
                 </div>
                 <div className="right">
-                    <h2 className="title">New messages</h2>
+                    <h2
+                        style={{
+                            color: theme === 'dark' ? '' : '#000'
+                        }}
+                        className="title">New messages</h2>
                     <div className="content">
                         {newMessUsers?.map((user) => (
                             <div key={user?.id} className="friend-content">

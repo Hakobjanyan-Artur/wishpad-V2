@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import TopUser from "../topUser/TopUser";
 import userImage from '../../images/user.png'
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../App";
@@ -81,15 +80,7 @@ export default function Main() {
                             backgroundColor: theme === 'dark' ? '' : '#000'
                         }}
                         className="top-content">
-                        <div className="topuser">
-                            <TopUser />
-                        </div>
-                        <div className="topuser">
-                            <TopUser />
-                        </div>
-                        <div className="topuser">
-                            <TopUser />
-                        </div>
+
                     </div>
                 </div>
                 <div className="section">

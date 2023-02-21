@@ -1017,6 +1017,7 @@
   justify-content: center;
   gap: 5px;
   padding-top: 2px;
+  cursor: auto;
 }
 .user-by-click header .right .top button .join {
   display: flex;
@@ -3132,6 +3133,70 @@
 }
 .user-byclcik-image-item .right .likes-content .like-content h3 {
   font-family: "roboto";
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("./fonts/Roboto-Thin.ttf");
+}
+@font-face {
+  font-family: "clash";
+  src: url("./fonts/ClashDisplay-Medium.ttf");
+}
+@font-face {
+  font-family: "elsie";
+  src: url("./fonts/Elsie-Regular.ttf");
+}
+.user-by-click-friends {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+@media (max-width: 950px) {
+  .user-by-click-friends {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 750px) {
+  .user-by-click-friends {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 550px) {
+  .user-by-click-friends {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.user-by-click-friends .friend-content {
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 20px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+}
+@media (max-width: 550px) {
+  .user-by-click-friends .friend-content {
+    width: 80%;
+  }
+}
+.user-by-click-friends .friend-content .friend-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgb(33, 92, 243);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-by-click-friends .friend-content .friend-image img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
 * {

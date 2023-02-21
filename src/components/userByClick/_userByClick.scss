@@ -5,7 +5,7 @@
 .user-by-click {
     width: 100%;
 
-    header {
+    .user-by-click-header {
         padding: 20px 0;
         display: flex;
         justify-content: space-around;
@@ -20,7 +20,6 @@
         .left {
             display: flex;
             flex-direction: column;
-            align-items: center;
             gap: 20px;
             position: relative;
 
@@ -85,6 +84,7 @@
                         justify-content: center;
                         gap: 5px;
                         padding-top: 2px;
+                        cursor: auto;
                     }
 
                     .join {

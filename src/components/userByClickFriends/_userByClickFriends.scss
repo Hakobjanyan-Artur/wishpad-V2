@@ -1,0 +1,42 @@
+@include font('roboto', './fonts/Roboto-Thin.ttf');
+@include font('clash', './fonts/ClashDisplay-Medium.ttf');
+@include font('elsie', './fonts/Elsie-Regular.ttf');
+
+.user-by-click-friends {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+
+    @media(max-width: 950px) {
+        grid-template-columns: repeat(3, 1fr)
+    }
+
+    @media(max-width: 750px) {
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    @media(max-width: 550px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .friend-content {
+        border: 1px solid $wish-dark-grey;
+        border-radius: 20px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        cursor: pointer;
+
+        @media(max-width: 550px) {
+            width: 80%;
+        }
+
+        .friend-image {
+            @include image(60px, 60px, $wish-blue)
+        }
+    }
+}

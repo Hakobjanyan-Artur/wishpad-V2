@@ -6,7 +6,7 @@
 @import './components/signup/signUp';
 @import './components/navbar/navbar';
 @import './components/search/search';
-@import './components/userByClick/userByClick';
+@import './components/userByClick/_userByClick';
 @import './components/usernavbar/userNavbar';
 @import './components/messenger/messenger';
 @import './components/friends/friends';
@@ -19,6 +19,7 @@
 @import './components/profileClickImage/profileClickImage';
 @import './components/userByClickImages/userByClickImages';
 @import './components/userByclickImageItem/userByClickImageItem';
+@import './components/userByClickFriends/userByClickFriends';
 
 
 * {
