@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../App";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUsers, toggleUser } from "../../store/slices/users/usersSlices";
-import { collection, onSnapshot } from "firebase/firestore"
+import { collection, onSnapshot, query, orderBy, limit } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig";
 import { FaTelegramPlane } from "react-icons/fa";
 import { TbFriends } from "react-icons/tb";
@@ -19,6 +19,7 @@ export default function Main() {
     const navigate = useNavigate()
     const [newMessUsers, setNewMessUsers] = useState(null)
     const [newRequestFriend, setNewRequestFriend] = useState(null)
+    const [posts, setPosts] = useState(null)
 
 
     useEffect(() => {
@@ -69,6 +70,18 @@ export default function Main() {
         }, 60000 * 3)
 
     }, [])
+
+    useEffect(() => {
+        const m = query(collection(db, "posts"), orderBy('createdAd'), limit(50));
+        const postFetch = async () => onSnapshot(m, (querySnapshot) => {
+            let posts = [];
+            querySnapshot.forEach((doc) => { posts.push({ ...doc.data(), id: doc.id }) })
+            setPosts(posts)
+        })
+        postFetch()
+    }, [])
+
+    console.log(posts);
 
     return (
         <div className="main">

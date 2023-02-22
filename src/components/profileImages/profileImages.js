@@ -7,11 +7,14 @@ import { useState } from "react";
 import { storage } from "../../firebaseConfig/FrirebaseConfig";
 import { images } from "../imageUrl/imageUrl";
 import { useNavigate } from "react-router-dom";
+import { addNewPosts } from "../../store/slices/posts/postsSlices";
+import { v4 as uuidv4 } from 'uuid'
 
 export default function ProfileImages() {
     const { currentUser } = useSelector(selectUsers)
     const [popupImages, setPopupImages] = useState(false)
     const [photo, setPhoto] = useState(null)
+    const [checkbox, setCheckbox] = useState(false)
     const [progress, setProgress] = useState(0)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -30,8 +33,15 @@ export default function ProfileImages() {
                         console.log('error')
                     },
                     () => {
-                        dispatch(imagesAdd({ currentUser: currentUser, name: photo?.name }))
-                        setPopupImages(false)
+                        const id = uuidv4()
+                        if (checkbox) {
+                            dispatch(imagesAdd({ currentUser: currentUser, name: photo?.name, image_id: id }))
+                            dispatch(addNewPosts({ image: photo?.name, currentUser: currentUser, image_id: id }))
+                            setPopupImages(false)
+                        } else {
+                            dispatch(imagesAdd({ currentUser: currentUser, name: photo?.name, image_id: id }))
+                            setPopupImages(false)
+                        }
                     }
                 )
             }
@@ -44,12 +54,16 @@ export default function ProfileImages() {
         <div className="profile-images">
             <div
                 style={{
-                    display: popupImages ? 'flex' : 'none'
+                    display: popupImages ? '' : 'none'
                 }}
                 className="popup-profile-images">
                 <AiOutlineCloseCircle onClick={() => setPopupImages(false)} className="icon-close" />
                 <h2>Upload images</h2>
                 <input onChange={(e) => setPhoto(e.target.files[0])} type="file" />
+                <div className="check-for-posts">
+                    <h4>For posts</h4>
+                    <input value={checkbox} onChange={() => setCheckbox(!checkbox)} type="checkbox" />
+                </div>
                 <button onClick={() => sendPhoto()}>Send new photo <AiOutlineSend /></button>
                 <h2>Loading {progress} %</h2>
             </div>

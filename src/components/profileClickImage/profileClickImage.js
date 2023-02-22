@@ -7,7 +7,11 @@ import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { MdDeleteForever } from 'react-icons/md';
 import { ImPrevious, ImNext } from 'react-icons/im';
 import { ref, deleteObject, getStorage } from 'firebase/storage'
+import { collection, query, where, onSnapshot } from "firebase/firestore"
 import { BiToggleLeft, BiToggleRight } from 'react-icons/bi';
+import { db } from "../../firebaseConfig/FrirebaseConfig"
+import { deletePost } from "../../store/slices/posts/postsSlices"
+
 
 export default function ProfileClickImage() {
     const { id } = useParams()
@@ -17,6 +21,8 @@ export default function ProfileClickImage() {
     const dispatch = useDispatch()
     const [hidden, setHidden] = useState(false)
     const [commentTxt, setCommentTxt] = useState("")
+    const [posts, setPosts] = useState(null)
+    const [postItem, setPostItem] = useState(null)
 
     useEffect(() => {
 
@@ -32,14 +38,33 @@ export default function ProfileClickImage() {
 
     }, [])
 
-
-
+    useEffect(() => {
+        const m = query(collection(db, "posts"));
+        const postFetch = async () => onSnapshot(m, (querySnapshot) => {
+            let posts = [];
+            querySnapshot.forEach((doc) => { posts.push({ ...doc.data(), id: doc.id }) })
+            setPosts(posts)
+            posts.forEach((post) => {
+                if (post.image_id === image?.image_id) {
+                    setPostItem(post)
+                }
+            })
+        })
+        postFetch()
+    }, [image])
 
     const prevClick = () => {
         let idx = currentUser.images.indexOf(image)
         if (currentUser.images[idx - 1] !== undefined) {
             setImage(currentUser.images[idx - 1])
         }
+        posts?.forEach((post) => {
+            if (post.image_id === currentUser.images[idx - 1].image_id) {
+                setPostItem(post)
+            } else {
+                setPostItem(null)
+            }
+        })
     }
 
     const nextClick = () => {
@@ -47,21 +72,31 @@ export default function ProfileClickImage() {
         if (currentUser.images[idx + 1] !== undefined) {
             setImage(currentUser.images[idx + 1])
         }
+        posts?.forEach((post) => {
+            if (post.image_id === currentUser.images[idx + 1].image_id) {
+                setPostItem(post)
+            } else {
+                setPostItem(null)
+            }
+        })
     }
 
     const deleteImage = async () => {
+        dispatch(deletePost(postItem.id))
+        setTimeout(async () => {
+            const storage = getStorage();
 
-        const storage = getStorage();
+            // Create a reference to the file to delete
+            const desertRef = ref(storage, images(currentUser?.id, image?.name))
+            // Delete the file
+            await deleteObject(desertRef).then(() => {
+                dispatch(deleteImageUsers({ currentUser: currentUser, image: image }))
+                navigate(-1)
+            }).catch((error) => {
+                alert('Error deleted')
+            });
+        }, 500)
 
-        // Create a reference to the file to delete
-        const desertRef = ref(storage, images(currentUser?.id, image?.name))
-        // Delete the file
-        await deleteObject(desertRef).then(() => {
-            dispatch(deleteImageUsers({ currentUser: currentUser, image: image }))
-            navigate(-1)
-        }).catch((error) => {
-            alert('Error deleted')
-        });
     }
 
     const addNewComment = (e) => {

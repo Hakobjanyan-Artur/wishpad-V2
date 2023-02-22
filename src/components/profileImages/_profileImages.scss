@@ -32,6 +32,12 @@
             cursor: pointer;
         }
 
+        .check-for-posts {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
         button {
             @include buttonProfile(200px, 30px, $wish-blue, #fff);
             position: static;

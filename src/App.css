@@ -151,39 +151,6 @@
   font-family: "roboto";
   src: url("./fonts/Roboto-Thin.ttf");
 }
-.top-user {
-  width: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.top-user .top-user-images {
-  max-width: 70px;
-  max-height: 70px;
-  border-radius: 50%;
-  overflow: hidden;
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.top-user img {
-  max-width: 60px;
-  max-height: 60px;
-  border-radius: 50%;
-}
-.top-user .top-user-name {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: "roboto";
-  color: #fff;
-}
-
-@font-face {
-  font-family: "roboto";
-  src: url("./fonts/Roboto-Thin.ttf");
-}
 @font-face {
   font-family: "clash";
   src: url("./fonts/ClashDisplay-Medium.ttf");
@@ -911,27 +878,26 @@
 .user-by-click {
   width: 100%;
 }
-.user-by-click header {
+.user-by-click .user-by-click-header {
   padding: 20px 0;
   display: flex;
   justify-content: space-around;
   background-color: rgb(33, 92, 243);
 }
 @media (max-width: 550px) {
-  .user-by-click header {
+  .user-by-click .user-by-click-header {
     flex-direction: column;
     align-items: center;
     gap: 20px;
   }
 }
-.user-by-click header .left {
+.user-by-click .user-by-click-header .left {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 20px;
   position: relative;
 }
-.user-by-click header .left .user-image {
+.user-by-click .user-by-click-header .left .user-image {
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -940,12 +906,12 @@
   justify-content: center;
   align-items: center;
 }
-.user-by-click header .left .user-image img {
+.user-by-click .user-by-click-header .left .user-image img {
   width: 190px;
   height: 190px;
   border-radius: 50%;
 }
-.user-by-click header .left .user-image .isOnline {
+.user-by-click .user-by-click-header .left .user-image .isOnline {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -954,7 +920,7 @@
   bottom: 40px;
   right: 40px;
 }
-.user-by-click header .left button {
+.user-by-click .user-by-click-header .left button {
   width: 130px;
   height: 25px;
   border: none;
@@ -973,24 +939,24 @@
   justify-content: center;
   gap: 10px;
 }
-.user-by-click header .right {
+.user-by-click .user-by-click-header .right {
   display: flex;
   flex-direction: column;
   gap: 20px;
   color: #fff;
 }
-.user-by-click header .right .top {
+.user-by-click .user-by-click-header .right .top {
   display: flex;
   align-items: center;
   gap: 10px;
   font-family: "elsie";
 }
-.user-by-click header .right .top .join-refuse {
+.user-by-click .user-by-click-header .right .top .join-refuse {
   display: flex;
   align-items: center;
   gap: 3px;
 }
-.user-by-click header .right .top button {
+.user-by-click .user-by-click-header .right .top button {
   width: 100px;
   height: 20px;
   border: none;
@@ -1005,44 +971,44 @@
   font-size: 16px;
   box-shadow: none;
 }
-.user-by-click header .right .top button .request {
+.user-by-click .user-by-click-header .right .top button .request {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
   cursor: auto;
 }
-.user-by-click header .right .top button .friend {
+.user-by-click .user-by-click-header .right .top button .friend {
   display: flex;
   justify-content: center;
   gap: 5px;
   padding-top: 2px;
   cursor: auto;
 }
-.user-by-click header .right .top button .join {
+.user-by-click .user-by-click-header .right .top button .join {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
 }
-.user-by-click header .right .section {
+.user-by-click .user-by-click-header .right .section {
   display: flex;
   gap: 10px;
   font-family: "roboto";
 }
 @media (max-width: 550px) {
-  .user-by-click header .right .section {
+  .user-by-click .user-by-click-header .right .section {
     display: none;
   }
 }
-.user-by-click header .right .user-info {
+.user-by-click .user-by-click-header .right .user-info {
   font-family: "roboto";
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 @media (max-width: 550px) {
-  .user-by-click header .right .user-info {
+  .user-by-click .user-by-click-header .right .user-info {
     display: none;
   }
 }
@@ -2326,6 +2292,11 @@
   right: 10px;
   top: 10px;
   cursor: pointer;
+}
+.profile-images .popup-profile-images .check-for-posts {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 .profile-images .popup-profile-images button {
   position: absolute;
