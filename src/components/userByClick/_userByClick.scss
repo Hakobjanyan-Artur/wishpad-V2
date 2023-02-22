@@ -22,9 +22,26 @@
             flex-direction: column;
             gap: 20px;
             position: relative;
+            width: 50%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+
+            @media(max-width: 550px) {
+                width: 90%;
+                flex-direction: row;
+                align-items: flex-end;
+            }
 
             .user-image {
-                @include image(200px, 200px, #fff);
+                margin-top: 70px;
+                @include image(150px, 150px, #fff);
+                position: relative;
+
+                @media(max-width: 550px) {
+                    @include image(100px, 100px, #fff)
+                }
 
                 .isOnline {
                     width: 20px;
@@ -32,8 +49,12 @@
                     border-radius: 50%;
                     background-color: red;
                     position: absolute;
-                    bottom: 40px;
+                    bottom: 0px;
                     right: 40px;
+
+                    @media (max-width: 550px) {
+                        right: 0;
+                    }
                 }
             }
 
@@ -101,10 +122,6 @@
                 display: flex;
                 gap: 10px;
                 font-family: 'roboto';
-
-                @media(max-width: 550px) {
-                    display: none;
-                }
             }
 
             .user-info {
@@ -112,10 +129,6 @@
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
-
-                @media(max-width: 550px) {
-                    display: none;
-                }
             }
         }
     }

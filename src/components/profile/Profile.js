@@ -10,7 +10,6 @@ import ProfileWrapper from '../../pages/profileWrapper'
 import ProfileInfo from '../profileInfo/profileInfo'
 import ProfileImages from '../profileImages/profileImages'
 import { ThemeContext } from '../../App'
-import ProfilePosts from '../profilePosts/profilePosts'
 import { storage } from '../../firebaseConfig/FrirebaseConfig'
 import { ref, uploadBytesResumable, getStorage, deleteObject } from "@firebase/storage";
 import { avatar, cover } from '../imageUrl/imageUrl'
@@ -176,7 +175,6 @@ export default function Profile() {
                     <Route path='/' element={<ProfileWrapper />}>
                         <Route index element={<ProfileInfo />} />
                         <Route path='profileImages' element={<ProfileImages />} />
-                        <Route path='profilePosts' element={<ProfilePosts />} />
                     </Route>
                 </Routes>
             </section>

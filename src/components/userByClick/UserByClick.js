@@ -71,19 +71,13 @@ export default function UserByClick() {
             <header className="user-by-click-header" style={{ backgroundColor: theme === 'dark' ? '' : '#000' }} >
                 <div
                     style={{
-                        width: '500px',
                         backgroundImage: `url(${userByClick?.coverImage ? cover(userByClick?.id, userByClick?.coverImage) : coverImage})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat',
-                        borderRadius: '10px'
                     }}
                     className="left">
                     <div className="user-image">
                         <div
                             style={{
                                 backgroundColor: userByClick?.time + 5 >= time() ? 'rgb(159, 219, 53)' : '',
-                                right: '180px'
                             }}
                             className="isOnline"></div>
                         <img src={userByClick?.avatar ? avatar(userByClick?.id, userByClick?.avatar) : userImage} alt="" />
@@ -112,7 +106,7 @@ export default function UserByClick() {
                         <h4>Reg: {userByClick?.dateOfReg}</h4>
                         <h4>BirthDay: {userByClick?.dateOfbirth ? userByClick?.dateOfbirth : 'Not filled'}</h4>
                         <h4>City: {userByClick?.city ? userByClick?.city : 'Not filled'}</h4>
-                        <h4>Country:{userByClick?.country ? userByClick?.country : 'Not filled'}</h4>
+                        <h4>Country: {userByClick?.country ? userByClick?.country : 'Not filled'}</h4>
                         <h4>Date of last activity: {userByClick?.dateOfLastActivity}</h4>
                     </div>
                 </div>
