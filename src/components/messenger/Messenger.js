@@ -107,8 +107,8 @@ export default function Messenger() {
 
             return () => messenger()
         }
-
     }, [])
+
 
 
     const handleSubmit = async (e) => {
@@ -148,7 +148,8 @@ export default function Messenger() {
                                     borderBottomRightRadius: mess?.user === id ? '' : '20px',
                                     borderTopLeftRadius: mess?.user === id ? '20px' : '',
                                     borderTopRightRadius: mess?.user === id ? '' : '20px',
-                                    flexDirection: mess?.user === id ? 'row-reverse' : ''
+                                    flexDirection: mess?.user === id ? 'row-reverse' : '',
+                                    backgroundColor: mess?.user === id ? '#B0C4DE' : 'rgb(159, 219, 53)'
                                 }}
                                 className="content">
                                 <div className="user-info">
@@ -178,7 +179,7 @@ export default function Messenger() {
                         <img src={currentUser?.avatar ? avatarURL(currentUser?.id, currentUser?.avatar) : userImage} alt="" />
                     </div>
                     <div className="user-info">
-                        <h2>{currentUser?.userName}</h2>
+                        <h2>{currentUser?.name} {currentUser?.lastname}</h2>
                     </div>
                 </div>
                 <div className="section">

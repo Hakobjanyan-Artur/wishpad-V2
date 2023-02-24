@@ -191,7 +191,7 @@ export default function Settings() {
                     backgroundColor: theme === 'dark' ? '' : '#000'
                 }}
             >
-                <h1 className="header-title">settings profile user of {currentUser?.name}</h1>
+                <h1 className="header-title">Settings profile user of {currentUser?.name}</h1>
             </header>
             <section>
                 <div className="account-settings">
@@ -236,11 +236,11 @@ export default function Settings() {
                                 placeholder="Change city"
                                 type="text" />
                         </div>
-                        <button>submit changes</button>
+                        <button>Submit changes</button>
                     </form>
                 </div>
                 <div className="security">
-                    <h2 className="security-header"><GrShieldSecurity /> security and entry</h2>
+                    <h2 className="security-header"><GrShieldSecurity /> Security and entry</h2>
                     <div className="change-email">
                         <h3> <MdAttachEmail /> Change email</h3>
                         <h2

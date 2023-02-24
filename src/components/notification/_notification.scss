@@ -68,7 +68,8 @@
                     justify-content: space-around;
 
                     @media(max-width: 550px) {
-                        padding-left: 0;
+                        flex-direction: column;
+                        height: 120px;
                     }
 
                     .friend-image {
@@ -130,7 +131,8 @@
                     justify-content: space-around;
 
                     @media (max-width: 550px) {
-                        padding-left: 0;
+                        flex-direction: column;
+                        height: 120px;
                     }
 
                     .friend-image {

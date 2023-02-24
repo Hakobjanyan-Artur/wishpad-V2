@@ -89,7 +89,7 @@ export default function Main({ setTopTen }) {
                         backgroundColor: theme === 'dark' ? '' : '#000'
                     }}
                     className="top">
-                    <h3>Top Posts Users</h3>
+                    <h3>Top Users</h3>
                     <div className="top-content">
                         {topPosts?.map((post) => (
                             <div onClick={() => navigate(`/userByClick/${post?.user_id}`)} key={post?.id} className="top-post-content">

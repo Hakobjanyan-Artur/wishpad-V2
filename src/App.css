@@ -602,6 +602,7 @@
   align-items: center;
   gap: 20px;
   position: fixed;
+  z-index: 99;
   background: rgb(33, 92, 243);
 }
 @media (max-width: 950px) {
@@ -740,6 +741,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: rgb(33, 92, 243);
 }
 @media (max-width: 550px) {
   .navbar .navbar-content nav .notification-icon .quantity {
@@ -1836,7 +1838,8 @@
 }
 @media (max-width: 550px) {
   .notification section .left .content .friend-content {
-    padding-left: 0;
+    flex-direction: column;
+    height: 120px;
   }
 }
 .notification section .left .content .friend-content .friend-image {
@@ -1905,7 +1908,8 @@
 }
 @media (max-width: 550px) {
   .notification section .right .content .friend-content {
-    padding-left: 0;
+    flex-direction: column;
+    height: 120px;
   }
 }
 .notification section .right .content .friend-content .friend-image {
@@ -3476,7 +3480,7 @@
   justify-content: center;
   padding: 0 30px;
 }
-@media (max-width: 700px) {
+@media (max-width: 860px) {
   .top-ten-posts section .four {
     display: none;
   }
