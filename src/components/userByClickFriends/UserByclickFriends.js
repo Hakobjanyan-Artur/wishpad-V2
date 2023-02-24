@@ -5,7 +5,7 @@ import { selectUsers } from "../../store/slices/users/usersSlices"
 import { collection, onSnapshot } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig"
 import userImage from '../../images/user.png'
-import { avatar } from "../imageUrl/imageUrl"
+import { avatarURL } from "../imageUrl/imageUrl"
 
 export default function UserByClickFriends() {
     const [friends, setFriends] = useState(null)
@@ -45,7 +45,7 @@ export default function UserByClickFriends() {
                     onClick={() => navigate(`/userByClick/${friend?.user_id}`)}
                     key={friend?.id} className="friend-content">
                     <div className="friend-image">
-                        <img src={friend.avatar ? avatar(friend?.id, friend?.avatar) : userImage} alt="" />
+                        <img src={friend.avatar ? avatarURL(friend?.id, friend?.avatar) : userImage} alt="" />
                     </div>
                     <div className="friend-info">
                         <h4>{friend?.name} {friend?.lastname}</h4>

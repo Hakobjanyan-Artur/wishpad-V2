@@ -14,7 +14,7 @@ import { SiWish } from "react-icons/si";
 import { FiSettings } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { selectUsers } from "../../store/slices/users/usersSlices";
-import { avatar } from "../imageUrl/imageUrl";
+import { avatarURL } from "../imageUrl/imageUrl";
 
 
 export default function Navbar() {
@@ -37,22 +37,24 @@ export default function Navbar() {
         <div
             style={{ backgroundColor: theme === 'dark' ? '' : '#000', }}
             className="navbar">
-            <div className="logo">
-                <img src={logo} alt="" />
-                <span className="siwish"><SiWish /></span>
+            <div className="navbar-content">
+                <div className="logo">
+                    <img src={logo} alt="" />
+                    <span className="siwish"><SiWish /></span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/main"><BiHomeHeart /> <span className="nav-txt">Home</span></NavLink></li>
+                        <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/friend"><FaUserFriends /> <span className="nav-txt">Friends</span></NavLink></li>
+                        <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/notification">{notificationLength === 0 ? <MdCircleNotifications /> : <span className="notification-icon"><MdNotificationsActive /> <div className="quantity"><h5>{notificationLength}</h5></div></span>} <span className="nav-txt">Notification</span></NavLink></li>
+                        <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/search"><FaSearch /> <span className="nav-txt">Search</span></NavLink></li>
+                        <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/profile"><div className="nav-image"> <img src={currentUser?.avatar ? avatarURL(currentUser?.id, currentUser?.avatar) : userImage} alt="" /></div><span className="nav-txt">Profile</span></NavLink></li>
+                        <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/settings"><FiSettings /> <span className="nav-txt">Settings</span></NavLink></li>
+                        <li onClick={toggleTheme} className="switch" >{theme === 'dark' ? <BsFillMoonStarsFill /> : <BsFillSunFill />} <span className="nav-txt">Switch appearance</span></li>
+                        <li style={{ display: localCurrentUser ? 'block' : 'none' }} className="logout" onClick={() => { localStorage.removeItem('currentUser'); navigate('/') }}  ><CiLogout /> <span className="nav-txt">Log Out</span></li>
+                    </ul>
+                </nav>
             </div>
-            <nav>
-                <ul>
-                    <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/main"><BiHomeHeart /> <span className="nav-txt">Home</span></NavLink></li>
-                    <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/friend"><FaUserFriends /> <span className="nav-txt">Friends</span></NavLink></li>
-                    <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/notification">{notificationLength === 0 ? <MdCircleNotifications /> : <span className="notification-icon"><MdNotificationsActive /> <div className="quantity"><h5>{notificationLength}</h5></div></span>} <span className="nav-txt">Notification</span></NavLink></li>
-                    <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/search"><FaSearch /> <span className="nav-txt">Search</span></NavLink></li>
-                    <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/profile"><div className="nav-image"> <img src={currentUser?.avatar ? avatar(currentUser?.id, currentUser?.avatar) : userImage} alt="" /></div><span className="nav-txt">Profile</span></NavLink></li>
-                    <li><NavLink className={({ isActive }) => isActive ? 'active' : 'standart'} to="/settings"><FiSettings /> <span className="nav-txt">Settings</span></NavLink></li>
-                    <li onClick={toggleTheme} className="switch" >{theme === 'dark' ? <BsFillMoonStarsFill /> : <BsFillSunFill />} <span className="nav-txt">Switch appearance</span></li>
-                    <li style={{ display: localCurrentUser ? 'block' : 'none' }} className="logout" onClick={() => { localStorage.removeItem('currentUser'); navigate('/') }}  ><CiLogout /> <span className="nav-txt">Log Out</span></li>
-                </ul>
-            </nav>
         </div>
     )
 }

@@ -1,25 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import userImage from '../../images/user.png'
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../App";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUsers, toggleUser } from "../../store/slices/users/usersSlices";
-import { collection, onSnapshot, query, orderBy, limit } from "firebase/firestore"
+import { collection, limitToLast, onSnapshot, orderBy, query } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig";
-import { FaTelegramPlane } from "react-icons/fa";
-import { TbFriends } from "react-icons/tb";
 import { dateOfLastActivity, isOnline } from "../../store/slices/setting/settingSlices";
-import { avatar } from "../imageUrl/imageUrl";
-
+import { avatarURL } from "../imageUrl/imageUrl";
+import { ThreeCircles } from 'react-loader-spinner'
+const LeazyPostItem = React.lazy(() => import('../mainPostItem/mainPostItem'))
 
 export default function Main() {
     const { theme } = useContext(ThemeContext)
     const { currentUser } = useSelector(selectUsers)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [newMessUsers, setNewMessUsers] = useState(null)
-    const [newRequestFriend, setNewRequestFriend] = useState(null)
     const [posts, setPosts] = useState(null)
+    const [topPosts, setTopPosts] = useState(null)
 
 
     useEffect(() => {
@@ -33,30 +31,10 @@ export default function Main() {
             const usersRef = collection(db, "users")
             await onSnapshot(usersRef, (snapShot) => {
                 let users = []
-                let newMessUsers = []
-                let newRequestFriend = []
                 snapShot.forEach((doc) => users.push({ ...doc.data(), id: doc.id }))
                 users.forEach((user) => {
                     if (user.user_id === currentUser?.user_id) {
                         dispatch(toggleUser(user))
-                    }
-                })
-                users.forEach((user) => {
-                    if (currentUser?.newMessageUsers?.length > 0) {
-                        currentUser?.newMessageUsers?.forEach((el) => {
-                            if (el.user === user.user_id) {
-                                newMessUsers.unshift(user)
-                                setNewMessUsers(newMessUsers)
-                            }
-                        })
-                    }
-                    if (currentUser?.friendRequest?.length > 0) {
-                        currentUser?.friendRequest?.forEach(el => {
-                            if (el.user === user.id) {
-                                newRequestFriend.unshift(user)
-                                setNewRequestFriend(newRequestFriend)
-                            }
-                        });
                     }
                 })
             })
@@ -71,23 +49,36 @@ export default function Main() {
 
     }, [])
 
+
     useEffect(() => {
-        const m = query(collection(db, "posts"), orderBy('createdAd'), limit(50));
+        const m = query(collection(db, "posts"), orderBy('createdAd'), limitToLast(100))
         const postFetch = async () => onSnapshot(m, (querySnapshot) => {
             let posts = [];
-            querySnapshot.forEach((doc) => { posts.push({ ...doc.data(), id: doc.id }) })
+            querySnapshot.forEach((doc) => { posts.unshift({ ...doc.data(), id: doc.id }) })
             setPosts(posts)
         })
         postFetch()
+        const p = query(collection(db, "posts"))
+        const topPosts = async () => onSnapshot(p, (querySnapshot) => {
+            let posts = [];
+            let topPosts = []
+            querySnapshot.forEach((doc) => { posts.push({ ...doc.data(), id: doc.id }) })
+            posts.forEach(post => post.Likes.length > 0 ? topPosts.unshift(post) : topPosts.push(post))
+            if (topPosts.length > 10) {
+                topPosts.length = 10
+                setTopPosts(topPosts)
+            } else {
+                setTopPosts(topPosts)
+            }
+        })
+        topPosts()
     }, [])
-
-    console.log(posts);
 
     return (
         <div className="main">
             <div className="left">
                 <div className="top">
-                    <h3>Online Friends</h3>
+                    <h3>Top Posts Users</h3>
                     <div
                         style={{
                             backgroundColor: theme === 'dark' ? '' : '#000'
@@ -97,7 +88,18 @@ export default function Main() {
                     </div>
                 </div>
                 <div className="section">
-                    posts
+                    {posts?.map((post) => (
+                        <React.Suspense key={post?.id} fallback={
+                            <ThreeCircles
+                                height="100"
+                                width="100"
+                                color="rgb(33, 92, 243)"
+                                wrapperClass="Circle"
+                                visible={true}
+                                ariaLabel="three-circles-rotating"
+                            />}>
+                            <LeazyPostItem {...post} />
+                        </React.Suspense>))}
                 </div>
             </div>
             <div
@@ -108,46 +110,17 @@ export default function Main() {
                 <div className="user">
                     <div
                         className="user-image">
-                        <img src={currentUser?.avatar ? avatar(currentUser?.id, currentUser?.avatar) : userImage} alt="" />
+                        <img src={currentUser?.avatar ? avatarURL(currentUser?.id, currentUser?.avatar) : userImage} alt="" />
                     </div>
                     <div className="user-name">
                         <h3>{currentUser?.name} {currentUser?.lastname}</h3>
                     </div>
                 </div>
-                <div className="notification">
-                    <h3>Notifications</h3>
-                    <div className="notification-content">
-                        {newMessUsers?.map((user) => (
-                            <div
-                                onClick={() => navigate(`/userByClick/${user.user_id}`)}
-                                key={user?.id}
-                                className="content">
-                                <div className="user-image">
-                                    <img src={userImage} alt="" />
-                                </div>
-                                < FaTelegramPlane />
-                                <div className="user-info">
-                                    <h4>{user?.name}</h4>
-                                    <h5>{user?.userlastname}</h5>
-                                </div>
-                            </div>
-                        ))}
-                        {newRequestFriend?.map((user) => (
-                            <div
-                                onClick={() => navigate(`/userByClick/${user.user_id}`)}
-                                key={user?.id}
-                                className="content">
-                                <div className="user-image">
-                                    <img src={userImage} alt="" />
-                                </div>
-                                <TbFriends />
-                                <div className="user-info">
-                                    <h4>{user?.name}</h4>
-                                    <h5>{user?.lastname}</h5>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                <div className="user-info">
+                    <h4>Date of birth: {currentUser?.dateOfbirth ? currentUser?.dateOfbirth : 'Not filed'}</h4>
+                    <h4>Country: {currentUser?.country ? currentUser?.country : 'Not filed'}</h4>
+                    <h4>City: {currentUser?.city ? currentUser?.city : 'Not filed'}</h4>
+                    <h4>Last activ: {currentUser?.dateOfLastActivity}</h4>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ import bcrypt from 'bcryptjs'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUsers, toggleUser } from '../../store/slices/users/usersSlices'
 
-export default function SingIn({ setUsersMain }) {
+export default function SingIn() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [users, setUsers] = useState(null)
@@ -17,16 +17,6 @@ export default function SingIn({ setUsersMain }) {
     const [successfully, setSuccessfully] = useState(false)
     const [showPopup, setShowPopup] = useState(false)
     const { currentUser } = useSelector(selectUsers)
-
-
-    const fetchUsers = async () => {
-        const usersRef = collection(db, "users")
-        await onSnapshot(usersRef, (snapShot) => {
-            let users = []
-            snapShot.forEach((doc) => users.push({ ...doc.data(), id: doc.id }))
-            setUsers(users)
-        })
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -38,7 +28,6 @@ export default function SingIn({ setUsersMain }) {
                     localStorage.setItem('currentUser', JSON.stringify(user))
                 }
                 dispatch(toggleUser(user))
-                setUsersMain(users)
                 setShowPopup(true)
                 setTimeout(() => {
                     navigate('main')
@@ -61,6 +50,14 @@ export default function SingIn({ setUsersMain }) {
     }
 
     useEffect(() => {
+        const fetchUsers = async () => {
+            const usersRef = collection(db, "users")
+            await onSnapshot(usersRef, (snapShot) => {
+                let users = []
+                snapShot.forEach((doc) => users.push({ ...doc.data(), id: doc.id }))
+                setUsers(users)
+            })
+        }
         fetchUsers()
         const localUser = JSON.parse(localStorage.getItem('currentUser')) || null
         if (localUser) {

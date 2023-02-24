@@ -24,18 +24,17 @@ export default function SignUp() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const fetchUsers = async () => {
-
-        const usersRef = collection(db, "users")
-
-        await onSnapshot(usersRef, (snapShot) => {
-            let users = []
-            snapShot.forEach((doc) => users.push({ ...doc.data(), id: doc.id }))
-            setUsers(users)
-        })
-    }
-
     useEffect(() => {
+        const fetchUsers = async () => {
+
+            const usersRef = collection(db, "users")
+
+            await onSnapshot(usersRef, (snapShot) => {
+                let users = []
+                snapShot.forEach((doc) => users.push({ ...doc.data(), id: doc.id }))
+                setUsers(users)
+            })
+        }
         fetchUsers()
         const currentUser = JSON.parse(localStorage.getItem('currentUser')) || null
         if (currentUser) {

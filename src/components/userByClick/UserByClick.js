@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect, useState, lazy } from "react"
 import { Routes, Route, useParams, useNavigate } from "react-router-dom"
 import { ThemeContext } from "../../App"
 import userImage from '../../images/user.png'
@@ -11,12 +11,14 @@ import { GrAggregate } from 'react-icons/gr';
 import { FaUserFriends } from 'react-icons/fa';
 import UserWrapper from "../../pages/UserWrapper"
 import UserByClickFriends from "../userByClickFriends/UserByclickFriends"
-import UserByClickImages from "../userByClickImages/UserByClickImages"
+// import UserByClickImages from "../userByClickImages/UserByClickImages"
 import { useDispatch, useSelector } from "react-redux"
 import { addNewFriend, addNewFrinedRequest, deleteFriend, deleteFriendRequest, selectUsers, toggleUserByClick } from "../../store/slices/users/usersSlices"
 import time from "../timeFunc/timeFunc"
-import { avatar, cover, images } from "../imageUrl/imageUrl"
+import { avatarURL, cover } from "../imageUrl/imageUrl"
 import coverImage from '../../images/background.jpg'
+import { ThreeCircles } from 'react-loader-spinner'
+const LeazyUserByClickImages = lazy(() => import('../userByClickImages/UserByClickImages'))
 
 
 export default function UserByClick() {
@@ -80,7 +82,7 @@ export default function UserByClick() {
                                 backgroundColor: userByClick?.time + 5 >= time() ? 'rgb(159, 219, 53)' : '',
                             }}
                             className="isOnline"></div>
-                        <img src={userByClick?.avatar ? avatar(userByClick?.id, userByClick?.avatar) : userImage} alt="" />
+                        <img src={userByClick?.avatar ? avatarURL(userByClick?.id, userByClick?.avatar) : userImage} alt="" />
                     </div>
                     <div className="message">
                         <button onClick={() => navigate(`/messenger/${id}`)}><TbBrandTelegram /> Messages</button>
@@ -114,7 +116,17 @@ export default function UserByClick() {
             <section>
                 <Routes>
                     <Route path="/" element={<UserWrapper />}>
-                        <Route index element={<UserByClickImages />} />
+                        <Route index element={
+                            <React.Suspense fallback={<ThreeCircles
+                                height="100"
+                                width="100"
+                                color="rgb(33, 92, 243)"
+                                wrapperClass="Circle"
+                                visible={true}
+                                ariaLabel="three-circles-rotating"
+                            />}>
+                                <LeazyUserByClickImages />
+                            </React.Suspense>} />
                         <Route path="userByClickFriends" element={<UserByClickFriends />} />
                     </Route>
                 </Routes>

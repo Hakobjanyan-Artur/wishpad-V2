@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { newMessageId } from "../../store/slices/messages/messageSlices"
 import time from "../timeFunc/timeFunc"
 import { selectUsers } from "../../store/slices/users/usersSlices"
-import { avatar } from "../imageUrl/imageUrl"
+import { avatarURL } from "../imageUrl/imageUrl"
 
 export default function Search() {
     const { theme } = useContext(ThemeContext)
@@ -69,7 +69,7 @@ export default function Search() {
                                         backgroundColor: user?.time + 5 >= time() ? 'rgb(159, 219, 53)' : ''
                                     }}
                                     className="isOnline"></div>
-                                <img src={user?.avatar ? avatar(user?.id, user?.avatar) : userImage} alt="" />
+                                <img src={user?.avatar ? avatarURL(user?.id, user?.avatar) : userImage} alt="" />
                             </div>
                         </div>
                         <div className="right">

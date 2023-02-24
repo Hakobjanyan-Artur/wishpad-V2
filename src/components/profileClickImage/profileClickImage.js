@@ -7,7 +7,7 @@ import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { MdDeleteForever } from 'react-icons/md';
 import { ImPrevious, ImNext } from 'react-icons/im';
 import { ref, deleteObject, getStorage } from 'firebase/storage'
-import { collection, query, where, onSnapshot } from "firebase/firestore"
+import { collection, query, onSnapshot } from "firebase/firestore"
 import { BiToggleLeft, BiToggleRight } from 'react-icons/bi';
 import { db } from "../../firebaseConfig/FrirebaseConfig"
 import { deletePost } from "../../store/slices/posts/postsSlices"

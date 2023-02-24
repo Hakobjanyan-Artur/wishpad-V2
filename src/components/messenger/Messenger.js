@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { currentUserDelNewMessUser, selectUsers, toggleUser } from "../../store/slices/users/usersSlices"
 import { ThemeContext } from "../../App"
 import { selectMessenger, toggleMessageUsers, toggleNewMessage } from "../../store/slices/messages/messageSlices"
-import { avatar } from "../imageUrl/imageUrl"
+import { avatarURL } from "../imageUrl/imageUrl"
 
 export default function Messenger() {
     const { id } = useParams()
@@ -178,7 +178,7 @@ export default function Messenger() {
             <div className="right">
                 <div className="header">
                     <div className="user-image">
-                        <img src={currentUser?.avatar ? avatar(currentUser?.id, currentUser?.avatar) : userImage} alt="" />
+                        <img src={currentUser?.avatar ? avatarURL(currentUser?.id, currentUser?.avatar) : userImage} alt="" />
                     </div>
                     <div className="user-info">
                         <h2>{currentUser?.userName}</h2>

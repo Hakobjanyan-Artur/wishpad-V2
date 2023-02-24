@@ -12,7 +12,7 @@ import ProfileImages from '../profileImages/profileImages'
 import { ThemeContext } from '../../App'
 import { storage } from '../../firebaseConfig/FrirebaseConfig'
 import { ref, uploadBytesResumable, getStorage, deleteObject } from "@firebase/storage";
-import { avatar, cover } from '../imageUrl/imageUrl'
+import { avatarURL, cover } from '../imageUrl/imageUrl'
 
 export default function Profile() {
     const { currentUser } = useSelector(selectUsers)
@@ -97,7 +97,7 @@ export default function Profile() {
                     const storage = getStorage();
 
                     // Create a reference to the file to delete
-                    const desertRef = ref(storage, avatar(currentUser?.id, currentUser?.avatar));
+                    const desertRef = ref(storage, avatarURL(currentUser?.id, currentUser?.avatar));
 
                     // Delete the file
                     await deleteObject(desertRef).then(() => {
@@ -162,7 +162,7 @@ export default function Profile() {
                 </div>
                 <div className="header-section">
                     <div className='header-section-image'>
-                        <img src={currentUser?.avatar ? avatar(currentUser?.id, currentUser?.avatar) : userImage} alt="" />
+                        <img src={currentUser?.avatar ? avatarURL(currentUser?.id, currentUser?.avatar) : userImage} alt="" />
                     </div>
                     <div className='currentUser-info'>
                         <h1>{currentUser?.name} {currentUser?.lastname}</h1>

@@ -1,4 +1,4 @@
-import { addDoc, collection, serverTimestamp, deleteDoc, doc } from "firebase/firestore"
+import { addDoc, collection, serverTimestamp, deleteDoc, doc, updateDoc } from "firebase/firestore"
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from 'uuid'
 import { db } from "../../../firebaseConfig/FrirebaseConfig";
@@ -31,12 +31,30 @@ const postsSlices = createSlice({
                 await deleteDoc(userDoc)
             }
             deletePost(payload)
+        },
+        addLike(state, { payload }) {
+            const updateUser = async (id) => {
+
+                const userDoc = doc(db, "posts", id)
+                const newFileds = {
+                    Likes: [
+                        ...payload.Likes,
+                        {
+                            id: uuidv4(),
+                            name: payload.currentUser.name,
+                            user_id: payload.currentUser.user_id
+                        }
+                    ]
+                }
+                await updateDoc(userDoc, newFileds)
+            }
+            updateUser(payload.id)
         }
     }
 })
 
 export const selectPosts = state => state.posts
 
-export const { addNewPosts, deletePost } = postsSlices.actions
+export const { addNewPosts, deletePost, addLike } = postsSlices.actions
 
 export const postsReducer = postsSlices.reducer

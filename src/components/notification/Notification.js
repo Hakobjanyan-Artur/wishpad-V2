@@ -8,7 +8,7 @@ import { GrAggregate } from 'react-icons/gr';
 import { TbBrandTelegram } from 'react-icons/tb';
 import { useNavigate } from "react-router-dom"
 import { ThemeContext } from "../../App"
-import { avatar } from "../imageUrl/imageUrl"
+import { avatarURL } from "../imageUrl/imageUrl"
 
 export default function Notification() {
     const { theme } = useContext(ThemeContext)
@@ -79,7 +79,7 @@ export default function Notification() {
                                 <div
                                     onClick={() => navigate(`/userByClick/${friend?.user_id}`)}
                                     className="friend-image">
-                                    <img src={friend?.avatar ? avatar(friend?.id, friend?.avatar) : userImage} alt="" />
+                                    <img src={friend?.avatar ? avatarURL(friend?.id, friend?.avatar) : userImage} alt="" />
                                 </div>
                                 <div className="friend-info">
                                     <h4>{friend?.name}</h4>
@@ -102,7 +102,7 @@ export default function Notification() {
                                 <div
                                     onClick={() => navigate(`/userByClick/${user?.user_id}`)}
                                     className="friend-image">
-                                    <img src={user?.avatar ? avatar(user?.id, user?.avatar) : userImage} alt="" />
+                                    <img src={user?.avatar ? avatarURL(user?.id, user?.avatar) : userImage} alt="" />
                                 </div>
                                 <div className="friend-info">
                                     <h4>{user?.name}</h4>
