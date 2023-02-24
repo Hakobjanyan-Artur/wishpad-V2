@@ -18,6 +18,7 @@ export default function Main() {
     const navigate = useNavigate()
     const [posts, setPosts] = useState(null)
     const [topPosts, setTopPosts] = useState(null)
+    const [users, setusers] = useState(null)
 
 
     useEffect(() => {
@@ -32,6 +33,7 @@ export default function Main() {
             await onSnapshot(usersRef, (snapShot) => {
                 let users = []
                 snapShot.forEach((doc) => users.push({ ...doc.data(), id: doc.id }))
+                setusers(users)
                 users.forEach((user) => {
                     if (user.user_id === currentUser?.user_id) {
                         dispatch(toggleUser(user))
@@ -58,6 +60,7 @@ export default function Main() {
             setPosts(posts)
         })
         postFetch()
+
         const p = query(collection(db, "posts"))
         const topPosts = async () => onSnapshot(p, (querySnapshot) => {
             let posts = [];
@@ -98,7 +101,7 @@ export default function Main() {
                                 visible={true}
                                 ariaLabel="three-circles-rotating"
                             />}>
-                            <LeazyPostItem {...post} />
+                            <LeazyPostItem users={users} {...post} />
                         </React.Suspense>))}
                 </div>
             </div>

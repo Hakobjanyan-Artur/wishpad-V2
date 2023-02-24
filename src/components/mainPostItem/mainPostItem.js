@@ -3,12 +3,13 @@ import { avatarURL, images } from '../imageUrl/imageUrl'
 import { AiFillHeart } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addLike } from '../../store/slices/posts/postsSlices';
+import { addLike, addLikeUser } from '../../store/slices/posts/postsSlices';
 import { selectUsers } from '../../store/slices/users/usersSlices';
 import { useEffect, useState } from 'react';
 
 
-export default function MainPostItem({ avatar, userId, user_id, userName, date, image, id, Likes }) {
+
+export default function MainPostItem({ avatar, userId, user_id, userName, date, image, id, Likes, image_id, users }) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { currentUser } = useSelector(selectUsers)
@@ -25,14 +26,29 @@ export default function MainPostItem({ avatar, userId, user_id, userName, date, 
     }, [Likes])
 
     const addNewLike = () => {
+        let photoUser
+        let photo
+        users.forEach(user => {
+            if (user.id === userId) {
+                photoUser = user
+            }
+        })
+        photoUser.images.forEach((img) => {
+            if (img.image_id === image_id) {
+                photo = img
+            }
+        })
+
         if (user_id !== currentUser?.user_id && Likes.length > 0) {
             Likes?.forEach(like => {
                 if (like.user_id !== currentUser?.user_id) {
                     dispatch(addLike({ id: id, Likes: Likes, currentUser: currentUser }))
+                    dispatch(addLikeUser({ userId: userId, image_id: image_id, currentUser: currentUser, photoUser: photoUser, photo: photo }))
                 }
             });
         } else if (user_id !== currentUser?.user_id) {
             dispatch(addLike({ id: id, Likes: Likes, currentUser: currentUser }))
+            dispatch(addLikeUser({ userId: userId, image_id: image_id, currentUser: currentUser, photoUser: photoUser, photo: photo }))
         }
     }
 
