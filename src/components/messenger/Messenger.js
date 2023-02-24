@@ -9,6 +9,7 @@ import { currentUserDelNewMessUser, selectUsers, toggleUser } from "../../store/
 import { ThemeContext } from "../../App"
 import { selectMessenger, toggleMessageUsers, toggleNewMessage } from "../../store/slices/messages/messageSlices"
 import { avatarURL } from "../imageUrl/imageUrl"
+import InputEmoji from "react-input-emoji";
 
 export default function Messenger() {
     const { id } = useParams()
@@ -89,7 +90,7 @@ export default function Messenger() {
             const unsubscribe = async () => onSnapshot(q, (querySnapshot) => {
                 let user = {};
                 querySnapshot.forEach((doc) => {
-                    user = doc.data()
+                    user = { ...doc.data(), id: doc.id }
                 })
                 setUserByClick(user)
             });
@@ -111,22 +112,19 @@ export default function Messenger() {
 
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
         //----send Message
         dispatch(toggleNewMessage({ txt: txt, currentUser: currentUser, userByClick: userByClick }))
         //---------------
         //----upload user and add newMessageUser
-        if (userByClick.newMessageUsers.length === 0) {
+        if (userByClick.newMessageUsers.length > 0) {
+            userByClick?.newMessageUsers.forEach((el) => {
+                if (el.user !== currentUser.user_id) {
+                    dispatch(toggleMessageUsers({ userByClick: userByClick, user_id: currentUser?.user_id, id: messId }))
+                }
+            })
+        } else {
             dispatch(toggleMessageUsers({ userByClick: userByClick, user_id: currentUser?.user_id, id: messId }))
         }
-        userByClick?.newMessageUsers.forEach((el) => {
-            if (el.user !== currentUser.user_id) {
-                dispatch(toggleMessageUsers({ userByClick: userByClick, user_id: currentUser?.user_id, id: messId }))
-            }
-        })
-
-        setTxt("")
-
     }
 
     return (
@@ -134,7 +132,7 @@ export default function Messenger() {
             <div className="left">
                 <header style={{ background: theme === 'dark' ? '' : '#000' }}>
                     <div className="user-image">
-                        <img src={userImage} alt="" />
+                        <img src={userByClick?.avatar ? avatarURL(userByClick?.id, userByClick?.avatar) : userImage} alt="" />
                     </div>
                     <div className="user-info">
                         <h2>{userByClick?.name} {userByClick?.lastname}</h2>
@@ -165,14 +163,13 @@ export default function Messenger() {
                     ))}
                 </section>
                 <footer>
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            value={txt}
-                            placeholder="Type your message here..."
-                            onChange={(e) => setTxt(e.target.value)}
-                            type="text" />
-                        <button><FaTelegramPlane /></button>
-                    </form>
+                    <InputEmoji
+                        value={txt}
+                        onChange={setTxt}
+                        cleanOnEnter
+                        onEnter={handleSubmit}
+                        placeholder="Type your message here..."
+                    />
                 </footer>
             </div>
             <div className="right">

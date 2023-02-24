@@ -62,32 +62,8 @@
         footer {
             height: 10%;
             border-top: 1px solid $wish-dark-grey;
+            display: flex;
 
-            form {
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                input {
-                    width: 70%;
-                    height: 70%;
-                    border-radius: 20px;
-                    outline: none;
-                    border: 1px solid $wish-dark-grey;
-                    padding-left: 20px;
-                    font-size: 18px;
-                    font-family: 'roboto';
-                }
-
-                button {
-                    border: none;
-                    background: none;
-                    font-size: 25px;
-                    transform: translateX(-40px);
-                    cursor: pointer;
-                }
-            }
         }
     }
 
