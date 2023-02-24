@@ -5,7 +5,9 @@ import { ImPrevious, ImNext } from 'react-icons/im';
 import { BiToggleLeft, BiToggleRight } from 'react-icons/bi';
 import { images } from "../imageUrl/imageUrl";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment, addLike, selectUsers, toggleLikes } from "../../store/slices/users/usersSlices";
+import { collection, query, where, onSnapshot } from "firebase/firestore"
+import { db } from "../../firebaseConfig/FrirebaseConfig";
+import { addComment, addLike, addPostLike, selectUsers, toggleLikes } from "../../store/slices/users/usersSlices";
 
 
 export default function UserByClickImageItem() {
@@ -17,6 +19,7 @@ export default function UserByClickImageItem() {
     const [like, setLike] = useState(false)
     const dispatch = useDispatch()
     const [hidden, setHidden] = useState(false)
+    const [post, setPost] = useState(null)
 
     useEffect(() => {
 
@@ -24,8 +27,21 @@ export default function UserByClickImageItem() {
             navigate('/')
         }
 
+
         userByClick?.images.forEach((image) => {
             if (image.id === id) {
+                if (image.image_id) {
+                    const q = query(collection(db, "posts"), where("image_id", "==", image?.image_id))
+                    const unsubscribe = async () => onSnapshot(q, (querySnapshot) => {
+                        let post = {};
+                        querySnapshot.forEach((doc) => {
+                            post = { ...doc.data(), id: doc.id }
+                            setPost(post)
+                        })
+                    });
+                    unsubscribe()
+                }
+
                 setImage(image)
                 if (image.likes.length > 0) {
                     dispatch(toggleLikes(image.likes))
@@ -41,7 +57,7 @@ export default function UserByClickImageItem() {
             }
         })
 
-    }, [])
+    }, [like])
 
     const prevClick = () => {
         let idx = userByClick?.images.indexOf(image)
@@ -94,8 +110,10 @@ export default function UserByClickImageItem() {
     }
 
     const addNewLike = () => {
+
         if (!like) {
             dispatch(addLike({ userByClick: userByClick, image: image, currentUser: currentUser }))
+            dispatch(addPostLike({ id: post.id, currentUser: currentUser, Likes: post.Likes }))
             setLike(true)
         }
     }

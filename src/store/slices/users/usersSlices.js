@@ -258,12 +258,30 @@ const usersSlice = createSlice({
                 await updateDoc(userDoc, newFileds)
             }
             updateUser(payload.userByClick.id)
+        },
+        addPostLike(state, { payload }) {
+            const updatePostLike = async (id) => {
+
+                const userDoc = doc(db, "posts", id)
+                const newFileds = {
+                    Likes: [
+                        ...payload.Likes,
+                        {
+                            id: uuidv4(),
+                            name: payload.currentUser.name,
+                            user_id: payload.currentUser.user_id
+                        }
+                    ]
+                }
+                await updateDoc(userDoc, newFileds)
+            }
+            updatePostLike(payload.id)
         }
     }
 })
 
 export const selectUsers = state => state.users
 
-export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrinedRequest, addNewFriend, deleteFriend, coverImageAdd, avatarImageAdd, imagesAdd, deleteImageUsers, toggleUserByClick, addComment, addLike, toggleLikes, deleteFriendRequest } = usersSlice.actions
+export const { addNewUser, toggleUser, currentUserDelNewMessUser, addNewFrinedRequest, addNewFriend, deleteFriend, coverImageAdd, avatarImageAdd, imagesAdd, deleteImageUsers, toggleUserByClick, addComment, addLike, toggleLikes, deleteFriendRequest, addPostLike } = usersSlice.actions
 
 export const usersReducer = usersSlice.reducer

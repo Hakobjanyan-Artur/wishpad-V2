@@ -1,4 +1,4 @@
-import React, { createContext, lazy } from 'react';
+import React, { createContext, lazy, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Friend from './components/friends/Friends';
@@ -16,11 +16,13 @@ import UserByClickImageItem from './components/userByclickImageItem/userByClickI
 import { ThreeCircles } from 'react-loader-spinner'
 const LeazyMain = lazy(() => import('./components/main/Main'))
 const LeazyUserByClick = lazy(() => import('./components/userByClick/UserByClick'))
+const LeazyTopTenPosts = lazy(() => import('./components/topTenPosts/topTenPosts'))
 
 
 export const ThemeContext = createContext()
 
 function App({ theme, toggleTheme }) {
+  const [topTen, setTopTen] = useState(null)
 
   return (
     <div className="App">
@@ -38,7 +40,7 @@ function App({ theme, toggleTheme }) {
                 visible={true}
                 ariaLabel="three-circles-rotating"
               />}>
-                <LeazyMain />
+                <LeazyMain setTopTen={setTopTen} />
               </React.Suspense>} />
             <Route path='friend' element={<Friend />} />
             <Route path='notification' element={<Notification />} />
@@ -63,6 +65,20 @@ function App({ theme, toggleTheme }) {
                   <LeazyUserByClick />
                 </React.Suspense>} />
             </Route>
+            <Route path='topTenPosts' element={
+              <React.Suspense fallback={
+                <ThreeCircles
+                  height="100"
+                  width="100"
+                  color="rgb(33, 92, 243)"
+                  wrapperClass="Circle"
+                  visible={true}
+                  ariaLabel="three-circles-rotating"
+                />
+              }>
+                <LeazyTopTenPosts topTen={topTen} />
+              </React.Suspense>
+            } />
             <Route path='userByClickImageItem'>
               <Route path=':id' element={<UserByClickImageItem />} />
             </Route>

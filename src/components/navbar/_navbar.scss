@@ -22,14 +22,21 @@
     }
 
     .navbar-content {
-        width: 20%;
+        width: 15%;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 20px;
         position: fixed;
+        background: $wish-blue;
+
+
+        @media(max-width: 950px) {
+            width: 10%;
+        }
 
         @media(max-width: 550px) {
+            width: 100%;
             min-height: auto;
             height: 60px;
             flex-direction: row;

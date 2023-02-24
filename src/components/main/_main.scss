@@ -24,7 +24,52 @@
             width: 100%;
         }
 
-        .top {}
+        .top {
+            width: 70%;
+            height: 150px;
+            border: 1px solid $wish-dark-grey;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 20px;
+            background: $wish-blue;
+
+            h3 {
+                font-family: 'elsie';
+                color: #fff;
+            }
+
+            .top-ten {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .top-content {
+                width: 90%;
+                height: 100px;
+                border-radius: 20px;
+                overflow-x: auto;
+                background: #fff;
+                display: flex;
+                gap: 20px;
+                padding: 0 20px;
+                align-items: center;
+
+                .top-post-content {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 3px;
+                    align-items: center;
+
+                    .top-post-avatar {
+                        cursor: pointer;
+                        @include image(60px, 60px, $wish-blue)
+                    }
+                }
+            }
+        }
 
         .section {
             width: 100%;

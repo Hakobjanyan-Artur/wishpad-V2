@@ -9,9 +9,10 @@ import { db } from "../../firebaseConfig/FrirebaseConfig";
 import { dateOfLastActivity, isOnline } from "../../store/slices/setting/settingSlices";
 import { avatarURL } from "../imageUrl/imageUrl";
 import { ThreeCircles } from 'react-loader-spinner'
+import { MdNextPlan } from 'react-icons/md'
 const LeazyPostItem = React.lazy(() => import('../mainPostItem/mainPostItem'))
 
-export default function Main() {
+export default function Main({ setTopTen }) {
     const { theme } = useContext(ThemeContext)
     const { currentUser } = useSelector(selectUsers)
     const dispatch = useDispatch()
@@ -70,8 +71,11 @@ export default function Main() {
             if (topPosts.length > 10) {
                 topPosts.length = 10
                 setTopPosts(topPosts)
+                setTopTen(topPosts)
             } else {
                 setTopPosts(topPosts)
+                setTopTen(topPosts)
+
             }
         })
         topPosts()
@@ -80,15 +84,25 @@ export default function Main() {
     return (
         <div className="main">
             <div className="left">
-                <div className="top">
+                <div
+                    style={{
+                        backgroundColor: theme === 'dark' ? '' : '#000'
+                    }}
+                    className="top">
                     <h3>Top Posts Users</h3>
-                    <div
-                        style={{
-                            backgroundColor: theme === 'dark' ? '' : '#000'
-                        }}
-                        className="top-content">
-
+                    <div className="top-content">
+                        {topPosts?.map((post) => (
+                            <div onClick={() => navigate(`/userByClick/${post?.user_id}`)} key={post?.id} className="top-post-content">
+                                <div className="top-post-avatar">
+                                    <img src={post?.avatar ? avatarURL(post?.userId, post?.avatar) : userImage} alt="" />
+                                </div>
+                                <div className="top-post-info">
+                                    <h5>{post?.userName}</h5>
+                                </div>
+                            </div>
+                        ))}
                     </div>
+                    <h3 onClick={() => navigate('/topTenPosts')} className="top-ten">Top 10 posts <MdNextPlan /></h3>
                 </div>
                 <div className="section">
                     {posts?.map((post) => (
