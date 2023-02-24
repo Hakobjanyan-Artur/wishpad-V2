@@ -37,7 +37,9 @@ export default function Navbar() {
         <div
             style={{ backgroundColor: theme === 'dark' ? '' : '#000', }}
             className="navbar">
-            <div className="navbar-content">
+            <div
+                style={{ backgroundColor: theme === 'dark' ? '' : '#000', }}
+                className="navbar-content">
                 <div className="logo">
                     <img src={logo} alt="" />
                     <span className="siwish"><SiWish /></span>
