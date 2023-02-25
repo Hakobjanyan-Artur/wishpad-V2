@@ -7,7 +7,7 @@ import { selectUsers, toggleUser } from "../../store/slices/users/usersSlices";
 import { collection, limitToLast, onSnapshot, orderBy, query } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig";
 import { dateOfLastActivity, isOnline } from "../../store/slices/setting/settingSlices";
-import { avatarURL } from "../imageUrl/imageUrl";
+import { avatarURL, images } from "../imageUrl/imageUrl";
 import { ThreeCircles } from 'react-loader-spinner'
 import { MdNextPlan } from 'react-icons/md'
 const LeazyPostItem = React.lazy(() => import('../mainPostItem/mainPostItem'))
@@ -20,6 +20,8 @@ export default function Main({ setTopTen }) {
     const [posts, setPosts] = useState(null)
     const [topPosts, setTopPosts] = useState(null)
     const [users, setusers] = useState(null)
+    const [imagePost, setImagePost] = useState(null)
+    const [imagePopup, setImagePopup] = useState(false)
 
 
     useEffect(() => {
@@ -80,9 +82,18 @@ export default function Main({ setTopTen }) {
         })
         topPosts()
     }, [])
-
     return (
         <div className="main">
+            <div
+                onClick={() => setImagePopup(false)}
+                style={{
+                    display: imagePopup ? 'flex' : 'none'
+                }}
+                className="image-popup">
+                <div className="image-content">
+                    <img src={images(imagePost?.userId, imagePost?.image)} alt="" />
+                </div>
+            </div>
             <div className="left">
                 <div
                     style={{
@@ -115,7 +126,7 @@ export default function Main({ setTopTen }) {
                                 visible={true}
                                 ariaLabel="three-circles-rotating"
                             />}>
-                            <LeazyPostItem users={users} {...post} />
+                            <LeazyPostItem users={users} setImagePopup={setImagePopup} setImagePost={setImagePost} {...post} />
                         </React.Suspense>))}
                 </div>
             </div>

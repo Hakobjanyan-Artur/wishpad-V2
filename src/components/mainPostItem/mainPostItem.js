@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 
 
 
-export default function MainPostItem({ avatar, userId, user_id, userName, date, image, id, Likes, image_id, users, description }) {
+export default function MainPostItem({ avatar, userId, user_id, userName, date, image, id, Likes, image_id, users, description, setImagePost, setImagePopup }) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { currentUser } = useSelector(selectUsers)
@@ -66,7 +66,9 @@ export default function MainPostItem({ avatar, userId, user_id, userName, date, 
             <div className='desc'>
                 <h3>{description}</h3>
             </div>
-            <div className="post-content-image">
+            <div
+                onClick={() => { setImagePost({ userId: userId, image: image }); setImagePopup(true) }}
+                className="post-content-image">
                 <img src={images(userId, image)} alt="" />
             </div>
             <div className="post-content-bottom">

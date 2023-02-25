@@ -39,6 +39,10 @@
         display: flex;
         justify-content: center;
         margin: 5px 0;
+
+        h3 {
+            font-family: 'roboto';
+        }
     }
 
     .post-content-image {
@@ -46,6 +50,7 @@
         height: 80%;
         overflow: hidden;
         border-radius: 10px;
+        cursor: pointer;
 
 
         img {
