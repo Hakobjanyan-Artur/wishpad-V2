@@ -14,6 +14,8 @@ import HomeWrapper from './pages/HomeWrapper';
 import ProfileClickImage from './components/profileClickImage/profileClickImage';
 import UserByClickImageItem from './components/userByclickImageItem/userByClickImageItem';
 import { ThreeCircles } from 'react-loader-spinner'
+import Error from './pages/error';
+import Terms from './pages/terms';
 const LeazyMain = lazy(() => import('./components/main/Main'))
 const LeazyUserByClick = lazy(() => import('./components/userByClick/UserByClick'))
 const LeazyTopTenPosts = lazy(() => import('./components/topTenPosts/topTenPosts'))
@@ -30,6 +32,7 @@ function App({ theme, toggleTheme }) {
         <Routes>
           <Route index element={<SingIn />} />
           <Route path='signup' element={<SignUp />} />
+          <Route path='terms' element={<Terms />} />
           <Route path='/' element={<HomeWrapper />}>
             <Route path='main' element={
               <React.Suspense fallback={<ThreeCircles
@@ -86,6 +89,7 @@ function App({ theme, toggleTheme }) {
               <Route path=':id/' element={<Messenger />} />
             </Route>
           </Route>
+          <Route path='*' element={<Error />} />
         </Routes>
       </ThemeContext.Provider>
     </div>

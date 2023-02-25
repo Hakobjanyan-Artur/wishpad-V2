@@ -187,9 +187,9 @@ export default function SignUp() {
                             Female: <input onChange={() => setGenderInput(!genderInput)} type="radio" name='gender' value="woman" />
                         </div>
                         <div className='check'>
-                            <h4>Do you agree with us</h4>
+                            <h4>By registering, you agree to our Terms</h4>
                         </div>
-                        <h5 className='terms'>Terms</h5>
+                        <h5 onClick={() => navigate('/terms')} className='terms-txt'> Learn more</h5>
                         <button>Sign-up</button>
                     </form>
                     <div className='sign-up-div'>

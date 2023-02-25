@@ -1,0 +1,97 @@
+@include font('roboto', './fonts/Roboto-Thin.ttf');
+@include font('clash', './fonts/ClashDisplay-Medium.ttf');
+@include font('elsie', './fonts/Elsie-Regular.ttf');
+
+.error-pages {
+    width: 100%;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    -webkit-animation: gradient 15s ease infinite;
+    animation: gradient 15s ease infinite;
+    height: 100vh;
+
+
+    @-webkit-keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+
+    header {
+        width: 100%;
+        height: 40%;
+        display: flex;
+        justify-content: center;
+
+        img {
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+            transform: translateY(-20%);
+        }
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        .section-header {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            position: relative;
+
+            span {
+                display: block;
+                font-size: 90px;
+                color: #fff;
+            }
+        }
+
+        .section-txt {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            h1 {
+                font-family: 'roboto';
+                color: #fff
+            }
+        }
+
+        .section-buttons {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+
+            button {
+                @include button(120px, 30px, $wish-blue, #fff)
+            }
+        }
+    }
+}

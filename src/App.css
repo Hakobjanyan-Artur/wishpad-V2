@@ -507,7 +507,7 @@
   top: 50%;
   right: -110%;
 }
-.sign-up .sign-up-content .section form .terms {
+.sign-up .sign-up-content .section form .terms-txt {
   text-align: center;
   color: rgb(33, 92, 243);
   font-family: "roboto";
@@ -3323,8 +3323,14 @@
   border-radius: 10px;
   cursor: pointer;
 }
+@media (max-width: 550px) {
+  .post-content .post-content-image {
+    height: auto;
+  }
+}
 .post-content .post-content-image img {
   width: 100%;
+  border-radius: 10px;
 }
 .post-content .post-content-bottom {
   width: 100%;
@@ -3501,6 +3507,225 @@
     width: 80%;
     height: 300px;
   }
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("./fonts/Roboto-Thin.ttf");
+}
+@font-face {
+  font-family: "clash";
+  src: url("./fonts/ClashDisplay-Medium.ttf");
+}
+@font-face {
+  font-family: "elsie";
+  src: url("./fonts/Elsie-Regular.ttf");
+}
+.terms {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.terms header {
+  background-color: rgb(33, 92, 243);
+  width: 100%;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+.terms header img {
+  width: 17%;
+  transform: translateY(-10%);
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  cursor: pointer;
+}
+@media (max-width: 950px) {
+  .terms header img {
+    width: 25%;
+  }
+}
+@media (max-width: 800px) {
+  .terms header img {
+    width: 30%;
+  }
+}
+@media (max-width: 670px) {
+  .terms header img {
+    width: 35%;
+  }
+}
+@media (max-width: 570px) {
+  .terms header img {
+    width: 40%;
+  }
+}
+.terms header span {
+  display: block;
+  font-size: 50px;
+  color: #fff;
+  font-family: "elsie";
+}
+.terms section {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 50px;
+}
+.terms section .welcome,
+.terms section .service,
+.terms section .commitment,
+.terms section .Additional,
+.terms section .removal,
+.terms section .Community {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.terms section .welcome h1,
+.terms section .service h1,
+.terms section .commitment h1,
+.terms section .Additional h1,
+.terms section .removal h1,
+.terms section .Community h1 {
+  font-family: "elsie";
+}
+.terms section .welcome h2,
+.terms section .service h2,
+.terms section .commitment h2,
+.terms section .Additional h2,
+.terms section .removal h2,
+.terms section .Community h2 {
+  font-family: "elsie";
+}
+.terms section .welcome p,
+.terms section .service p,
+.terms section .commitment p,
+.terms section .Additional p,
+.terms section .removal p,
+.terms section .Community p {
+  font-family: "roboto";
+}
+.terms section .commitment ul,
+.terms section .Additional ul,
+.terms section .removal ul,
+.terms section .Community ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.terms section .commitment ul li,
+.terms section .Additional ul li,
+.terms section .removal ul li,
+.terms section .Community ul li {
+  list-style: disc;
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("./fonts/Roboto-Thin.ttf");
+}
+@font-face {
+  font-family: "clash";
+  src: url("./fonts/ClashDisplay-Medium.ttf");
+}
+@font-face {
+  font-family: "elsie";
+  src: url("./fonts/Elsie-Regular.ttf");
+}
+.error-pages {
+  width: 100%;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  -webkit-animation: gradient 15s ease infinite;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
+}
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.error-pages header {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+}
+.error-pages header img {
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  transform: translateY(-20%);
+}
+.error-pages section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.error-pages section .section-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.error-pages section .section-header span {
+  display: block;
+  font-size: 90px;
+  color: #fff;
+}
+.error-pages section .section-txt {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.error-pages section .section-txt h1 {
+  font-family: "roboto";
+  color: #fff;
+}
+.error-pages section .section-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+.error-pages section .section-buttons button {
+  width: 120px;
+  height: 30px;
+  border: none;
+  background: rgb(33, 92, 243);
+  border-radius: 10px;
+  font-size: 20px;
+  font-family: "roboto";
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgb(33, 92, 243);
+  transition: 0.5s;
 }
 
 * {
