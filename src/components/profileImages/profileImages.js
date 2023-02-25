@@ -16,6 +16,7 @@ export default function ProfileImages() {
     const [photo, setPhoto] = useState(null)
     const [checkbox, setCheckbox] = useState(false)
     const [progress, setProgress] = useState(0)
+    const [description, setDescription] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -35,11 +36,11 @@ export default function ProfileImages() {
                     () => {
                         const id = uuidv4()
                         if (checkbox) {
-                            dispatch(imagesAdd({ currentUser: currentUser, name: photo?.name, image_id: id }))
-                            dispatch(addNewPosts({ image: photo?.name, currentUser: currentUser, image_id: id }))
+                            dispatch(imagesAdd({ currentUser: currentUser, name: photo?.name, image_id: id, description: description }))
+                            dispatch(addNewPosts({ image: photo?.name, currentUser: currentUser, image_id: id, description: description }))
                             setPopupImages(false)
                         } else {
-                            dispatch(imagesAdd({ currentUser: currentUser, name: photo?.name, image_id: id }))
+                            dispatch(imagesAdd({ currentUser: currentUser, name: photo?.name, image_id: id, description: description }))
                             setPopupImages(false)
                         }
                     }
@@ -47,6 +48,7 @@ export default function ProfileImages() {
             }
             uploadImages()
         }
+        setDescription('')
     }
 
 
@@ -60,6 +62,7 @@ export default function ProfileImages() {
                 <AiOutlineCloseCircle onClick={() => setPopupImages(false)} className="icon-close" />
                 <h2>Upload images</h2>
                 <input onChange={(e) => setPhoto(e.target.files[0])} type="file" />
+                <input className="desc" type="text" onChange={(e) => setDescription(e.target.value)} value={description} placeholder="Description..." />
                 <div className="check-for-posts">
                     <h4>For posts</h4>
                     <input value={checkbox} onChange={() => setCheckbox(!checkbox)} type="checkbox" />

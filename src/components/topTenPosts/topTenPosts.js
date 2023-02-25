@@ -113,6 +113,8 @@ export default function TopTenPosts({ topTen }) {
                                 <h3>Likes: {topTen[4]?.Likes.length}</h3>
                             </div>
                         </div>
+                    </div>
+                    <div className="four">
                         <div className="post-content">
                             <div className="top">
                                 <div
@@ -130,8 +132,6 @@ export default function TopTenPosts({ topTen }) {
                                 <h3>Likes: {topTen[5]?.Likes.length}</h3>
                             </div>
                         </div>
-                    </div>
-                    <div className="four">
                         <div className="post-content">
                             <div className="top">
                                 <div
@@ -149,6 +149,8 @@ export default function TopTenPosts({ topTen }) {
                                 <h3>Likes: {topTen[6]?.Likes.length}</h3>
                             </div>
                         </div>
+                    </div>
+                    <div className="five">
                         <div className="post-content">
                             <div className="top">
                                 <div
@@ -183,6 +185,8 @@ export default function TopTenPosts({ topTen }) {
                                 <h3>Likes: {topTen[8]?.Likes.length}</h3>
                             </div>
                         </div>
+                    </div>
+                    <div className="six">
                         <div className="post-content">
                             <div className="top">
                                 <div

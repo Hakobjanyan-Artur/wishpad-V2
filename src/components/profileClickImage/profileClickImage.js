@@ -111,6 +111,9 @@ export default function ProfileClickImage() {
             <div className="left">
                 <div className="header">
                     <MdDeleteForever onClick={() => deleteImage()} className="icon delete" />
+                    <div className="desc">
+                        <h3>{image?.description}</h3>
+                    </div>
                     <AiOutlineCloseCircle onClick={() => navigate(-1)} className="icon" />
                 </div>
                 <div className="content">

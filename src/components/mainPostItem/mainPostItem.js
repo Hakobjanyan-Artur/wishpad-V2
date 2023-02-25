@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 
 
 
-export default function MainPostItem({ avatar, userId, user_id, userName, date, image, id, Likes, image_id, users }) {
+export default function MainPostItem({ avatar, userId, user_id, userName, date, image, id, Likes, image_id, users, description }) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { currentUser } = useSelector(selectUsers)
@@ -62,6 +62,9 @@ export default function MainPostItem({ avatar, userId, user_id, userName, date, 
                 </div>
                 <h3>{userName}</h3>
                 <h3>{date}</h3>
+            </div>
+            <div className='desc'>
+                <h3>{description}</h3>
             </div>
             <div className="post-content-image">
                 <img src={images(userId, image)} alt="" />

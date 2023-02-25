@@ -177,7 +177,8 @@ const usersSlice = createSlice({
                             name: payload.name,
                             comments: [],
                             likes: [],
-                            image_id: payload.image_id
+                            image_id: payload.image_id,
+                            description: payload.description
                         }
                     ]
                 }

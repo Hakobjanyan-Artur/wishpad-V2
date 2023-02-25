@@ -38,6 +38,10 @@
             align-items: center;
         }
 
+        .desc {
+            @include settingInput()
+        }
+
         button {
             @include buttonProfile(200px, 30px, $wish-blue, #fff);
             position: static;

@@ -4,12 +4,13 @@
 
 .post-content {
     width: 50%;
-    max-width: 500px;
+    min-height: 500px;
     border: 1px solid $wish-dark-grey;
     border-radius: 10px;
     box-shadow: 0 0 15px $wish-dark-grey;
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     @media (max-width: 650px) {
         width: 80%;
@@ -32,10 +33,20 @@
         }
     }
 
+    .desc {
+        border-bottom: 1px solid $wish-dark-grey;
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        margin: 5px 0;
+    }
+
     .post-content-image {
-        width: 100%;
+        width: 80%;
         height: 80%;
         overflow: hidden;
+        border-radius: 10px;
+
 
         img {
             width: 100%;
