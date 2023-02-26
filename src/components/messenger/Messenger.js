@@ -28,12 +28,6 @@ export default function Messenger() {
     const [sendMessage] = useSound(sendSound)
     const [receiveMessage] = useSound(receive)
 
-    // useEffect(() => {
-    //     if (message[idx]?.user !== currentUser?.user_id) {
-    //         // receiveMessage()
-    //     }
-    // }, [])
-
     useEffect(() => {
         const delUser = async (arr, id) => {
 

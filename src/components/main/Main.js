@@ -46,11 +46,10 @@ export default function Main({ setTopTen }) {
         }
         fetchUsers()
 
-        dispatch(isOnline(currentUser?.id))
-
-        setInterval(() => {
+        if (currentUser) {
             dispatch(isOnline(currentUser?.id))
-        }, 60000 * 3)
+        }
+
 
     }, [])
 

@@ -40,8 +40,7 @@
   }
 }
 .main .image-popup .image-content {
-  width: 80%;
-  height: 90%;
+  width: 85%;
   border-radius: 20px;
   overflow: hidden;
   display: flex;
@@ -54,7 +53,7 @@
   }
 }
 .main .image-popup .image-content img {
-  width: 100%;
+  width: 75%;
   border-radius: 20px;
 }
 .main .left {

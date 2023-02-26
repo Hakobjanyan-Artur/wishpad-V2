@@ -32,7 +32,6 @@ export default function UserByClickImageItem() {
             navigate('/')
         }
 
-
         userByClick?.images.forEach((image) => {
             if (image.id === id) {
                 if (image.image_id) {
@@ -62,7 +61,7 @@ export default function UserByClickImageItem() {
             }
         })
 
-    }, [like])
+    }, [like, likes])
 
     const prevClick = () => {
         let idx = userByClick?.images.indexOf(image)
@@ -210,10 +209,10 @@ export default function UserByClickImageItem() {
                     {image?.comments.map((comment) => (
                         <div key={comment?.id} className="comment-component">
                             <div className="comment-header">
-                                <h3>{comment.userName}</h3>
+                                <h3>{comment?.userName}</h3>
                             </div>
                             <div className="comment">
-                                <p>{comment.comment}</p>
+                                <p>{comment?.comment}</p>
                             </div>
                         </div>
                     ))}
