@@ -67,17 +67,28 @@ export default function Main({ setTopTen }) {
         const p = query(collection(db, "posts"))
         const topPosts = async () => onSnapshot(p, (querySnapshot) => {
             let posts = [];
-            let topPosts = []
+            let likes = []
+            let topPost = []
+            let toppPost = []
             querySnapshot.forEach((doc) => { posts.push({ ...doc.data(), id: doc.id }) })
-            posts.forEach(post => post.Likes.length > 0 ? topPosts.unshift(post) : topPosts.push(post))
-            if (topPosts.length > 10) {
-                topPosts.length = 10
-                setTopPosts(topPosts)
-                setTopTen(topPosts)
+            posts.forEach(post => {
+                likes.push(post.Likes.length)
+            })
+            topPost.unshift(...likes.sort((a, b) => b - a))
+            likes.forEach(like => {
+                posts.forEach((post) => {
+                    if (like === post.Likes.length) {
+                        toppPost.push(post)
+                    }
+                })
+            })
+            if (toppPost.length > 10) {
+                toppPost.length = 10
+                setTopPosts(toppPost)
+                setTopTen(toppPost)
             } else {
-                setTopPosts(topPosts)
-                setTopTen(topPosts)
-
+                setTopPosts(toppPost)
+                setTopTen(toppPost)
             }
         })
         topPosts()
@@ -117,7 +128,7 @@ export default function Main({ setTopTen }) {
                 </div>
                 <div className="section">
                     {posts?.map((post) => (
-                        <React.Suspense key={post?.id} fallback={
+                        <React.Suspense fallback={
                             <ThreeCircles
                                 height="100"
                                 width="100"
@@ -126,7 +137,7 @@ export default function Main({ setTopTen }) {
                                 visible={true}
                                 ariaLabel="three-circles-rotating"
                             />}>
-                            <LeazyPostItem users={users} setImagePopup={setImagePopup} setImagePost={setImagePost} {...post} />
+                            <LeazyPostItem users={users} key={post?.id} setImagePopup={setImagePopup} setImagePost={setImagePost} {...post} />
                         </React.Suspense>))}
                 </div>
             </div>
