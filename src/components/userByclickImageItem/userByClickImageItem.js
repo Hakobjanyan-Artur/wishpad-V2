@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { AiOutlineCloseCircle, AiFillHeart } from 'react-icons/ai';
 import { ImPrevious, ImNext } from 'react-icons/im';
@@ -20,6 +20,11 @@ export default function UserByClickImageItem() {
     const dispatch = useDispatch()
     const [hidden, setHidden] = useState(false)
     const [post, setPost] = useState(null)
+    const desctopRef = useRef(null)
+
+    useEffect(() => {
+        desctopRef.current.scrollTop = desctopRef.current.scrollHeight - desctopRef.current.clientHeight
+    })
 
     useEffect(() => {
 
@@ -189,7 +194,7 @@ export default function UserByClickImageItem() {
             </div>
             <div className="right">
                 <div className="title"> <span onClick={() => setHidden(!hidden)} className="toggle">{!hidden ? <div className="toggle-title"><h5>likes: {image?.likes.length}</h5> <BiToggleLeft /></div> : <div className="toggle-title"><h5>Comments: {image?.comments.length}</h5> <BiToggleRight /></div>}</span></div>
-                <div
+                <div ref={desctopRef}
                     style={{
                         display: !hidden ? 'flex' : 'none'
                     }}

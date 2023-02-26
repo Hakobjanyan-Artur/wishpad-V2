@@ -15,6 +15,8 @@ import { FiSettings } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { selectUsers } from "../../store/slices/users/usersSlices";
 import { avatarURL } from "../imageUrl/imageUrl";
+import useSound from 'use-sound';
+import receive from '../../Sound/receive.mp3'
 
 
 export default function Navbar() {
@@ -23,6 +25,7 @@ export default function Navbar() {
     const [localCurrentUser, setCurrentUser] = useState(false)
     const { currentUser } = useSelector(selectUsers)
     const [notificationLength, setNotificationLength] = useState(0)
+    const [receiveMessage] = useSound(receive)
 
 
     useEffect(() => {
@@ -31,6 +34,7 @@ export default function Navbar() {
             setCurrentUser(true)
         }
         setNotificationLength(currentUser?.friendRequest?.length + currentUser?.newMessageUsers?.length)
+        // console.log(currentUser?.newMessageUsers?.length);
     }, [currentUser?.friendRequest, currentUser?.newMessageUsers])
 
     return (

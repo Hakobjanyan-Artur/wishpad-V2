@@ -9,6 +9,9 @@ import { ThemeContext } from "../../App"
 import { selectMessenger, toggleMessageUsers, toggleNewMessage } from "../../store/slices/messages/messageSlices"
 import { avatarURL } from "../imageUrl/imageUrl"
 import InputEmoji from "react-input-emoji";
+import useSound from 'use-sound';
+import sendSound from '../../Sound/send.mp3'
+import receive from '../../Sound/receive.mp3'
 
 export default function Messenger() {
     const { id } = useParams()
@@ -22,6 +25,40 @@ export default function Messenger() {
     const dispatch = useDispatch()
     const [userMess, setUserMess] = useState(null)
     const desctopRef = useRef(null)
+    const [sendMessage] = useSound(sendSound)
+    const [receiveMessage] = useSound(receive)
+
+    // useEffect(() => {
+    //     if (message[idx]?.user !== currentUser?.user_id) {
+    //         // receiveMessage()
+    //     }
+    // }, [])
+
+    useEffect(() => {
+        const delUser = async (arr, id) => {
+
+            const userDoc = doc(db, "users", id)
+            const newFileds = {
+                newMessageUsers: [
+                    ...arr
+                ]
+            }
+            await updateDoc(userDoc, newFileds)
+        }
+
+        const delNewMessUser = async () => {
+            const newMessageUser = []
+            for (const newMessUser of currentUser?.newMessageUsers) {
+                if (newMessUser?.user !== id) {
+                    newMessageUser.push(newMessUser)
+                }
+            }
+            delUser(newMessageUser, currentUser?.id)
+            dispatch(currentUserDelNewMessUser(newMessageUser))
+        }
+
+        delNewMessUser()
+    }, [currentUser?.newMessageUser])
 
     useEffect(() => {
         if (!currentUser) {
@@ -54,29 +91,6 @@ export default function Messenger() {
         }
         fetchUsers()
         //--------del uder newMessUser
-        const delUser = async (arr, id) => {
-
-            const userDoc = doc(db, "users", id)
-            const newFileds = {
-                newMessageUsers: [
-                    ...arr
-                ]
-            }
-            await updateDoc(userDoc, newFileds)
-        }
-
-        const delNewMessUser = async () => {
-            const newMessageUser = []
-            for (const newMessUser of currentUser?.newMessageUsers) {
-                if (newMessUser?.user !== id) {
-                    newMessageUser.push(newMessUser)
-                }
-            }
-            delUser(newMessageUser, currentUser?.id)
-            dispatch(currentUserDelNewMessUser(newMessageUser))
-        }
-
-        delNewMessUser()
 
         const localUser = JSON.parse(localStorage.getItem('currentUser')) || null
         if (localUser) {
@@ -102,6 +116,10 @@ export default function Messenger() {
                 querySnapshot.forEach((doc) => { user.push({ ...doc.data(), id: doc.id }) })
                 const filterMess = user.filter((mess) => mess.user === currentUser?.user_id && mess.companion === id || mess.user === id && mess.companion === currentUser?.user_id)
                 setMessage(filterMess)
+                const idx = filterMess.length - 1
+                if (filterMess[idx].user !== currentUser?.user_id) {
+                    receiveMessage()
+                }
             })
             messenger()
 
@@ -130,6 +148,7 @@ export default function Messenger() {
         } else {
             dispatch(toggleMessageUsers({ userByClick: userByClick, user_id: currentUser?.user_id, id: messId }))
         }
+        sendMessage()
     }
 
     return (
