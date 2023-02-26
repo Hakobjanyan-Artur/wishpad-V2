@@ -17,10 +17,8 @@ export default function MainPostItem({ avatar, userId, user_id, userName, date, 
 
     useEffect(() => {
         Likes.forEach(like => {
-            if (like.user_id === currentUser?.user_id) {
+            if (like.user_id.includes(currentUser?.user_id)) {
                 setLike(true)
-            } else {
-                setLike(false)
             }
         })
     }, [Likes])
@@ -38,17 +36,18 @@ export default function MainPostItem({ avatar, userId, user_id, userName, date, 
                 photo = img
             }
         })
-
-        if (user_id !== currentUser?.user_id && Likes.length > 0) {
-            Likes?.forEach(like => {
-                if (like.user_id !== currentUser?.user_id) {
-                    dispatch(addLike({ id: id, Likes: Likes, currentUser: currentUser }))
-                    dispatch(addLikeUser({ userId: userId, image_id: image_id, currentUser: currentUser, photoUser: photoUser, photo: photo }))
-                }
-            });
-        } else if (user_id !== currentUser?.user_id) {
-            dispatch(addLike({ id: id, Likes: Likes, currentUser: currentUser }))
-            dispatch(addLikeUser({ userId: userId, image_id: image_id, currentUser: currentUser, photoUser: photoUser, photo: photo }))
+        if (!like) {
+            if (user_id !== currentUser?.user_id && Likes.length > 0) {
+                Likes?.forEach(like => {
+                    if (like.user_id !== currentUser?.user_id) {
+                        dispatch(addLike({ id: id, Likes: Likes, currentUser: currentUser }))
+                        dispatch(addLikeUser({ userId: userId, image_id: image_id, currentUser: currentUser, photoUser: photoUser, photo: photo }))
+                    }
+                });
+            } else if (user_id !== currentUser?.user_id) {
+                dispatch(addLike({ id: id, Likes: Likes, currentUser: currentUser }))
+                dispatch(addLikeUser({ userId: userId, image_id: image_id, currentUser: currentUser, photoUser: photoUser, photo: photo }))
+            }
         }
     }
 
