@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import userImage from '../../images/user.png'
 import { collection, query, where, onSnapshot, orderBy, updateDoc, doc } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig"
-import { FaTelegramPlane } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux"
 import { currentUserDelNewMessUser, selectUsers, toggleUser } from "../../store/slices/users/usersSlices"
 import { ThemeContext } from "../../App"
@@ -22,6 +21,7 @@ export default function Messenger() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [userMess, setUserMess] = useState(null)
+    const desctopRef = useRef(null)
 
     useEffect(() => {
         if (!currentUser) {
@@ -109,13 +109,18 @@ export default function Messenger() {
         }
     }, [])
 
+    useEffect(() => {
+        desctopRef.current.scrollTop = desctopRef.current.scrollHeight - desctopRef.current.clientHeight
+    })
 
 
-    const handleSubmit = async (e) => {
+
+    const handleSubmit = () => {
         //----send Message
         dispatch(toggleNewMessage({ txt: txt, currentUser: currentUser, userByClick: userByClick }))
         //---------------
         //----upload user and add newMessageUser
+
         if (userByClick.newMessageUsers.length > 0) {
             userByClick?.newMessageUsers.forEach((el) => {
                 if (el.user !== currentUser.user_id) {
@@ -138,7 +143,7 @@ export default function Messenger() {
                         <h2>{userByClick?.name} {userByClick?.lastname}</h2>
                     </div>
                 </header>
-                <section>
+                <section ref={desctopRef}>
                     {message?.map((mess) => (
                         <div key={mess?.id} className="message-content">
                             <div

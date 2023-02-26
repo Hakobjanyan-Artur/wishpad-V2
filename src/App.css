@@ -1544,7 +1544,7 @@
   }
 }
 .messenger .left header {
-  height: 20%;
+  height: 150px;
   background-color: rgb(33, 92, 243);
   display: flex;
   align-items: center;
@@ -1570,7 +1570,7 @@
   font-family: "elsie";
 }
 .messenger .left section {
-  height: 68%;
+  height: 600px;
   overflow-y: auto;
 }
 .messenger .left section .message-content {
@@ -1589,7 +1589,7 @@
   justify-content: space-between;
 }
 .messenger .left footer {
-  height: 10%;
+  height: 100px;
   border-top: 1px solid rgb(201, 201, 201);
   display: flex;
 }

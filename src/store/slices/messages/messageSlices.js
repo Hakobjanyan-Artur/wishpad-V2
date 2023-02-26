@@ -14,7 +14,7 @@ const messageSlices = createSlice({
             //----upload user and add newMessageUser
             const addNewUserMessage = async (userByClick, user_id, id) => {
 
-                const userDoc = doc(db, "users", id)
+                const userDoc = doc(db, "users", userByClick.id)
                 const newFileds = {
                     newMessageUsers: [
                         ...userByClick.newMessageUsers, {
