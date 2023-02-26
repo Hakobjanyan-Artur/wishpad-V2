@@ -71,7 +71,7 @@ export default function SingIn() {
     return (
         <div className="sign-in">
             <div style={{ display: showPopup ? 'flex' : 'none' }} className='popup'>
-                {successfully ? <h1 style={{ color: 'rgb(33, 92, 243' }} >Welcom {currentUser?.name}</h1> : <h1 style={{ color: 'red' }}>User not found</h1>}
+                {successfully ? <h1 style={{ color: 'rgb(33, 92, 243' }} >Welcome {currentUser?.name}</h1> : <h1 style={{ color: 'red' }}>User not found</h1>}
                 <div className='loadAnim'></div>
             </div>
             <div className="sign-in-content">

@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
+    "emoji.json": "^14.0.0",
     "firebase": "^9.17.1",
     "password-hash": "^1.2.2",
     "react": "^18.2.0",

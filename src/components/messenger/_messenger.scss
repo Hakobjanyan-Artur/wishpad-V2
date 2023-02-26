@@ -7,9 +7,12 @@
     height: 100vh;
     display: flex;
 
+    @media(max-width: 550px) {
+        height: 80vh;
+    }
+
     @media(max-width:750px) {
         width: 100%;
-        height: 100vh;
     }
 
     .left {
@@ -19,8 +22,12 @@
             width: 100%;
         }
 
+        @media(max-width: 550px) {
+            height: 80vh;
+        }
+
         header {
-            height: 150px;
+            height: 170px;
             background-color: $wish-blue;
             display: flex;
             align-items: center;
@@ -35,11 +42,19 @@
                 color: #fff;
                 font-family: 'elsie';
             }
+
+            @media(max-width: 550px) {
+                height: 100px;
+            }
         }
 
         section {
             height: 600px;
             overflow-y: auto;
+
+            @media(max-width: 550px) {
+                height: 550px;
+            }
 
             .message-content {
                 min-height: 70px;
@@ -60,10 +75,64 @@
         }
 
         footer {
-            height: 100px;
+            height: 80px;
             border-top: 1px solid $wish-dark-grey;
-            display: flex;
 
+            form {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+
+                .emoji-div {
+                    width: 60%;
+                    height: 200px;
+                    border: 1px solid $wish-dark-grey;
+                    position: absolute;
+                    top: -200px;
+                    right: 0;
+                    overflow-y: auto;
+                    border-top-left-radius: 20px;
+                    display: grid;
+                    grid-template-columns: repeat(15, 1fr);
+                    background: #fff;
+
+                    @media(max-width: 550px) {
+                        width: 100%;
+                    }
+
+                    .em {
+                        cursor: pointer;
+                    }
+                }
+
+                input {
+                    width: 80%;
+                    height: 40px;
+                    outline: none;
+                    border: 1px solid $wish-dark-grey;
+                    font-size: 18px;
+                    padding-left: 15px;
+                    font-family: 'roboto';
+                    border-radius: 20px;
+                }
+
+                .emoji-icon {
+                    font-size: 25px;
+                    transform: translateX(-30px);
+                    cursor: pointer;
+                    color: grey;
+                }
+
+                button {
+                    font-size: 30px;
+                    border: none;
+                    background: none;
+                    cursor: pointer;
+                    color: $wish-blue;
+                }
+            }
         }
     }
 

@@ -1528,10 +1528,14 @@
   height: 100vh;
   display: flex;
 }
+@media (max-width: 550px) {
+  .messenger {
+    height: 80vh;
+  }
+}
 @media (max-width: 750px) {
   .messenger {
     width: 100%;
-    height: 100vh;
   }
 }
 .messenger .left {
@@ -1542,8 +1546,13 @@
     width: 100%;
   }
 }
+@media (max-width: 550px) {
+  .messenger .left {
+    height: 80vh;
+  }
+}
 .messenger .left header {
-  height: 150px;
+  height: 170px;
   background-color: rgb(33, 92, 243);
   display: flex;
   align-items: center;
@@ -1568,9 +1577,19 @@
   color: #fff;
   font-family: "elsie";
 }
+@media (max-width: 550px) {
+  .messenger .left header {
+    height: 100px;
+  }
+}
 .messenger .left section {
   height: 600px;
   overflow-y: auto;
+}
+@media (max-width: 550px) {
+  .messenger .left section {
+    height: 550px;
+  }
 }
 .messenger .left section .message-content {
   min-height: 70px;
@@ -1588,9 +1607,59 @@
   justify-content: space-between;
 }
 .messenger .left footer {
-  height: 100px;
+  height: 80px;
   border-top: 1px solid rgb(201, 201, 201);
+}
+.messenger .left footer form {
+  height: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.messenger .left footer form .emoji-div {
+  width: 60%;
+  height: 200px;
+  border: 1px solid rgb(201, 201, 201);
+  position: absolute;
+  top: -200px;
+  right: 0;
+  overflow-y: auto;
+  border-top-left-radius: 20px;
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  background: #fff;
+}
+@media (max-width: 550px) {
+  .messenger .left footer form .emoji-div {
+    width: 100%;
+  }
+}
+.messenger .left footer form .emoji-div .em {
+  cursor: pointer;
+}
+.messenger .left footer form input {
+  width: 80%;
+  height: 40px;
+  outline: none;
+  border: 1px solid rgb(201, 201, 201);
+  font-size: 18px;
+  padding-left: 15px;
+  font-family: "roboto";
+  border-radius: 20px;
+}
+.messenger .left footer form .emoji-icon {
+  font-size: 25px;
+  transform: translateX(-30px);
+  cursor: pointer;
+  color: grey;
+}
+.messenger .left footer form button {
+  font-size: 30px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: rgb(33, 92, 243);
 }
 .messenger .right {
   width: 30%;
@@ -2834,36 +2903,22 @@
   }
 }
 .user-by-click-images .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 95%;
   cursor: pointer;
 }
 @media (max-width: 550px) {
   .user-by-click-images .content {
-    width: 50%;
+    width: 80%;
   }
 }
 .user-by-click-images .content .image {
-  height: 200px;
-  overflow: hidden;
+  width: 100%;
   border-radius: 20px;
-}
-@media (max-width: 950px) {
-  .user-by-click-images .content .image {
-    height: 180px;
-  }
-}
-@media (max-width: 850px) {
-  .user-by-click-images .content .image {
-    height: 220px;
-  }
-}
-@media (max-width: 700px) {
-  .user-by-click-images .content .image {
-    height: 250px;
-  }
-}
-.user-by-click-images .content .image img {
-  border-radius: 20px;
-  height: 100%;
 }
 
 @font-face {

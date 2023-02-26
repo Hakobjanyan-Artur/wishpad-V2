@@ -8,10 +8,13 @@ import { currentUserDelNewMessUser, selectUsers, toggleUser } from "../../store/
 import { ThemeContext } from "../../App"
 import { selectMessenger, toggleMessageUsers, toggleNewMessage } from "../../store/slices/messages/messageSlices"
 import { avatarURL } from "../imageUrl/imageUrl"
-import InputEmoji from "react-input-emoji";
+import { BsEmojiHeartEyes } from 'react-icons/bs';
+import { FaTelegramPlane } from 'react-icons/fa';
 import useSound from 'use-sound';
 import sendSound from '../../Sound/send.mp3'
 import receive from '../../Sound/receive.mp3'
+const emoji = require('emoji.json')
+emoji.length = 200
 
 export default function Messenger() {
     const { id } = useParams()
@@ -25,6 +28,7 @@ export default function Messenger() {
     const dispatch = useDispatch()
     const [userMess, setUserMess] = useState(null)
     const desctopRef = useRef(null)
+    const [emojiHidden, setEmojiHidden] = useState(false)
     const [sendMessage] = useSound(sendSound)
     const [receiveMessage] = useSound(receive)
 
@@ -145,6 +149,10 @@ export default function Messenger() {
         sendMessage()
     }
 
+    const handleEmoji = (emoji) => {
+        setTxt(txt + emoji)
+    }
+
     return (
         <div className="messenger">
             <div className="left">
@@ -182,13 +190,23 @@ export default function Messenger() {
                     ))}
                 </section>
                 <footer>
-                    <InputEmoji
-                        value={txt}
-                        onChange={setTxt}
-                        cleanOnEnter
-                        onEnter={handleSubmit}
-                        placeholder="Type your message here..."
-                    />
+                    <form onSubmit={handleSubmit}>
+                        <div
+                            style={{
+                                display: emojiHidden ? 'grid' : 'none'
+                            }}
+                            className="emoji-div">
+                            {emoji?.map((em) => (
+                                <span onClick={() => handleEmoji(em.char)} className="em" key={em?.codes}>{em?.char}</span>
+                            ))}
+                        </div>
+                        <input
+                            value={txt}
+                            onChange={(e) => setTxt(e.target.value)}
+                            type="text" />
+                        <BsEmojiHeartEyes onClick={() => setEmojiHidden(!emojiHidden)} className="emoji-icon" />
+                        <button><FaTelegramPlane /></button>
+                    </form>
                 </footer>
             </div>
             <div className="right">
