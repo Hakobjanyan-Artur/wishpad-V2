@@ -96,6 +96,7 @@
                     border-top-left-radius: 20px;
                     display: grid;
                     grid-template-columns: repeat(15, 1fr);
+                    gap: 3px;
                     background: #fff;
 
                     @media(max-width: 550px) {
@@ -104,6 +105,15 @@
 
                     .em {
                         cursor: pointer;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 5px;
+                        border: 1px solid #fff;
+                    }
+
+                    .em:hover {
+                        border: 1px solid $wish-dark-grey;
                     }
                 }
 
@@ -123,6 +133,11 @@
                     transform: translateX(-30px);
                     cursor: pointer;
                     color: grey;
+                    transition: .6s;
+                }
+
+                .emoji-icon:hover {
+                    color: $wish-dark-grey;
                 }
 
                 button {

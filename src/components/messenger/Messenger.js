@@ -131,7 +131,8 @@ export default function Messenger() {
 
 
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
         //----send Message
         dispatch(toggleNewMessage({ txt: txt, currentUser: currentUser, userByClick: userByClick }))
         //---------------

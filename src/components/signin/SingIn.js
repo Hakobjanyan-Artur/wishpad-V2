@@ -96,7 +96,6 @@ export default function SingIn() {
                             <input onChange={() => setCheck(!check)} className='checkbox' type="checkbox" />
                         </div>
                         <button>Sign-in</button>
-                        <h5>Forgot password ?</h5>
                     </form>
                     <div className='sign-up-div'>
                         <h4>Don't have an account?</h4>

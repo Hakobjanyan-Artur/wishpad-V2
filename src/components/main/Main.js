@@ -51,7 +51,7 @@ export default function Main({ setTopTen }) {
         }
 
 
-    }, [])
+    }, [currentUser])
 
 
     useEffect(() => {
