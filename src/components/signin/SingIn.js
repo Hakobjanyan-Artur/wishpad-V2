@@ -96,6 +96,7 @@ export default function SingIn() {
                             <input onChange={() => setCheck(!check)} className='checkbox' type="checkbox" />
                         </div>
                         <button>Sign-in</button>
+                        <span onClick={() => navigate('forgotPassword')} className='sign-forgot'>Forgot Password ?</span>
                     </form>
                     <div className='sign-up-div'>
                         <h4>Don't have an account?</h4>

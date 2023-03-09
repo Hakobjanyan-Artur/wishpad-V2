@@ -16,6 +16,8 @@ import UserByClickImageItem from './components/userByclickImageItem/userByClickI
 import { ThreeCircles } from 'react-loader-spinner'
 import Error from './pages/error';
 import Terms from './pages/terms';
+import ForgotPassword from './components/forgotPassword/forgotPassword';
+import RecoverPassword from './components/recoverPassword/recoverPassword';
 const LeazyMain = lazy(() => import('./components/main/Main'))
 const LeazyUserByClick = lazy(() => import('./components/userByClick/UserByClick'))
 const LeazyTopTenPosts = lazy(() => import('./components/topTenPosts/topTenPosts'))
@@ -30,6 +32,10 @@ function App({ theme, toggleTheme }) {
     <div className="App">
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
         <Routes>
+          <Route path='forgotPassword' element={<ForgotPassword />} />
+          <Route path='recoverPassword'>
+            <Route path=':id' element={<RecoverPassword />} />
+          </Route>
           <Route index element={<SingIn />} />
           <Route path='signup' element={<SignUp />} />
           <Route path='terms' element={<Terms />} />

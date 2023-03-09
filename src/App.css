@@ -346,7 +346,7 @@
   background: #fff;
   color: rgb(33, 92, 243);
 }
-.sign-in .sign-in-content .section form h5 {
+.sign-in .sign-in-content .section form .sign-forgot {
   font-family: "roboto";
   cursor: pointer;
   color: rgb(33, 92, 243);
@@ -3793,6 +3793,303 @@
   cursor: pointer;
   box-shadow: 0 0 15px rgb(33, 92, 243);
   transition: 0.5s;
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("./fonts/Roboto-Thin.ttf");
+}
+@font-face {
+  font-family: "clash";
+  src: url("./fonts/ClashDisplay-Medium.ttf");
+}
+@font-face {
+  font-family: "elsie";
+  src: url("./fonts/Elsie-Regular.ttf");
+}
+.forgot {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.forgot .forgot-popup {
+  width: 500px;
+  height: 400px;
+  background: #fff;
+  border: 3px solid rgb(201, 201, 201);
+  box-shadow: 0 0 15px rgb(201, 201, 201);
+  border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.forgot .forgot-popup .spiner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.forgot .forgot-popup .popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.forgot .forgot-popup p {
+  text-align: center;
+  width: 70%;
+}
+.forgot .forgot-popup .pinCode {
+  display: flex;
+  gap: 30px;
+}
+.forgot .forgot-popup .pinCode input {
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  outline: none;
+  border: none;
+  text-align: center;
+  box-shadow: 0 0 15px rgb(201, 201, 201);
+}
+.forgot .forgot-popup button {
+  width: 120px;
+  height: 25px;
+  border: none;
+  background: rgb(33, 92, 243);
+  border-radius: 10px;
+  font-size: 20px;
+  font-family: "roboto";
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgb(33, 92, 243);
+  transition: 0.5s;
+}
+.forgot .forgot-content {
+  width: 500px;
+  min-height: 500px;
+  border: 3px solid rgb(201, 201, 201);
+  box-shadow: 0 0 15px rgb(201, 201, 201);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.forgot .forgot-content .top {
+  background: rgb(33, 92, 243);
+  display: flex;
+  justify-content: center;
+}
+.forgot .forgot-content .top .logo {
+  width: 200px;
+  height: 200px;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  overflow: hidden;
+}
+.forgot .forgot-content .section {
+  padding: 30px;
+}
+.forgot .forgot-content .section h1 {
+  text-align: center;
+  font-family: "elsie";
+}
+.forgot .forgot-content .section p {
+  text-align: center;
+  font-family: "roboto";
+}
+.forgot .forgot-content .section h2 {
+  text-align: center;
+  font-family: "elsie";
+  margin-top: 10px;
+  color: red;
+}
+.forgot .forgot-content .section form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  margin-top: 20px;
+}
+.forgot .forgot-content .section form input {
+  width: 80%;
+  height: 30px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgb(201, 201, 201);
+  font-size: 18px;
+  font-family: "roboto";
+  padding-left: 15px;
+}
+.forgot .forgot-content .section form button {
+  width: 60%;
+  height: 30px;
+  border: none;
+  background: rgb(33, 92, 243);
+  border-radius: 10px;
+  font-size: 20px;
+  font-family: "roboto";
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgb(33, 92, 243);
+  transition: 0.5s;
+}
+.forgot .forgot-content .section form button:hover {
+  background: #fff;
+  color: rgb(33, 92, 243);
+}
+.forgot .forgot-content .sign-in-up {
+  display: flex;
+  justify-content: space-around;
+}
+.forgot .forgot-content .sign-in-up .forgot-sign-in,
+.forgot .forgot-content .sign-in-up .forgot-sign-up {
+  color: rgb(33, 92, 243);
+  cursor: pointer;
+}
+.forgot .forgot-content .sign-in-up .forgot-sign-in:hover,
+.forgot .forgot-content .sign-in-up .forgot-sign-up:hover {
+  text-decoration: underline;
+}
+
+@font-face {
+  font-family: "roboto";
+  src: url("./fonts/Roboto-Thin.ttf");
+}
+@font-face {
+  font-family: "clash";
+  src: url("./fonts/ClashDisplay-Medium.ttf");
+}
+@font-face {
+  font-family: "elsie";
+  src: url("./fonts/Elsie-Regular.ttf");
+}
+.recover-password {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.recover-password .recover-content {
+  width: 500px;
+  min-height: 500px;
+  border: 3px solid rgb(201, 201, 201);
+  box-shadow: 0 0 15px rgb(201, 201, 201);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.recover-password .recover-content .top {
+  background: rgb(33, 92, 243);
+  display: flex;
+  justify-content: center;
+}
+.recover-password .recover-content .top .logo {
+  width: 200px;
+  height: 200px;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  overflow: hidden;
+}
+.recover-password .recover-content .section {
+  padding: 30px;
+}
+.recover-password .recover-content .section h1 {
+  text-align: center;
+  font-family: "elsie";
+}
+.recover-password .recover-content .section p {
+  text-align: center;
+  font-family: "roboto";
+}
+.recover-password .recover-content .section form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  margin-top: 20px;
+}
+.recover-password .recover-content .section form .password {
+  width: 80%;
+  position: relative;
+}
+.recover-password .recover-content .section form .password .password-logic {
+  width: 100%;
+  height: 200px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: absolute;
+  background: #fff;
+  border: 2px solid rgb(201, 201, 201);
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+.recover-password .recover-content .section form .password .password-logic .range {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgb(201, 201, 201);
+  display: block;
+}
+.recover-password .recover-content .section form .password .password-logic .logic-content {
+  height: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "roboto";
+}
+.recover-password .recover-content .section form .password input {
+  width: 100%;
+}
+.recover-password .recover-content .section form input {
+  width: 80%;
+  height: 30px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgb(201, 201, 201);
+  font-size: 18px;
+  font-family: "roboto";
+  padding-left: 15px;
+}
+.recover-password .recover-content .section form .show-password {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: "roboto";
+}
+.recover-password .recover-content .section form .show-password .checkbox {
+  width: 15px;
+}
+.recover-password .recover-content .section form button {
+  width: 60%;
+  height: 30px;
+  border: none;
+  background: rgb(33, 92, 243);
+  border-radius: 10px;
+  font-size: 20px;
+  font-family: "roboto";
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgb(33, 92, 243);
+  transition: 0.5s;
+}
+.recover-password .recover-content .section form button:hover {
+  background: #fff;
+  color: rgb(33, 92, 243);
 }
 
 * {
