@@ -125,7 +125,7 @@ export default function Settings() {
         upper.includes(true) ? setPassUpperCase(true) : setPassUpperCase(false)
 
         // ----- LoverCase
-        const lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "x"]
+        const lowerCase = ["a", "r", "t", "u", "r", "f", "g", "l", "i", "j", "n", "h", "a", "k", "o", "b", "j", "a", "n", "y", "a", "n", "w", "x", "y", "x", "e", "v", "m", "d", "c", "o", "s", "p", "q"]
         let lower = []
         lowerCase.forEach(el => lower.push(e.includes(el)))
         lower.includes(true) ? setPassLowerCase(true) : setPassLowerCase(false)
