@@ -4,9 +4,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../App";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUsers, toggleUser } from "../../store/slices/users/usersSlices";
-import { collection, limitToLast, onSnapshot, orderBy, query } from "firebase/firestore"
+import { collection, limitToLast, onSnapshot, orderBy, query, where } from "firebase/firestore"
 import { db } from "../../firebaseConfig/FrirebaseConfig";
-import { dateOfLastActivity, isOnline } from "../../store/slices/setting/settingSlices";
+import { dateOfLastActivity } from "../../store/slices/setting/settingSlices";
 import { avatarURL, images } from "../imageUrl/imageUrl";
 import { ThreeCircles } from 'react-loader-spinner'
 import { MdNextPlan } from 'react-icons/md'
@@ -82,9 +82,19 @@ export default function Main({ setTopTen }) {
         })
         topPosts()
 
-
-
     }, [currentUser])
+
+    useEffect(() => {
+        const q = query(collection(db, "users"), where("user_id", "==", currentUser?.user_id))
+        const unsubscribe = async () => onSnapshot(q, (querySnapshot) => {
+            let user = {};
+            querySnapshot.forEach((doc) => {
+                user = { ...doc.data(), id: doc.id }
+            })
+            dispatch(toggleUser(user))
+        });
+        unsubscribe()
+    }, [])
 
     return (
         <div className="main">

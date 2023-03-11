@@ -2,12 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
 const firebaseConfig = {
-    apiKey: "AIzaSyBcavQtVolDbJV3X_5e3nXVGJ1lVTPYB7Q",
-    authDomain: "artchat-86d4b.firebaseapp.com",
-    projectId: "artchat-86d4b",
-    storageBucket: "artchat-86d4b.appspot.com",
-    messagingSenderId: "917142935201",
-    appId: "1:917142935201:web:487c62ab4e5e2562b042e0"
+    apiKey: "AIzaSyB40aXaFnEt3HVbKcihKREVdCV5KFjV7S8",
+    authDomain: "wishpad2-c308a.firebaseapp.com",
+    projectId: "wishpad2-c308a",
+    storageBucket: "wishpad2-c308a.appspot.com",
+    messagingSenderId: "1061419889528",
+    appId: "1:1061419889528:web:3714140e73b88bb9d60e8d",
+    measurementId: "G-TLWF8L47K9"
 };
 
 const app = initializeApp(firebaseConfig);

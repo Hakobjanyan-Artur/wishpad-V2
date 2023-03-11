@@ -60,17 +60,6 @@ const settingSlices = createSlice({
             }
             updateUser(payload)
         },
-        isOnline(state, { payload }) {
-            const updateUser = async (id) => {
-
-                const userDoc = doc(db, "users", id)
-                const newFileds = {
-                    time: time()
-                }
-                await updateDoc(userDoc, newFileds)
-            }
-            updateUser(payload)
-        },
         dateOfLastActivity(state, { payload }) {
             const updateUser = async (id) => {
 

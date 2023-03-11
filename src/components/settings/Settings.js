@@ -1,15 +1,13 @@
 import { useContext, useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { ThemeContext } from "../../App"
-import { selectUsers, toggleUser } from "../../store/slices/users/usersSlices"
+import { selectUsers } from "../../store/slices/users/usersSlices"
 import { MdManageAccounts, MdAttachEmail } from 'react-icons/md';
 import { GrShieldSecurity } from 'react-icons/gr';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { TiFolderDelete } from 'react-icons/ti';
 import { useNavigate } from "react-router-dom";
 import countryData from "../../country/country";
-import { collection, onSnapshot } from "firebase/firestore"
-import { db } from "../../firebaseConfig/FrirebaseConfig";
 import { accountSettingChange, deleteAccount, emailChange, passwordChange } from "../../store/slices/setting/settingSlices";
 import bcrypt from 'bcryptjs';
 import emailjs from '@emailjs/browser';
@@ -341,7 +339,7 @@ export default function Settings() {
                             <input
                                 placeholder="Enter your password"
                                 type="password" />
-                            <input type="text" hidden name="message" value={currentUser?.id} />
+                            <input type="text" hidden name="message" defaultValue={currentUser?.id} />
                             <button>Delete account</button>
                         </form>
                     </div>
