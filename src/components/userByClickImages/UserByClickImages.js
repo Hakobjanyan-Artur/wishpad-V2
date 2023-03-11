@@ -27,7 +27,7 @@ export default function UserByClickImages() {
             setUserByClick(user)
         });
         unsubscribe()
-    }, [])
+    }, [currentUser])
 
     return (
         <div className="user-by-click-images">

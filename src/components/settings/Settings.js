@@ -47,23 +47,7 @@ export default function Settings() {
             country.push(countryData.data[data])
         }
         setCountry(country)
-    }, [])
-
-    useEffect(() => {
-        const fetchUsers = async () => {
-            const usersRef = collection(db, "users")
-            await onSnapshot(usersRef, (snapShot) => {
-                const users = []
-                snapShot.forEach((doc) => users.push({ ...doc.data(), id: doc.id }))
-                users.forEach((user) => {
-                    if (user.user_id === currentUser?.user_id) {
-                        dispatch(toggleUser(user))
-                    }
-                })
-            })
-        }
-        fetchUsers()
-    }, [])
+    }, [currentUser])
 
     // ------------account change 
 

@@ -21,7 +21,7 @@ const postsSlices = createSlice({
                 avatar: payload.currentUser.avatar,
                 date: data(),
                 Likes: [],
-                createdAd: serverTimestamp(),
+                createdAt: serverTimestamp(),
                 description: payload.description
             }
             addDoc(postsRef, addPost)

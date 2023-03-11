@@ -34,7 +34,7 @@ export default function ForgotPassword() {
         }
         fetchUsers()
         setRandom(Math.floor(Math.random() * 9000 + 1000))
-    }, [])
+    }, [random])
 
     const handleSubmit = (e) => {
         e.preventDefault()

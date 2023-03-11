@@ -16,7 +16,7 @@ export default function TopTenPosts({ topTen }) {
         if (!currentUser) {
             navigate('/')
         }
-    }, [])
+    }, [currentUser])
 
     if (topTen) {
         return (

@@ -37,31 +37,21 @@ export default function Main({ setTopTen }) {
                 let users = []
                 snapShot.forEach((doc) => users.push({ ...doc.data(), id: doc.id }))
                 setusers(users)
-                users.forEach((user) => {
-                    if (user.user_id === currentUser?.user_id) {
-                        dispatch(toggleUser(user))
-                    }
-                })
             })
         }
         fetchUsers()
 
-        if (currentUser) {
-            dispatch(isOnline(currentUser?.id))
-        }
-
-
-    }, [currentUser])
-
-
-    useEffect(() => {
-        const m = query(collection(db, "posts"), orderBy('createdAd'), limitToLast(100))
+        // ---------posts
+        const m = query(collection(db, "posts"), orderBy('createdAt'), limitToLast(100))
         const postFetch = async () => onSnapshot(m, (querySnapshot) => {
             let posts = [];
             querySnapshot.forEach((doc) => { posts.unshift({ ...doc.data(), id: doc.id }) })
             setPosts(posts)
         })
         postFetch()
+
+
+        //---------top posts
 
         const p = query(collection(db, "posts"))
         const topPosts = async () => onSnapshot(p, (querySnapshot) => {
@@ -70,12 +60,12 @@ export default function Main({ setTopTen }) {
             let topPost = []
             let toppPost = []
             querySnapshot.forEach((doc) => { posts.push({ ...doc.data(), id: doc.id }) })
-            posts.forEach(post => {
+            posts?.forEach(post => {
                 likes.push(post.Likes.length)
             })
-            topPost.unshift(...likes.sort((a, b) => b - a))
-            likes.forEach(like => {
-                posts.forEach((post) => {
+            topPost?.unshift(...likes.sort((a, b) => b - a))
+            likes?.forEach(like => {
+                posts?.forEach((post) => {
                     if (like === post.Likes.length) {
                         toppPost.push(post)
                     }
@@ -91,7 +81,11 @@ export default function Main({ setTopTen }) {
             }
         })
         topPosts()
-    }, [])
+
+
+
+    }, [currentUser])
+
     return (
         <div className="main">
             <div
